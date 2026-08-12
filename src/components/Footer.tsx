@@ -241,7 +241,7 @@ export default function Footer({ currentView, setView }: FooterProps) {
             &copy; 2026 DNA TECH. All Rights Reserved.
           </div>
           <div>
-            Data Neutral Analysis Technology // Addis Ababa, Ethiopia
+            Data Neutral Analysis Technology | Addis Ababa, Ethiopia
           </div>
         </div>
 

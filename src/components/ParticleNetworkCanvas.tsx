@@ -39,7 +39,14 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
     };
 
     let particles: Particle[] = [];
-    const colorPalette = ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#E2E8F0', '#FFFFFF'];
+    // Default (dark mode) palette uses light particles; switch when .light class present
+    const getColorPalette = () => {
+      if (document.documentElement.classList.contains('light')) {
+        return ['#0B2442', '#0B2442', '#0B2442', '#0B2442', '#0B2442'];
+      }
+      return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#E2E8F0', '#FFFFFF'];
+    };
+    let colorPalette = getColorPalette();
 
     // Resize Handler
     const updateDimensions = () => {
@@ -142,7 +149,9 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       ctx.clearRect(0, 0, width, height);
 
       // Update & Render Particles
-      for (let i = 0; i < particles.length; i++) {
+        // Update color palette dynamically in case theme changed
+        colorPalette = getColorPalette();
+        for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
         // Particle position update
@@ -186,7 +195,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = '#FFFFFF';
+            ctx.strokeStyle = document.documentElement.classList.contains('light') ? '#0B2442' : '#FFFFFF';
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 0.88;
             ctx.stroke();
@@ -202,7 +211,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
                 ctx.beginPath();
                 ctx.arc(pulseX, pulseY, 1.6, 0, Math.PI * 2);
-                ctx.fillStyle = '#FFFFFF';
+                ctx.fillStyle = document.documentElement.classList.contains('light') ? '#0B2442' : '#FFFFFF';
                 ctx.globalAlpha = Math.min(alpha * 2.0, 0.68);
                 ctx.fill();
               }
@@ -220,7 +229,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
-            ctx.strokeStyle = '#FFFFFF';
+            ctx.strokeStyle = document.documentElement.classList.contains('light') ? '#0B2442' : '#FFFFFF';
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 1.05;
             ctx.stroke();

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { RotateCw } from 'lucide-react';
 
 interface FlipCardProps {
   front: React.ReactNode;
@@ -19,7 +18,7 @@ export default function FlipCard({
 }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (onClick) {
       onClick();
     }
@@ -35,7 +34,7 @@ export default function FlipCard({
       onClick={handleClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           setIsFlipped((prev) => !prev);
@@ -61,13 +60,7 @@ export default function FlipCard({
             {front}
           </div>
           
-          <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-[10px] font-mono text-white/70 flex-shrink-0">
-            <span className="flex items-center space-x-1.5">
-              <RotateCw className="w-3 h-3 text-white/80" />
-              <span>Hover or tap to reveal</span>
-            </span>
-            <span className="text-white font-bold">&rarr;</span>
-          </div>
+          
         </div>
 
         {/* BACK SIDE */}
@@ -83,13 +76,7 @@ export default function FlipCard({
             {back}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-[10px] font-mono text-white/70 flex-shrink-0">
-            <span className="flex items-center space-x-1.5">
-              <RotateCw className="w-3 h-3 text-white/80" />
-              <span>Return to header</span>
-            </span>
-            <span className="text-white font-bold">&larr;</span>
-          </div>
+          
         </div>
       </motion.div>
     </div>

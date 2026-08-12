@@ -72,7 +72,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             className="space-y-6 max-w-3xl mx-auto"
           >
             <h1 className="font-sans font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.08]">
-              Turn Primary Data Into Market Leadership.
+              Turning Data Into Better Decisions.
             </h1>
             
             <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto">
@@ -113,7 +113,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
                 <div className="p-2.5 rounded-[12px] bg-[#051329]/70 border border-white/10">
                   <div className="text-xl sm:text-2xl font-sans font-extrabold text-white">
-                    <AnimatedCounter value="8+" />
+                    <AnimatedCounter value="10+" />
                   </div>
                   <div className="text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Projects Completed</div>
                 </div>

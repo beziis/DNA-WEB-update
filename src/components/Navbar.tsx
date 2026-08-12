@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageType } from '../types';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainerVariants, fastStaggerContainerVariants, slideInRightItemVariants } from '../utils/animationVariants';
 import { companyProfile } from '../data';
@@ -111,6 +111,13 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
 
           {/* Action Area (Get Started CTA) */}
           <div className="hidden md:flex items-center space-x-3">
+              <button
+                onClick={() => toggleTheme?.()}
+              aria-label="Toggle theme"
+              className={`p-2 rounded-md transition-colors focus:outline-none ${isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-white/80 hover:bg-white/5'}`}
+            >
+              {isLight ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <button
               onClick={() => setCurrentPage('contact')}
               className={`flex items-center space-x-2 px-5 py-2.5 rounded-[12px] text-xs font-sans font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md keep-dark-cta ${
@@ -125,6 +132,13 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
 
           {/* Mobile Actions */}
           <div className="flex md:hidden items-center space-x-2">
+              <button
+                onClick={() => toggleTheme?.()}
+              aria-label="Toggle theme"
+              className={`p-2 rounded-md transition-colors focus:outline-none ${isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-white/80 hover:bg-white/5'}`}
+            >
+              {isLight ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <motion.button
               whileTap={{ scale: 0.9 }}
               id="mobile-menu-toggle"

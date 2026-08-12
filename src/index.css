@@ -25,7 +25,7 @@ body {
   font-family: var(--font-sans);
   background-color: #051329;
   color: #F8FAFC;
-  font-weight: 200;
+  font-weight: 400;
   line-height: 1.7;
   letter-spacing: 0.015em;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +33,7 @@ body {
 }
 
 p, li, td, th {
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: 0.015em;
   line-height: 1.7;
   text-wrap: pretty;
@@ -183,14 +183,14 @@ textarea {
 }
 
 /* Light mode translucent white overlays */
-.light .bg-[#0B2545]\/80,
-.light .bg-[#0B2545]\/70,
-.light .bg-[#0B2545]\/60,
-.light .bg-[#0B2545]\/50,
-.light .bg-[#0B2545]\/40,
-.light .bg-[#051329]\/90,
-.light .bg-[#051329]\/80,
-.light .bg-[#051329]\/70 {
+.light .bg-\[\#0B2545\]\/80,
+.light .bg-\[\#0B2545\]\/70,
+.light .bg-\[\#0B2545\]\/60,
+.light .bg-\[\#0B2545\]\/50,
+.light .bg-\[\#0B2545\]\/40,
+.light .bg-\[\#051329\]\/90,
+.light .bg-\[\#051329\]\/80,
+.light .bg-\[\#051329\]\/70 {
   background-color: #FFFFFF !important;
   color: #0F172A !important;
   border-color: #E2E8F0 !important;
@@ -223,6 +223,59 @@ textarea {
 .light .text-white\/40,
 .light .text-white\/30 {
   color: #64748B !important;
+}
+
+/* Lucide icons: default deep navy in light mode; CTAs keep white */
+.light .lucide,
+.light svg.lucide {
+  color: #0B2442 !important;
+}
+.light .keep-dark-cta .lucide,
+.light .keep-dark-cta svg {
+  color: #FFFFFF !important;
+}
+
+/* Improve button hover contrast and focus outlines in light mode */
+.light button:hover,
+.light a:hover,
+.light input[type="button"]:hover,
+.light input[type="submit"]:hover {
+  background-color: rgba(11, 36, 66, 0.06) !important;
+}
+
+.light button:focus-visible,
+.light a:focus-visible,
+.light input:focus-visible,
+.light textarea:focus-visible {
+  outline: 3px solid rgba(11,36,66,0.12);
+  outline-offset: 2px;
+}
+
+/* Ensure small/secondary text remains legible on light backgrounds */
+.light .text-white,
+.light .text-white\/90,
+.light .text-white\/80,
+.light .text-white\/75,
+.light .text-white\/70 {
+  color: #0F172A !important;
+}
+
+/* Fallback for any element that still uses full white on light backgrounds */
+.light [class*="text-white"] {
+  color: #0F172A !important;
+}
+
+/* Ensure icon contrast in buttons and small elements */
+.light button svg,
+.light a svg,
+.light .icon {
+  color: #0B2442 !important;
+}
+
+/* Preserve white icons for dark CTAs */
+.light .keep-dark-cta svg,
+.light .keep-dark-cta .icon {
+  color: #FFFFFF !important;
 }
 
 /* Light mode input & form controls */

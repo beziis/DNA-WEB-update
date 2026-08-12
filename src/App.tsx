@@ -18,7 +18,12 @@ import PageTransitionOverlay from './components/PageTransitionOverlay';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    return (localStorage.getItem('dna-tech-theme') as 'light' | 'dark') || 'dark';
+    const stored = localStorage.getItem('dna-tech-theme') as 'light' | 'dark' | null;
+    if (stored) return stored;
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      return 'light';
+    }
+    return 'dark';
   });
 
   // Scroll to top on page changes
@@ -35,6 +40,22 @@ export default function App() {
       document.documentElement.classList.remove('light');
     }
   }, [theme]);
+
+  // Respect system theme changes when user hasn't set a preference
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const syncWithSystem = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem('dna-tech-theme')) {
+        setTheme(e.matches ? 'light' : 'dark');
+      }
+    };
+    if (mq.addEventListener) mq.addEventListener('change', syncWithSystem);
+    else mq.addListener(syncWithSystem);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', syncWithSystem);
+      else mq.removeListener(syncWithSystem);
+    };
+  }, []);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
@@ -68,6 +89,7 @@ export default function App() {
           currentPage={currentPage} 
           setCurrentPage={setCurrentPage} 
           theme={theme}
+          toggleTheme={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
         />
         
         {/* Primary Main Content Canvas with Animated Transition Overlay */}

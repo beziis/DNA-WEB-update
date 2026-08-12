@@ -19,73 +19,49 @@ const pipelineStages: PipelineStage[] = [
     id: 'stage-01',
     stageNum: '01',
     stageName: 'FORMULATION',
-    title: 'Questionnaire Development',
+    title: 'Understand',
     icon: FileText,
-    deliverables: [
-      'Contextual questions',
-      'Bilingual translation',
-      'Pre-field pilot test'
-    ]
+    deliverables: ['We listen to your objectives, challenges, and core questions.'],
   },
   {
     id: 'stage-02',
     stageNum: '02',
     stageName: 'FIELDWORK',
-    title: 'Data Collection',
+    title: 'Research',
     icon: Database,
-    deliverables: [
-      'Geotagged enumerations',
-      'Offline digital capture',
-      'Quality assurance checks'
-    ]
+    deliverables: ['We design tailored research methodologies and survey tools.']
   },
   {
     id: 'stage-03',
     stageNum: '03',
     stageName: 'NEUTRALIZATION',
-    title: 'Data Cleaning & Auditing',
+    title: 'Collect',
     icon: Filter,
-    deliverables: [
-      'Outlier filtering',
-      'Cross-verification audit',
-      'Standardized schema'
-    ]
+    deliverables: ['We gather reliable primary data ethically from verified sources.']
   },
   {
     id: 'stage-04',
     stageNum: '04',
     stageName: 'INTELLIGENCE',
-    title: 'Data Analysis & Modeling',
+    title: 'Analyze',
     icon: Cpu,
-    deliverables: [
-      'Regression analysis',
-      'Sector clustering',
-      'Predictive modeling'
-    ]
+    deliverables: ['We apply statistical analytics to identify key patterns and trends.']
   },
   {
     id: 'stage-05',
     stageNum: '05',
     stageName: 'SYNTHESIS',
-    title: 'Data Visualization & Mapping',
+    title: 'Visualize',
     icon: BarChart3,
-    deliverables: [
-      'Custom chart suites',
-      'Geospatial mapping',
-      'Executive summaries'
-    ]
+    deliverables: ['We build interactive dashboards and executive reports.']
   },
   {
     id: 'stage-06',
     stageNum: '06',
     stageName: 'DELIVERY',
-    title: 'Personalized Dashboard',
+    title: 'Support',
     icon: LayoutDashboard,
-    deliverables: [
-      'Role-based access',
-      'Exportable raw datasets',
-      'Live metric widgets'
-    ]
+    deliverables: ['We remain available for post-delivery guidance and strategic iteration.']
   }
 ];
 
@@ -235,7 +211,7 @@ export default function ScrollTimelineProcessSection() {
               return (
                 <div 
                   key={stage.id}
-                  ref={(el) => { stageCardRefs.current[idx] = el; }}
+                  ref={(el: HTMLDivElement | null) => { stageCardRefs.current[idx] = el; }}
                   className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-14 lg:pl-0"
                 >
                   
@@ -266,18 +242,10 @@ export default function ScrollTimelineProcessSection() {
                       </h3>
 
                       {/* Deliverables List */}
-                      <div className="space-y-2 mt-4 pt-4 border-t border-white/10">
-                        <ul className={`space-y-2 ${isEven ? 'lg:flex lg:flex-col lg:items-end' : ''}`}>
-                          {stage.deliverables.map((item, dIdx) => (
-                            <li 
-                              key={dIdx}
-                              className="flex items-center space-x-2.5 text-xs sm:text-sm text-white/85"
-                            >
-                              <CheckCircle2 className={`w-4 h-4 flex-shrink-0 ${isCurrent ? 'text-white' : 'text-white/60'}`} />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="mt-4 pt-4 border-t border-white/10">
+                        <p className={`text-xs sm:text-sm text-white/85 ${isEven ? 'lg:text-right' : ''}`}>
+                          {Array.isArray(stage.deliverables) ? stage.deliverables.join(', ') : stage.deliverables}
+                        </p>
                       </div>
                     </motion.div>
                   </div>

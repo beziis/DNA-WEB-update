@@ -83,14 +83,6 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
     }
   ];
 
-  const deliverySteps = [
-    { step: "01", title: "Understand", desc: "We listen to your objectives, challenges, and core questions." },
-    { step: "02", title: "Research", desc: "We design tailored research methodologies and survey tools." },
-    { step: "03", title: "Collect", desc: "We gather reliable primary data ethically from verified sources." },
-    { step: "04", title: "Analyze", desc: "We apply statistical analytics to identify key patterns and trends." },
-    { step: "05", title: "Visualize", desc: "We build interactive dashboards and executive reports." },
-    { step: "06", title: "Support", desc: "We remain available for post-delivery guidance and strategic iteration." }
-  ];
 
   const industries = [
     { icon: Building2, name: "Businesses", desc: "Improve growth through customer and market insights." },
@@ -246,69 +238,9 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
           </AnimatePresence>
         </section>
 
-        {/* 5. HOW WE DELIVER (PROCESS TIMELINE) */}
-        <section className="space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Our Approach</h2>
-            <p className="font-sans font-extralight text-xs text-white/80 tracking-wide">Structured execution from initial inquiry to final delivery and support.</p>
-          </div>
+        {/* 5. HOW WE DELIVER (REMOVED) */}
 
-          <motion.div 
-            variants={staggerContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4"
-          >
-            {deliverySteps.map((st, sIdx) => (
-              <motion.div
-                key={sIdx}
-                variants={fadeInUpItemVariants}
-                className="p-5 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] relative text-left card-hover-lift group shadow-xl transition-all"
-              >
-                <div className="font-mono text-2xl font-bold text-white/40 group-hover:text-white transition-colors mb-2">
-                  {st.step}
-                </div>
-                <h3 className="font-sans font-extrabold text-base text-white tracking-tight mb-1">{st.title}</h3>
-                <p className="font-sans font-extralight text-[11px] text-white/85 leading-relaxed tracking-wide">{st.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* 6. INDUSTRIES SERVED */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Solutions Designed for Every Sector</h2>
-          </div>
-
-          <motion.div 
-            variants={fastStaggerContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {industries.map((ind, iIdx) => {
-              const IndIcon = ind.icon;
-              return (
-                <motion.div 
-                  key={iIdx} 
-                  variants={fadeInUpItemVariants}
-                  className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] flex space-x-4 items-start card-hover-lift shadow-xl transition-all"
-                >
-                  <div className="p-3 rounded-xl bg-[#0B2442] border border-white/25 text-white flex-shrink-0 shadow-md">
-                    <IndIcon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-sans font-extrabold text-lg text-white tracking-tight mb-1">{ind.name}</h3>
-                    <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">{ind.desc}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </section>
+        {/* 6. INDUSTRIES SERVED (removed) */}
 
         {/* 7. WHY OUR SERVICES ARE DIFFERENT */}
         <section className="space-y-10">

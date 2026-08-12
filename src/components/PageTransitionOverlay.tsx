@@ -21,6 +21,7 @@ export default function PageTransitionOverlay({
   children,
 }: PageTransitionOverlayProps) {
   const title = pageTitles[currentPage];
+  const isLight = typeof document !== 'undefined' && document.documentElement.classList.contains('light');
 
   return (
     <AnimatePresence mode="wait">
@@ -46,108 +47,64 @@ export default function PageTransitionOverlay({
           initial={{ y: 0 }}
           animate={{ y: '-100%' }}
           transition={{
-            duration: 1.5,  
+            duration: 1,  
             delay: 0.1,
             ease: [0.76, 0, 0.24, 1],
           }}
         >
           {/* Gradient background */}
           <div
-            className="
-              absolute
-              inset-0
-              bg-[linear-gradient(135deg,#020817_0%,#061A35_45%,#0B315A_100%)]
-            "
+            className={`absolute inset-0 ${isLight ? 'bg-[linear-gradient(135deg,#F8FAFC_0%,#EEF2FF_45%,#E6EEF9_100%)]' : 'bg-[linear-gradient(135deg,#020817_0%,#061A35_45%,#0B315A_100%)]'}`}
           />
 
-          {/* Subtle grid */}
-          <div
-            className="
-              absolute
-              inset-0
-              opacity-[0.07]
-              bg-[linear-gradient(rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.5)_1px,transparent_1px)]
-              bg-[size:60px_60px]
-            "
-          />
+          {/* Subtle grid removed as requested */}
 
-          {/* Center transition card */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.94,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-             duration: 1.5,  
-            delay: 0.1,
-            ease: [0.76, 0, 0.24, 1],
-            }}
-            className="
-              relative
-              flex
-              items-center
-              justify-center
-              mx-6
-              px-10
-              py-6
-              rounded-[18px]
-              border
-              border-white/25
-              bg-white/[0.035]
-              backdrop-blur-sm
-              shadow-[0_20px_80px_rgba(0,0,0,0.4)]
-            "
-          >
-            {/* Inner border */}
-            <div
-              className="
-                absolute
-                inset-[1px]
-                rounded-[17px]
-                border
-                border-white/[0.07]
-                pointer-events-none
-              "
-            />
+          {/* Center transition card - aligned to page grid */}
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.94,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  ease: [0.76, 0, 0.24, 1],
+                }}
+                className={`relative flex items-center justify-center mx-auto px-10 py-6 rounded-lg overflow-hidden ${isLight ? 'bg-white border border-slate-200 shadow-lg text-slate-900' : 'bg-white/[0.035] backdrop-blur-sm shadow-[0_20px_80px_rgba(0,0,0,0.4)] text-white'}`}
+              >
+                {/* Inner border */}
+                <div className={`absolute inset-[1px] rounded-md pointer-events-none ${isLight ? 'border border-slate-100/60' : ''}`} />
 
-            {/* Page title */}
-            <motion.span
-              initial={{
-                opacity: 0,
-                y: 8,
-                letterSpacing: '0.4em',
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                letterSpacing: '0.25em',
-              }}
-              transition={{
-                duration: 1.5,  
-            delay: 0.1,
-            ease: [0.76, 0, 0.24, 1],
-              }}
-              className="
-                relative
-                z-10
-                text-center
-                text-white
-                font-sans
-                font-semibold
-                text-xs
-                sm:text-sm
-                uppercase
-                tracking-[0.25em]
-                whitespace-nowrap
-              "
-            >
-              {title}
-            </motion.span>
-          </motion.div>
+                {/* Page title */}
+                <motion.span
+                  initial={{
+                    opacity: 0,
+                    y: 8,
+                    letterSpacing: '0.4em',
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    letterSpacing: '0.25em',
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.1,
+                    ease: [0.76, 0, 0.24, 1],
+                  }}
+                  className={`relative z-10 text-center font-sans font-semibold text-sm sm:text-lg md:text-xl uppercase tracking-[0.25em] whitespace-nowrap ${isLight ? 'text-slate-900' : 'text-white'}`}
+                >
+                  {title}
+                </motion.span>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         {/* =========================================
@@ -164,7 +121,7 @@ export default function PageTransitionOverlay({
             y: 0,
           }}
           transition={{
-           duration: 1.5,  
+           duration: 1,  
             delay: 0.1,
             ease: [0.76, 0, 0.24, 1],
           }}
