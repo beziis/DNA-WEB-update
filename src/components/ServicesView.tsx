@@ -1,0 +1,374 @@
+import React, { useState } from 'react';
+import { PageType } from '../types';
+import { motion, AnimatePresence } from 'motion/react';
+import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
+import { 
+  TrendingUp, FileText, BarChart3, LayoutDashboard, Cpu, Code, 
+  CheckCircle2, ChevronRight, ArrowRight,
+  ShieldCheck, Lightbulb, Smartphone, Users2, Award, Headset,
+  Building2, Users, Landmark, Rocket, GraduationCap, Globe2
+} from 'lucide-react';
+import DataScrollBackground from './DataScrollBackground';
+import LazyImage from './LazyImage';
+import techHubImg from '../assets/images/tech_analytics_hub_1784880241845.jpg';
+import collabImg from '../assets/images/data_collaboration_1784490822102.jpg';
+
+interface ServicesViewProps {
+  setCurrentPage?: (page: PageType) => void;
+}
+
+export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
+  const coreServices = [
+    {
+      id: "market-research",
+      title: "Market Research",
+      icon: TrendingUp,
+      description: "Understand your customers, competitors, and market opportunities with reliable research that supports smarter business decisions.",
+      deliverables: ["Customer Research", "Competitor Analysis", "Industry Reports", "Consumer Insights", "Opportunity Analysis"],
+      whatWeDo: "DNA TECH conducts structured market research that helps organizations understand customer behavior, identify opportunities, and reduce uncertainty before making strategic decisions.",
+      whyItMatters: "Better information leads to better decisions. Empirical research reduces business risks, improves resource allocation, and increases market confidence.",
+      typicalDeliverables: ["Research Plan & Methodology", "Survey Design", "Data Collection", "Statistical Analysis", "Comprehensive Final Report"]
+    },
+    {
+      id: "data-collection",
+      title: "Data Collection",
+      icon: FileText,
+      description: "Collect high-quality information through digital surveys, field research, interviews, and community engagement using ethical and reliable methods.",
+      deliverables: ["Surveys", "Interviews", "Focus Groups", "Field Data Collection", "Digital Forms"],
+      whatWeDo: "We deploy trained field researchers and secure digital tools across urban and rural regions in Ethiopia to capture authentic community and market feedback.",
+      whyItMatters: "Quality insights require reliable primary source data. Our ethical collection methods guarantee high response integrity and zero data manipulation.",
+      typicalDeliverables: ["Custom Digital Questionnaires", "Field Sampling Operations", "Cleaned & Validated Datasets", "Raw Response Archives", "Collection Compliance Audit"]
+    },
+    {
+      id: "data-analytics",
+      title: "Data Analytics",
+      icon: BarChart3,
+      description: "Turn raw information into meaningful insights through modern analytical techniques, visualization, and professional reporting.",
+      deliverables: ["Statistical Analysis", "Performance Reports", "Data Visualization", "Insight Reports", "Recommendations"],
+      whatWeDo: "We transform complex datasets into clear statistical patterns, correlation matrices, and digestible trend analyses tailored for executive decision-makers.",
+      whyItMatters: "Unorganized raw data creates confusion. Proper analytics highlights operational bottlenecks and uncovers hidden revenue or impact opportunities.",
+      typicalDeliverables: ["Executive Summary Reports", "Statistical Modeling Output", "Visual Data Deck", "Trend Correlation Charts", "Actionable Recommendation Matrix"]
+    },
+    {
+      id: "dashboard-development",
+      title: "Dashboard Development",
+      icon: LayoutDashboard,
+      description: "Monitor your organization with interactive dashboards that display real-time data and key performance indicators in one place.",
+      deliverables: ["KPI Dashboards", "Business Dashboards", "Executive Reports", "Interactive Charts", "Performance Tracking"],
+      whatWeDo: "We build intuitive, responsive web and mobile analytics dashboards that aggregate live data feeds into clean visual metrics and charts.",
+      whyItMatters: "Instant visibility speeds up response times. Real-time dashboards allow leaders to track metrics and adjust strategies without waiting for monthly static reports.",
+      typicalDeliverables: ["Custom Web/Mobile Dashboard", "Live Data Feed Integration", "Role-Based Access Control", "Exportable PDF/Excel Reports", "User Training & Documentation"]
+    },
+    {
+      id: "ai-solutions",
+      title: "AI Solutions",
+      icon: Cpu,
+      description: "Leverage artificial intelligence to automate processes, identify trends, and improve operational efficiency.",
+      deliverables: ["AI Automation", "Smart Analytics", "Intelligent Reporting", "Workflow Optimization", "Predictive Insights"],
+      whatWeDo: "We integrate machine learning models and intelligent automation algorithms to forecast market behavior, parse unstructured feedback, and optimize business workflows.",
+      whyItMatters: "Automated intelligence frees up human time and predicts market shifts before they happen, giving early-adopting organizations a distinct competitive edge.",
+      typicalDeliverables: ["Predictive Analytics Models", "Automated Survey Processing", "Smart Sentiment Categorization", "Custom AI Prompts/Workflows", "Integration APIs"]
+    },
+    {
+      id: "software-development",
+      title: "Software Development",
+      icon: Code,
+      description: "Develop secure and scalable digital solutions that simplify operations and support organizational growth.",
+      deliverables: ["Business Applications", "Web Platforms", "Internal Systems", "Custom Software", "Maintenance & Support"],
+      whatWeDo: "We build modern, secure, and responsive web platforms, mobile applications, and internal enterprise management systems designed specifically for your operational needs.",
+      whyItMatters: "Off-the-shelf software often fails to address local operational realities. Custom technology streamlines workflows and scales smoothly with company growth.",
+      typicalDeliverables: ["Fully Tested Web/Mobile Software", "Database & API Architecture", "Source Code Ownership", "Cloud Deployment Configuration", "Ongoing SLA Maintenance"]
+    }
+  ];
+
+  const deliverySteps = [
+    { step: "01", title: "Understand", desc: "We listen to your objectives, challenges, and core questions." },
+    { step: "02", title: "Research", desc: "We design tailored research methodologies and survey tools." },
+    { step: "03", title: "Collect", desc: "We gather reliable primary data ethically from verified sources." },
+    { step: "04", title: "Analyze", desc: "We apply statistical analytics to identify key patterns and trends." },
+    { step: "05", title: "Visualize", desc: "We build interactive dashboards and executive reports." },
+    { step: "06", title: "Support", desc: "We remain available for post-delivery guidance and strategic iteration." }
+  ];
+
+  const industries = [
+    { icon: Building2, name: "Businesses", desc: "Improve growth through customer and market insights." },
+    { icon: Users, name: "NGOs", desc: "Collect reliable community data and evaluate project impact." },
+    { icon: Landmark, name: "Government", desc: "Support evidence-based planning and public service improvement." },
+    { icon: Rocket, name: "Startups", desc: "Validate market ideas and product-market fit before investing resources." },
+    { icon: GraduationCap, name: "Education", desc: "Research student needs and institutional performance." },
+    { icon: Globe2, name: "Development Partners", desc: "Support multi-region research initiatives with empirical reporting." }
+  ];
+
+  const diffFactors = [
+    { icon: ShieldCheck, title: "Ethical Data", desc: "Reliable information collected responsibly with strict privacy compliance." },
+    { icon: Lightbulb, title: "Practical Insights", desc: "Clear recommendations you can actually use to make decisions immediately." },
+    { icon: Smartphone, title: "Technology Driven", desc: "Modern digital survey tools and cloud analytics improve accuracy and speed." },
+    { icon: Users2, title: "Customized Solutions", desc: "Every organization is different; we tailor our framework to your goals." },
+    { icon: Award, title: "Experienced Team", desc: "Combining statistics, economics, and 20+ years of enterprise building." },
+    { icon: Headset, title: "Long-Term Support", desc: "We remain fully available after project delivery to ensure smooth implementation." }
+  ];
+
+  const handleNavClick = (page: PageType) => {
+    if (setCurrentPage) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div id="services-page" className="bg-transparent text-white min-h-screen py-16 relative overflow-hidden font-sans text-left">
+      <DataScrollBackground />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
+        
+        {/* 1. PAGE HERO */}
+        <section className="text-center max-w-4xl mx-auto pt-6">
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="p-8 sm:p-14 rounded-3xl bg-[#0B2545]/80 border border-white/10 shadow-2xl relative overflow-hidden"
+          >
+            <h1 className="font-sans font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-[1.1] mb-6">
+              Our Capabilities & Services
+            </h1>
+            <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto mb-8">
+              Verified market research, primary field data collection, predictive AI models, and custom software engineered to eliminate operational risk and drive growth.
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => handleNavClick('contact')}
+                className="px-8 py-3.5 rounded-[12px] bg-white text-[#0B2442] hover:bg-white/90 font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md cursor-pointer flex items-center space-x-2 min-h-[44px]"
+              >
+                <span>Request Consultation</span>
+                <ArrowRight className="w-4 h-4 text-[#0B2442]" />
+              </button>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* 2. SERVICES OVERVIEW */}
+        <section className="text-center max-w-3xl mx-auto space-y-4">
+          <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-white tracking-tight leading-snug">
+            End-to-End Data & Technology Engine
+          </h2>
+          <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
+            From field-level primary survey deployment to live executive analytics dashboards, our integrated modular stack supports your entire strategic lifecycle.
+          </p>
+        </section>
+
+        {/* 4. EXPANDABLE SERVICE DETAIL SECTION */}
+        <section className="p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl">
+          <div className="border-b border-white/15 pb-6 mb-8 text-center sm:text-left">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+              Detailed Service Breakdown
+            </h2>
+          </div>
+
+          {/* Selector Tabs */}
+          <div className="flex items-center space-x-2 overflow-x-auto pb-4 mb-8">
+            {coreServices.map((srv, idx) => (
+              <button
+                key={srv.id}
+                onClick={() => setActiveTab(idx)}
+                className={`px-4 py-2.5 rounded-xl font-mono text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  activeTab === idx
+                    ? 'bg-white text-[#0B2442] shadow-md'
+                    : 'bg-[#0B2442] text-white/80 hover:text-white hover:bg-white/15 border border-white/20'
+                }`}
+              >
+                {srv.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Active Detail Display */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+            >
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <h3 className="font-sans font-extrabold text-2xl text-white tracking-tight mb-2">
+                    {coreServices[activeTab].title}
+                  </h3>
+                  <p className="font-sans font-extralight text-sm text-white/90 leading-relaxed tracking-wide mb-4">
+                    {coreServices[activeTab].whatWeDo}
+                  </p>
+                  
+                  {/* Image Reveal with CSS Clip Path */}
+                  <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl group">
+                    <LazyImage
+                      src={activeTab % 2 === 0 ? techHubImg : collabImg}
+                      alt={coreServices[activeTab].title}
+                      clipRevealMode={activeTab % 2 === 0 ? 'center' : 'polygon'}
+                      containerClassName="h-44 sm:h-52 w-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#051329] via-transparent to-transparent opacity-80" />
+                    <span className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-wider text-white font-bold bg-[#0B2442]/95 px-2.5 py-1 rounded-md border border-white/20">
+                      {coreServices[activeTab].title} Infrastructure
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-2">
+                  <h4 className="font-mono text-xs text-white uppercase font-bold tracking-wider">
+                    Why It Matters
+                  </h4>
+                  <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
+                    {coreServices[activeTab].whyItMatters}
+                  </p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 p-6 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-4">
+                <h4 className="font-sans font-extrabold text-lg text-white border-b border-white/15 pb-3 tracking-tight">
+                  Typical Deliverables
+                </h4>
+                <ul className="space-y-3 font-sans font-extralight text-xs text-white/90 tracking-wide">
+                  {coreServices[activeTab].typicalDeliverables.map((del, i) => (
+                    <li key={i} className="flex items-start space-x-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                      <span>{del}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </section>
+
+        {/* 5. HOW WE DELIVER (PROCESS TIMELINE) */}
+        <section className="space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Our Approach</h2>
+            <p className="font-sans font-extralight text-xs text-white/80 tracking-wide">Structured execution from initial inquiry to final delivery and support.</p>
+          </div>
+
+          <motion.div 
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4"
+          >
+            {deliverySteps.map((st, sIdx) => (
+              <motion.div
+                key={sIdx}
+                variants={fadeInUpItemVariants}
+                className="p-5 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] relative text-left card-hover-lift group shadow-xl transition-all"
+              >
+                <div className="font-mono text-2xl font-bold text-white/40 group-hover:text-white transition-colors mb-2">
+                  {st.step}
+                </div>
+                <h3 className="font-sans font-extrabold text-base text-white tracking-tight mb-1">{st.title}</h3>
+                <p className="font-sans font-extralight text-[11px] text-white/85 leading-relaxed tracking-wide">{st.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* 6. INDUSTRIES SERVED */}
+        <section className="space-y-10">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Solutions Designed for Every Sector</h2>
+          </div>
+
+          <motion.div 
+            variants={fastStaggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {industries.map((ind, iIdx) => {
+              const IndIcon = ind.icon;
+              return (
+                <motion.div 
+                  key={iIdx} 
+                  variants={fadeInUpItemVariants}
+                  className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] flex space-x-4 items-start card-hover-lift shadow-xl transition-all"
+                >
+                  <div className="p-3 rounded-xl bg-[#0B2442] border border-white/25 text-white flex-shrink-0 shadow-md">
+                    <IndIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-sans font-extrabold text-lg text-white tracking-tight mb-1">{ind.name}</h3>
+                    <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">{ind.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </section>
+
+        {/* 7. WHY OUR SERVICES ARE DIFFERENT */}
+        <section className="space-y-10">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Why Our Services Are Different</h2>
+          </div>
+
+          <motion.div 
+            variants={fastStaggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {diffFactors.map((df, dIdx) => {
+              const DfIcon = df.icon;
+              return (
+                <motion.div 
+                  key={dIdx} 
+                  variants={fadeInUpItemVariants}
+                  className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] space-y-3 card-hover-lift shadow-xl transition-all"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#0B2442] border border-white/25 flex items-center justify-center text-white shadow-md">
+                    <DfIcon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-sans font-extrabold text-lg text-white tracking-tight">{df.title}</h3>
+                  <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">{df.desc}</p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </section>
+
+        {/* 8. FINAL CTA */}
+        <section className="rounded-3xl bg-[#0B2442] border border-white/15 p-10 sm:p-16 text-center space-y-6 relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
+            <h2 className="font-sans font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-snug">
+              Ready to Transform Your Data Into Action?
+            </h2>
+          <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 max-w-xl mx-auto leading-relaxed tracking-wide">
+            Let's discuss your goals and build a solution tailored to your organization.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="px-8 py-3.5 rounded-[12px] bg-white text-[#0B2442] hover:bg-white/90 font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-md cursor-pointer min-h-[44px]"
+            >
+              Book Consultation
+            </button>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="px-8 py-3.5 rounded-[12px] border border-white/30 text-white hover:bg-white/10 font-sans text-xs uppercase tracking-wider font-bold transition-all cursor-pointer min-h-[44px]"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+        </section>
+
+      </div>
+    </div>
+  );
+}

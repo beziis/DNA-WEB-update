@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Good Times", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Good Times", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-800: #0B2442;
+  --color-navy-900: #051329;
+  --color-navy-950: #020914;
+}
+
+/* Base Body & Reset Defaults */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-kerning: normal;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #051329;
+  color: #F8FAFC;
+  font-weight: 200;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p, li, td, th {
+  font-weight: 200;
+  letter-spacing: 0.015em;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* Headings: Good Times / DM Sans ExtraBold (800) Hierarchy & Precision Tracking */
+h1, .h1 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h2, .h2 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.012em;
+  line-height: 1.35;
+}
+
+/* Specialized Tracking Classes for High Precision Typography */
+.tracking-label-caps {
+  letter-spacing: 0.12em;
+}
+
+.tracking-mono-code {
+  letter-spacing: 0.04em;
+}
+
+.tracking-body-airy {
+  letter-spacing: 0.018em;
+  line-height: 1.72;
+}
+
+/* Render Performance Utilities for Speed Optimization */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Card Hover Lift Interactivity Utility */
+.card-hover-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4), 0 0 24px -4px rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.light .card-hover-lift:hover {
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12), 0 0 16px -2px rgba(11, 36, 66, 0.06);
+  border-color: rgba(11, 36, 66, 0.25) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #051329;
+}
+.light ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+/* Selection Color */
+::selection {
+  background-color: #38BDF8;
+  color: #0F172A;
+}
+
+/* Transitions */
+button,
+a,
+input,
+select,
+textarea {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* ==========================================================================
+   LIGHT MODE SYSTEM OVERRIDES (.light)
+   ========================================================================== */
+
+.light {
+  color-scheme: light;
+}
+
+.light body,
+.light #root,
+.light .min-h-screen {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Light mode cards & backgrounds */
+.light .bg-\[\#051329\],
+.light .bg-\[\#020914\],
+.light .bg-\[\#010610\],
+.light .bg-\[\#0B2545\],
+.light .bg-\[\#0B2442\] {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Light mode translucent white overlays */
+.light .bg-[#0B2545]\/80,
+.light .bg-[#0B2545]\/70,
+.light .bg-[#0B2545]\/60,
+.light .bg-[#0B2545]\/50,
+.light .bg-[#0B2545]\/40,
+.light .bg-[#051329]\/90,
+.light .bg-[#051329]\/80,
+.light .bg-[#051329]\/70 {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Light mode text contrast */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #0F172A !important;
+}
+
+.light .text-white {
+  color: #0F172A !important;
+}
+
+.light .text-white\/90,
+.light .text-white\/80,
+.light .text-white\/75,
+.light .text-white\/70,
+.light .text-white\/60 {
+  color: #334155 !important;
+}
+
+.light .text-white\/50,
+.light .text-white\/40,
+.light .text-white\/30 {
+  color: #64748B !important;
+}
+
+/* Light mode input & form controls */
+.light input,
+.light select,
+.light textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Light mode CTA Buttons: ensure dark pill button with white text in light mode */
+.light .keep-dark-cta,
+.light button.bg-white {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+}
+
+.light button.bg-white * {
+  color: #FFFFFF !important;
+}
+
+.light button.bg-white:hover {
+  background-color: #1E293B !important;
+}
+
+.light button.border-white\/40,
+.light button.border-white\/30 {
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+.light button.border-white\/40:hover,
+.light button.border-white\/30:hover {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+/* Recharts Tooltip in Light Mode */
+.light .recharts-default-tooltip {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+.light .recharts-tooltip-item {
+  color: #0F172A !important;
+}
+.light .recharts-cartesian-grid line {
+  stroke: #E2E8F0 !important;
+}
+
+/* Footer in light mode */
+.light footer {
+  background-color: #FFFFFF !important;
+  border-top: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+}
+
+.light footer h4 {
+  color: #0F172A !important;
+  border-bottom-color: #E2E8F0 !important;
+}
+
+.light footer a,
+.light footer p,
+.light footer span {
+  color: #334155 !important;
+}
+
+.light footer a:hover {
+  color: #0F172A !important;
+}
+
+/* Floating Abstract Data Blob Animation */
+@keyframes data-blob-float-1 {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 30% 60% 70% 30% / 50% 60% 30% 60%;
+    transform: translate(25px, -30px) rotate(120deg) scale(1.08);
+  }
+  66% {
+    border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
+    transform: translate(-15px, 20px) rotate(240deg) scale(0.92);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0px, 0px) rotate(360deg) scale(1);
+  }
+}
+
+@keyframes data-blob-float-2 {
+  0% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 70% 30% 40% 60% / 30% 70% 40% 60%;
+    transform: translate(-25px, 25px) rotate(-180deg) scale(1.12);
+  }
+  100% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+    transform: translate(0px, 0px) rotate(-360deg) scale(1);
+  }
+}
+
+.animate-data-blob-1 {
+  animation: data-blob-float-1 22s infinite ease-in-out;
+  will-change: transform, border-radius;
+}
+
+.animate-data-blob-2 {
+  animation: data-blob-float-2 28s infinite ease-in-out;
+  will-change: transform, border-radius;
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite ease-in-out;
+}
+
+/* CSS-based Entry & Stagger Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUpSubtle {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s ease-out both;
+}
+
+.animate-scale-up {
+  animation: scaleUpSubtle 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger Utilities */
+.stagger-1 { animation-delay: 70ms; }
+.stagger-2 { animation-delay: 140ms; }
+.stagger-3 { animation-delay: 210ms; }
+.stagger-4 { animation-delay: 280ms; }
+.stagger-5 { animation-delay: 350ms; }
+.stagger-6 { animation-delay: 420ms; }
+.stagger-7 { animation-delay: 490ms; }
+.stagger-8 { animation-delay: 560ms; }
+
+/* CSS Clip-Path Image Reveal Transitions */
+.clip-reveal-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.clip-reveal-center {
+  clip-path: inset(10% 8% 10% 8% round 16px);
+  opacity: 0.15;
+  transform: scale(1.06);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s ease-out, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path, opacity, transform;
+}
+
+.clip-reveal-center.clip-loaded {
+  clip-path: inset(0% 0% 0% 0% round 0px);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.clip-reveal-left {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0.1;
+  transform: scale(1.04);
+  transition: clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease-out, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path, opacity, transform;
+}
+
+.clip-reveal-left.clip-loaded {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.clip-reveal-polygon {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  opacity: 0.2;
+  transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease-out;
+  will-change: clip-path, opacity;
+}
+
+.clip-reveal-polygon.clip-loaded {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  opacity: 1;
+}
+
+.clip-reveal-circle {
+  clip-path: circle(8% at 50% 50%);
+  opacity: 0.2;
+  transition: clip-path 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s ease-out;
+  will-change: clip-path, opacity;
+}
+
+.clip-reveal-circle.clip-loaded {
+  clip-path: circle(150% at 50% 50%);
+  opacity: 1;
+}
+
