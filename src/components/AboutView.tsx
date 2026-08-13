@@ -65,19 +65,13 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               <div className="space-y-4">
                 <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Closing the Local Decision Gap</h3>
                 <p>
-                  World Bank research indicates 75% of regional SMEs cease operations due to a lack of market clarity and misdirected capital.
-                </p>
-                <p>
                   DNA TECH was founded to make empirical field data accessible, providing decision-makers with the exact evidence needed to launch, scale, and de-risk operations.
                 </p>
               </div>
               <div className="space-y-4">
-                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>
+                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>      
                 <p>
-                  Our leadership combines advanced statistical methodologies with over 20 years of hands-on industrial enterprise experience.
-                </p>
-                <p>
-                  Having audited over 1,300 community responses across 8+ completed projects, we guarantee audit-ready data neutrality for every client.
+                  Having audited over 1,300 community responses across 10+ completed projects, we guarantee audit-ready data neutrality for every client.
                 </p>
               </div>
             </div>
@@ -157,7 +151,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                       <div className="font-mono text-2xl font-bold text-white/50">
                         {val.id}
                       </div>
-                      <span className="font-mono text-[10px] text-white/40 uppercase tracking-widest block">GUIDING FACTOR</span>
+                      <span className="font-mono text-[10px] text-white/40 uppercase tracking-widest block"></span>
                       <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
                     </div>
                   }
