@@ -37,10 +37,10 @@ export default function Footer({ currentView, setView }: FooterProps) {
     "Software Development"
   ];
 
-  const addressText = "Bole Sub-city, Woreda 03, Addis Ababa, Ethiopia";
-  const phoneText = "+251 911 00 00 00";
-  const emailText = "info@dnatech.et";
-  const websiteText = "https://dnatech.et";
+  const addressText = companyProfile.address;
+  const phoneText = companyProfile.phone;
+  const emailText = companyProfile.email;
+  const websiteText = companyProfile.website && (companyProfile.website.startsWith('http') ? companyProfile.website : `https://${companyProfile.website}`);
 
   return (
     <footer 
@@ -219,16 +219,7 @@ export default function Footer({ currentView, setView }: FooterProps) {
                 </a>
               </div>
               <div className="flex items-center space-x-3 border-t border-white/10 pt-2">
-                <Globe className="w-4 h-4 text-white/80 flex-shrink-0" aria-hidden="true" />
-                <a 
-                  href={websiteText} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="font-mono text-xs text-white/80 hover:text-white hover:underline transition-colors rounded py-0.5 px-1.5 -mx-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B2545]"
-                  aria-label={`Visit DNA TECH website at ${websiteText} (opens in a new tab)`}
-                >
-                  {websiteText}
-                </a>
+
               </div>
             </address>
           </section>

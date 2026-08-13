@@ -189,7 +189,7 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
             </motion.div>
             <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 space-y-3">
               <a
-                href={`tel:${companyProfile.phone}`}
+                href={`tel:${companyProfile.phone.replace(/\s+/g, '')}`}
                 className="flex items-center justify-center space-x-2 w-full px-4 py-3 rounded text-sm font-bold uppercase tracking-wider bg-white text-[#0B2442] hover:bg-white/90 cursor-pointer"
               >
                 <Phone className="w-4 h-4 text-[#0B2442]" />

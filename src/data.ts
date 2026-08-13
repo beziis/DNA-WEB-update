@@ -3,7 +3,8 @@ import { TeamMember, PartnerItem } from './types';
 export const companyProfile = {
   fullName: "Data Neutral Analysis Technology (DNA TECH)",
   shortName: "DNA TECH",
-  phone: "+251939217766",
+  phone: "+251 93 921 7766",
+  phone2: "+251 97 744 2176",
   email: "info@dataneutralanalysistechnology.com",
   website: "www.dataneutralanalysistechnology.com",
   address: "Bambis to Kazancise, Eyobed Apartment, 1st floor, ADDIS ABABA, ETHIOPIA",

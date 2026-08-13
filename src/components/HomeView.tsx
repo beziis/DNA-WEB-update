@@ -419,7 +419,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
                   Get In Touch
                 </button>
                 <a
-                  href={`tel:${companyProfile.phone}`}
+                  href={`tel:${companyProfile.phone.replace(/\s+/g, '')}`}
                   className="px-8 py-3.5 rounded-[12px] border border-white/20 hover:border-white text-white font-sans text-xs uppercase tracking-wider font-bold transition-all hover:bg-white/5 flex items-center space-x-2 cursor-pointer min-h-[44px]"
                 >
                   <Phone className="w-4 h-4 text-white" />

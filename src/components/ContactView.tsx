@@ -91,9 +91,16 @@ export default function ContactView() {
                   <Phone className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                   <div className="text-xs text-white/80">
                     <p className="font-bold text-white uppercase font-mono text-[11px] mb-1">Telephone</p>
-                    <a href={`tel:${companyProfile.phone}`} className="font-mono text-sm font-bold text-white hover:text-white/80 transition-colors">
-                      {companyProfile.phone}
-                    </a>
+                    <div className="space-y-1">
+                      <a href={`tel:${companyProfile.phone.replace(/\s+/g, '')}`} className="font-mono text-sm font-bold text-white hover:text-white/80 transition-colors">
+                        {companyProfile.phone}
+                      </a>
+                      {companyProfile.phone2 && (
+                        <a href={`tel:${companyProfile.phone2.replace(/\s+/g, '')}`} className="font-mono text-sm font-bold text-white hover:text-white/80 transition-colors block">
+                          {companyProfile.phone2}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
 
