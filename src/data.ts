@@ -11,10 +11,10 @@ export const companyProfile = {
   foundedDate: "December 18, 2024",
   year: "2026",
   socials: {
-    linkedin: "https://linkedin.com",
-    telegram: "https://t.me",
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
+    linkedin: "https://et.linkedin.com/company/dataneutralanalysistechnology",
+    telegram: "https://t.me/DNATECHS",
+    instagram: "https://www.instagram.com/dnatechs",
+    facebook: "https://www.facebook.com/dna.techs.data.neutral.analysis.technologys",
     tiktok: "https://tiktok.com"
   },
   biography: `DNA TECH was founded by Jalene T. Chali, who recognized the growing importance of data after observing how developed countries use it to drive economic and financial growth. Through her observations and practical experience, she realized that although many people understand the value of data, it is still underutilized in everyday decision-making within the country. As she states, "Even though we understand how valuable data is, we still do not effectively use it to guide the decisions we make every day."
