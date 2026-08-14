@@ -9,15 +9,40 @@ import MapSection from './MapSection';
 export default function ContactView() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formState.name.trim() === '' || formState.email.trim() === '') return;
-    setFormSubmitted(true);
-    setFormState({ name: '', email: '', message: '' });
-    setTimeout(() => {
-      setFormSubmitted(false);
-    }, 5000);
+    if (formState.name.trim() === '' || formState.email.trim() === '' || formState.message.trim() === '') {
+      setFormError('Please complete all required fields.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setFormError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState)
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.success) {
+        setFormError(result?.message || 'We could not send your message right now. Please try again later.');
+        return;
+      }
+
+      setFormSubmitted(true);
+      setFormState({ name: '', email: '', message: '' });
+      setTimeout(() => setFormSubmitted(false), 5000);
+    } catch {
+      setFormError('We could not send your message right now. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -162,6 +187,11 @@ export default function ContactView() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-6">
+                  {formError && (
+                    <p role="alert" className="text-xs text-white/80">
+                      {formError}
+                    </p>
+                  )}
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-wider text-white/70 mb-2">Full Name *</label>
                     <input 
@@ -200,9 +230,10 @@ export default function ContactView() {
 
                   <button 
                     type="submit"
+                    disabled={isSubmitting}
                     className="w-full py-3.5 rounded-lg bg-white text-[#0B2442] hover:bg-white/90 font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
                   >
-                    <span>Send Message</span>
+                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </form>
