@@ -38,7 +38,7 @@ export default function Footer({ currentView, setView }: FooterProps) {
   ];
 
   const addressText = companyProfile.address;
-  const phoneText = companyProfile.phone;
+  const phoneNumbers = [companyProfile.phone, companyProfile.phone2].filter(Boolean) as string[];
   const emailText = companyProfile.email;
   const websiteText = companyProfile.website && (companyProfile.website.startsWith('http') ? companyProfile.website : `https://${companyProfile.website}`);
 
@@ -200,13 +200,18 @@ export default function Footer({ currentView, setView }: FooterProps) {
               </div>
               <div className="flex items-center space-x-3 border-t border-white/10 pt-2">
                 <Phone className="w-4 h-4 text-white/80 flex-shrink-0" aria-hidden="true" />
-                <a 
-                  href={`tel:${phoneText.replace(/\s+/g, '')}`} 
-                  className="font-mono text-xs text-white/80 hover:text-white hover:underline transition-colors rounded py-0.5 px-1.5 -mx-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B2545]"
-                  aria-label={`Call DNA TECH at ${phoneText}`}
-                >
-                  {phoneText}
-                </a>
+                <div className="flex flex-col items-start">
+                  {phoneNumbers.map((phone) => (
+                    <a
+                      key={phone}
+                      href={`tel:${phone.replace(/\s+/g, '')}`}
+                      className="font-mono text-xs text-white/80 hover:text-white hover:underline transition-colors rounded py-0.5 px-1.5 -mx-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B2545]"
+                      aria-label={`Call DNA TECH at ${phone}`}
+                    >
+                      {phone}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="flex items-center space-x-3 border-t border-white/10 pt-2">
                 <Mail className="w-4 h-4 text-white/80 flex-shrink-0" aria-hidden="true" />
@@ -240,4 +245,3 @@ export default function Footer({ currentView, setView }: FooterProps) {
     </footer>
   );
 }
-

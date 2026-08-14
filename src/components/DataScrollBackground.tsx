@@ -31,7 +31,7 @@ export default function DataScrollBackground() {
       <div className="absolute inset-0 bg-[#051329]/20 pointer-events-none" />
 
       {/* Technical Grid overlay for high contrast */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-75" />
+      <div className="technical-grid absolute inset-0 pointer-events-none" />
 
       {/* Background Data Node Badges */}
       <motion.div style={{ y: y1, opacity: opacity1 }} className="absolute inset-0 pointer-events-none">

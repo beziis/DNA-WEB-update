@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
 import { companyProfile } from '../data';
-import { MapPin, Navigation, ExternalLink, Building2, Phone, Compass, Info } from 'lucide-react';
+import { MapPin, Navigation, ExternalLink, Building2, Phone, Compass } from 'lucide-react';
 import { motion } from 'motion/react';
 
 // DNA TECH Office Coordinates (Eyobed Apartment, Kazanchis / Bambis, Addis Ababa, Ethiopia)
@@ -89,8 +89,14 @@ export default function MapSection() {
                     <p className="text-xs text-slate-600 leading-tight mb-2">
                       {companyProfile.address}
                     </p>
-                    <div className="text-[11px] font-mono text-slate-500 pt-1 border-t border-slate-200 flex items-center justify-between">
-                      <span>{companyProfile.phone}</span>
+                    <div className="text-[11px] font-mono text-slate-500 pt-1 border-t border-slate-200 flex items-center justify-between gap-3">
+                      <div className="flex flex-col">
+                        {[companyProfile.phone, companyProfile.phone2].filter(Boolean).map((phone) => (
+                          <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="hover:text-[#0B2442] hover:underline">
+                            {phone}
+                          </a>
+                        ))}
+                      </div>
                       <a
                         href={companyProfile.mapsUrl}
                         target="_blank"
@@ -169,8 +175,18 @@ export default function MapSection() {
         <div className="p-4 rounded-xl bg-[#051329]/80 border border-white/10 flex items-start space-x-3">
           <Phone className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
           <div>
-            <div className="text-[10px] font-mono text-white/50 uppercase font-bold">Direct Line</div>
-            <div className="text-xs text-white/90 font-mono font-bold mt-0.5">{companyProfile.phone}</div>
+            <div className="text-[10px] font-mono text-white/50 uppercase font-bold">Direct Lines</div>
+            <div className="mt-0.5 flex flex-col items-start">
+              {[companyProfile.phone, companyProfile.phone2].filter(Boolean).map((phone) => (
+                <a
+                  key={phone}
+                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                  className="text-xs text-white/90 font-mono font-bold hover:text-white hover:underline"
+                >
+                  {phone}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -182,16 +198,6 @@ export default function MapSection() {
           </div>
         </div>
       </div>
-
-      {/* Secret Key Note for Developers / Admins */}
-      {!hasValidKey && (
-        <div className="mt-4 p-3 rounded-lg bg-white/5 border border-white/10 text-[11px] text-white/60 flex items-center space-x-2">
-          <Info className="w-4 h-4 text-white flex-shrink-0" />
-          <span>
-            Tip: Add your <code>GOOGLE_MAPS_PLATFORM_KEY</code> in Settings &rarr; Secrets to enable custom Google Maps JavaScript SDK rendering.
-          </span>
-        </div>
-      )}
     </motion.div>
   );
 }

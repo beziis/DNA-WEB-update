@@ -70,6 +70,18 @@ export default function ScrollTimelineProcessSection() {
   const stageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const [lineFillProgress, setLineFillProgress] = useState<number>(0);
+  const [isLight, setIsLight] = useState(() =>
+    typeof document !== 'undefined' && document.documentElement.classList.contains('light')
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const syncTheme = () => setIsLight(root.classList.contains('light'));
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+    syncTheme();
+    return () => observer.disconnect();
+  }, []);
 
   // Intersection Observer + RAF Scroll Detection
   const handleScroll = useCallback(() => {
@@ -168,10 +180,14 @@ export default function ScrollTimelineProcessSection() {
                 <button
                   key={st.id}
                   onClick={() => scrollToStage(idx)}
-                  className={`px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all cursor-pointer border ${
+                  className={`process-stage-selector ${isAct ? 'is-active' : ''} px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all cursor-pointer border ${
                     isAct 
-                      ? 'bg-white text-[#0B2442] border-white shadow-lg scale-105' 
-                      : 'bg-[#0B2545]/60 text-white/60 border-white/10 hover:border-white/30 hover:text-white'
+                      ? isLight
+                        ? 'bg-[#0A2546] text-white border-[#0A2546] shadow-lg scale-105'
+                        : 'bg-white text-[#0B2442] border-white shadow-lg scale-105'
+                      : isLight
+                        ? 'bg-white/80 text-slate-600 border-slate-300 hover:border-[#0A2546]/40 hover:text-[#0A2546]'
+                        : 'bg-[#0B2545]/60 text-white/60 border-white/10 hover:border-white/30 hover:text-white'
                   }`}
                 >
                   ST {st.stageNum}
@@ -185,18 +201,18 @@ export default function ScrollTimelineProcessSection() {
         <div className="relative">
           
           {/* Central Vertical Timeline Axis Line (Desktop: center, Mobile: left aligned) */}
-          <div className="hidden lg:block absolute left-1/2 top-10 bottom-10 w-1 bg-white/10 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
+          <div className={`timeline-axis hidden lg:block absolute left-1/2 top-10 bottom-10 w-1 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
             <div 
               style={{ height: `${lineFillProgress * 100}%` }}
-              className="w-full bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)] transition-all duration-150 ease-out rounded-full"
+              className={`timeline-axis-fill w-full transition-all duration-150 ease-out rounded-full ${isLight ? 'bg-gradient-to-b from-[#0A2546]/40 via-[#0A2546]/75 to-[#0A2546] shadow-[0_0_18px_rgba(10,37,70,0.35)]' : 'bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)]'}`}
             />
           </div>
 
           {/* Mobile Vertical Timeline Axis Line */}
-          <div className="lg:hidden absolute left-6 top-10 bottom-10 w-1 bg-white/10 rounded-full overflow-hidden pointer-events-none z-0">
+          <div className={`timeline-axis lg:hidden absolute left-6 top-10 bottom-10 w-1 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
             <div 
               style={{ height: `${lineFillProgress * 100}%` }}
-              className="w-full bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)] transition-all duration-150 ease-out rounded-full"
+              className={`timeline-axis-fill w-full transition-all duration-150 ease-out rounded-full ${isLight ? 'bg-gradient-to-b from-[#0A2546]/40 via-[#0A2546]/75 to-[#0A2546] shadow-[0_0_18px_rgba(10,37,70,0.35)]' : 'bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)]'}`}
             />
           </div>
 
@@ -220,15 +236,21 @@ export default function ScrollTimelineProcessSection() {
                     <motion.div
                       animate={{
                         scale: isCurrent ? 1.02 : 1,
-                        borderColor: isCurrent ? 'rgba(255, 255, 255, 0.9)' : isPassed ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.1)',
-                        backgroundColor: isCurrent ? 'rgba(11, 37, 69, 0.75)' : isPassed ? 'rgba(11, 37, 69, 0.35)' : 'rgba(11, 37, 69, 0.15)'
+                        borderColor: isLight
+                          ? isCurrent ? 'rgba(10, 37, 70, 0.45)' : isPassed ? 'rgba(10, 37, 70, 0.28)' : 'rgba(10, 37, 70, 0.16)'
+                          : isCurrent ? 'rgba(255, 255, 255, 0.9)' : isPassed ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+                        backgroundColor: isLight
+                          ? isCurrent ? 'rgba(255, 255, 255, 0.96)' : isPassed ? 'rgba(248, 250, 252, 0.9)' : 'rgba(241, 245, 249, 0.82)'
+                          : isCurrent ? 'rgba(11, 37, 69, 0.75)' : isPassed ? 'rgba(11, 37, 69, 0.35)' : 'rgba(11, 37, 69, 0.15)'
                       }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                       onClick={() => scrollToStage(idx)}
-                      className={`p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${
+                      className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${
                         isCurrent 
-                          ? 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30' 
-                          : 'hover:border-white/40'
+                          ? isLight
+                            ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
+                            : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
+                          : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
                       }`}
                     >
                       {/* Active Background Glow Bar */}
@@ -237,13 +259,13 @@ export default function ScrollTimelineProcessSection() {
                       )}
 
                       {/* Title */}
-                      <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-white tracking-tight mb-3">
+                      <h3 className={`font-sans font-extrabold text-xl sm:text-2xl tracking-tight mb-3 ${isLight ? 'text-[#0A2546]' : 'text-white'}`}>
                         {stage.title}
                       </h3>
 
                       {/* Deliverables List */}
                       <div className="mt-4 pt-4 border-t border-white/10">
-                        <p className={`text-xs sm:text-sm text-white/85 ${isEven ? 'lg:text-right' : ''}`}>
+                        <p className={`text-xs sm:text-sm ${isLight ? 'text-slate-600' : 'text-white/85'} ${isEven ? 'lg:text-right' : ''}`}>
                           {Array.isArray(stage.deliverables) ? stage.deliverables.join(', ') : stage.deliverables}
                         </p>
                       </div>
@@ -260,16 +282,20 @@ export default function ScrollTimelineProcessSection() {
                       <motion.div
                         animate={{
                           scale: isCurrent ? 1.25 : 0.95,
-                          borderColor: isCurrent ? '#FFFFFF' : isPassed ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
-                          backgroundColor: isCurrent ? '#FFFFFF' : isPassed ? '#0B2545' : '#051329',
-                          boxShadow: isCurrent ? '0 0 30px rgba(255,255,255,0.6)' : 'none'
+                          borderColor: isLight
+                            ? isCurrent ? '#0A2546' : 'rgba(10,37,70,0.35)'
+                            : isCurrent ? '#FFFFFF' : isPassed ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
+                          backgroundColor: isLight
+                            ? isCurrent ? '#FFFFFF' : isPassed ? '#EAF0F7' : '#F1F5F9'
+                            : isCurrent ? '#FFFFFF' : isPassed ? '#0B2545' : '#051329',
+                          boxShadow: isCurrent ? (isLight ? '0 0 24px rgba(10,37,70,0.2)' : '0 0 30px rgba(255,255,255,0.6)') : 'none'
                         }}
                         transition={{ duration: 0.3 }}
                         className={`w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all relative ${
-                          isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : 'text-white'
+                          isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white'
                         }`}
                       >
-                        <StageIcon className={`w-6 h-6 ${isCurrent ? 'text-[#0B2442]' : 'text-white/70'}`} />
+                        <StageIcon className={`w-6 h-6 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
                       </motion.div>
                     </button>
                   </div>
@@ -283,13 +309,13 @@ export default function ScrollTimelineProcessSection() {
                       <motion.div
                         animate={{
                           scale: isCurrent ? 1.15 : 0.9,
-                          borderColor: isCurrent ? '#FFFFFF' : 'rgba(255,255,255,0.3)',
-                          backgroundColor: isCurrent ? '#FFFFFF' : '#0B2545'
+                          borderColor: isLight ? '#0A2546' : isCurrent ? '#FFFFFF' : 'rgba(255,255,255,0.3)',
+                          backgroundColor: isLight ? (isCurrent ? '#FFFFFF' : '#EAF0F7') : isCurrent ? '#FFFFFF' : '#0B2545'
                         }}
                         transition={{ duration: 0.3 }}
-                        className="w-11 h-11 rounded-xl border-2 flex items-center justify-center text-white"
+                        className={`w-11 h-11 rounded-xl border-2 flex items-center justify-center ${isLight ? 'text-[#0A2546]' : 'text-white'}`}
                       >
-                        <StageIcon className={`w-5 h-5 ${isCurrent ? 'text-[#0B2442]' : 'text-white/70'}`} />
+                        <StageIcon className={`w-5 h-5 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
                       </motion.div>
                     </button>
                   </div>

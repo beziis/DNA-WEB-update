@@ -78,6 +78,52 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           </div>
         </motion.section>
 
+        {/* 4. KEY FACTORS */}
+        <section className="mb-20" id="key-factors">
+          <div className="text-center mb-12">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+              Key Factors
+            </h2>
+            <p className="text-white/60 text-xs font-mono uppercase tracking-widest mt-2">
+              Guiding principles behind our research and insights
+            </p>
+          </div>
+
+          <motion.div 
+            variants={fastStaggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {keyFactors.map((val) => (
+              <motion.div key={val.id} variants={fadeInUpItemVariants}>
+                <FlipCard
+                  minHeight="h-64"
+                  front={
+                    <div className="space-y-3 text-left">
+                      <div className="font-mono text-2xl font-bold text-white/50">
+                        {val.id}
+                      </div>
+                      <span className="font-mono text-[10px] text-white/40 uppercase tracking-widest block"></span>
+                      <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
+                    </div>
+                  }
+                  back={
+                    <div className="space-y-3 text-left">
+                      <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">{val.title}</h3>
+                      <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
+                        {val.description}
+                      </p>
+                    </div>
+                  }
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+
         {/* 3. VISION & MISSION */}
         <section className="mb-20">
           <motion.div 
@@ -121,51 +167,6 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               </motion.div>
 
             </div>
-          </motion.div>
-        </section>
-
-        {/* 4. KEY FACTORS */}
-        <section className="mb-20" id="key-factors">
-          <div className="text-center mb-12">
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
-              Key Factors
-            </h2>
-            <p className="text-white/60 text-xs font-mono uppercase tracking-widest mt-2">
-              Guiding principles behind our research and insights
-            </p>
-          </div>
-
-          <motion.div 
-            variants={fastStaggerContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {keyFactors.map((val) => (
-              <motion.div key={val.id} variants={fadeInUpItemVariants}>
-                <FlipCard
-                  minHeight="h-64"
-                  front={
-                    <div className="space-y-3 text-left">
-                      <div className="font-mono text-2xl font-bold text-white/50">
-                        {val.id}
-                      </div>
-                      <span className="font-mono text-[10px] text-white/40 uppercase tracking-widest block"></span>
-                      <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
-                    </div>
-                  }
-                  back={
-                    <div className="space-y-3 text-left">
-                      <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">{val.title}</h3>
-                      <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-                        {val.description}
-                      </p>
-                    </div>
-                  }
-                />
-              </motion.div>
-            ))}
           </motion.div>
         </section>
 

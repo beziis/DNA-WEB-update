@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
 
-@theme {
+/* Project design tokens. Kept as standard CSS custom properties so editors
+   do not flag Tailwind's non-standard @theme at-rule. */
+:root {
   --font-sans: "Good Times", "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-serif: "Good Times", "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -170,6 +172,21 @@ textarea {
   color: #0F172A !important;
 }
 
+/* Preserve the data-grid background in both themes with theme-appropriate contrast. */
+.technical-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.75;
+}
+
+.light .technical-grid {
+  background-image:
+    linear-gradient(to right, rgba(11, 36, 66, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 36, 66, 0.12) 1px, transparent 1px);
+}
+
 /* Light mode cards & backgrounds */
 .light .bg-\[\#051329\],
 .light .bg-\[\#020914\],
@@ -295,7 +312,7 @@ textarea {
 /* Light mode CTA Buttons: ensure dark pill button with white text in light mode */
 .light .keep-dark-cta,
 .light button.bg-white {
-  background-color: #0F172A !important;
+  background-color: #0A2546 !important;
   color: #FFFFFF !important;
 }
 
@@ -332,6 +349,12 @@ textarea {
 .light .recharts-cartesian-grid line {
   stroke: #E2E8F0 !important;
 }
+.light .recharts-text,
+.light .recharts-label,
+.light .recharts-legend-item-text {
+  fill: #475569 !important;
+  color: #475569 !important;
+}
 
 /* Footer in light mode */
 .light footer {
@@ -353,6 +376,69 @@ textarea {
 
 .light footer a:hover {
   color: #0F172A !important;
+}
+
+/* Process timeline has stateful navy controls; do not apply the global
+   light-text inversion to their active state. */
+.light #process-timeline-section .process-stage-selector.is-active {
+  background-color: #0A2546 !important;
+  border-color: #0A2546 !important;
+  color: #FFFFFF !important;
+}
+
+.light #process-timeline-section .process-stage-card h3 {
+  color: #0A2546 !important;
+}
+
+.light #process-timeline-section .process-stage-card p {
+  color: #475569 !important;
+}
+
+/* Light-mode component surfaces. These intentionally target rounded UI
+   elements only, leaving the page and animated background untouched. */
+.light [class*="rounded-"][class*="bg-[#0B2545]"] {
+  background-color: #FFFFFF !important;
+}
+
+.light [class*="rounded-"][class*="bg-[#0B2442]"] {
+  background-color: #EAF0F7 !important;
+}
+
+.light [class*="rounded-"][class*="bg-[#051329]"],
+.light [class*="rounded-"][class*="bg-[#020914]"],
+.light [class*="rounded-"][class*="bg-[#010610]"] {
+  background-color: #F1F5F9 !important;
+}
+
+.light [class*="rounded-"][class~="bg-white/5"],
+.light [class*="rounded-"][class~="bg-white/10"],
+.light [class*="rounded-"][class~="bg-white/15"],
+.light [class*="rounded-"][class~="bg-white/20"] {
+  background-color: rgba(10, 37, 70, 0.05) !important;
+}
+
+.light [class*="rounded-"][class*="border-white"] {
+  border-color: #CBD5E1 !important;
+}
+
+.light [class*="rounded-"][class~="shadow-xl"],
+.light [class*="rounded-"][class~="shadow-2xl"],
+.light [class*="rounded-"][class~="shadow-inner"] {
+  box-shadow: 0 14px 30px -16px rgba(10, 37, 70, 0.22) !important;
+}
+
+.light [class*="rounded-"][class*="bg-gradient"] {
+  background-image: linear-gradient(135deg, #FFFFFF 0%, #EAF0F7 100%) !important;
+}
+
+.light [class*="rounded-"][class*="hover:border-white"]:hover {
+  border-color: rgba(10, 37, 70, 0.42) !important;
+}
+
+.light footer h3,
+.light footer h4 {
+  color: #0A2546 !important;
+  border-color: #CBD5E1 !important;
 }
 
 /* Floating Abstract Data Blob Animation */
@@ -521,4 +607,3 @@ textarea {
   clip-path: circle(150% at 50% 50%);
   opacity: 1;
 }
-

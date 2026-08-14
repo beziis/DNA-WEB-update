@@ -31,7 +31,9 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
     ? isLight
       ? 'sticky top-0 z-50 bg-white border-b border-slate-200 shadow-md text-slate-800 transition-all duration-300'
       : 'sticky top-0 z-50 bg-[#051329] border-b border-white/15 shadow-lg shadow-black/20 text-white transition-all duration-300'
-    : 'sticky top-0 z-50 bg-transparent border-b border-transparent shadow-none text-white transition-all duration-300';
+    : `sticky top-0 z-50 bg-transparent border-b border-transparent shadow-none ${
+        isLight ? 'text-slate-800' : 'text-white'
+      } transition-all duration-300`;
 
   const navItems: { label: string; page: PageType }[] = [
     { label: 'Home', page: 'home' },
@@ -177,7 +179,9 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
                   }}
                   className={`block w-full text-left px-4 py-3 rounded text-sm font-semibold tracking-wider uppercase transition-all ${
                     currentPage === item.page
-                      ? 'text-white bg-white/10 border-l-4 border-white'
+                      ? isLight
+                        ? 'text-[#0A2546] bg-slate-100 border-l-4 border-[#0A2546]'
+                        : 'text-white bg-white/10 border-l-4 border-white'
                       : isLight
                         ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                         : 'text-white/60 hover:text-white hover:bg-white/5'
