@@ -72,12 +72,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             transition={{ duration: 0.5 }}
             className="space-y-4 sm:space-y-6 max-w-3xl mx-auto"
           >
-            {/* Small DNA TECH identity label on mobile & desktop */}
-            <div>
-              <span className="inline-block font-mono text-[9px] sm:text-xs text-white/70 uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                DNA TECH // DATA NEUTRAL ANALYSIS
-              </span>
-            </div>
+            
 
             <h1 className="font-sans font-extrabold text-2.5xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
               Turning Data Into Better Decisions.
