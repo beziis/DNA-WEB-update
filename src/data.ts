@@ -125,7 +125,7 @@ export const solutionsData = {
 export const founders: TeamMember[] = [
   {
     name: "JALENE T. CHALI",
-    role: "Co-Founder & CEO",
+    role: "CEO & Founder",
     bio: "Founder of DNA TECH who recognized the importance of data in driving economic growth and set out to address data underutilization in decision-making.",
     image: jaleneImg,
     isFounder: true
