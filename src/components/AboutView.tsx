@@ -1,6 +1,16 @@
 import React from 'react';
-import { companyProfile, aboutUs, visionMission, keyFactors, founders, advisors, achievementsList } from '../data';
-import { Target, Shield, Award } from 'lucide-react';
+import {
+  companyProfile,
+  aboutUs,
+  visionMission,
+  keyFactors,
+  founders,
+  advisors,
+  achievementsList,
+  testimonialsData,
+  galleryImages
+} from '../data';
+import { Target, Shield, Award, Quote } from 'lucide-react';
 import { motion } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
 import DataScrollBackground from './DataScrollBackground';
@@ -30,23 +40,23 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* 1. ABOUT US OVERVIEW */}
-        <section className="mb-20">
+        <section className="mb-10 sm:mb-20">
           <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="text-center max-w-3xl mx-auto space-y-4 mb-12"
+            className="text-center max-w-3xl mx-auto space-y-4 mb-8 sm:mb-12"
           >
             <motion.h1
               variants={fadeInUpItemVariants}
-              className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]"
+              className="font-sans font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]"
             >
               Empowering Growth Through Unbiased Intelligence
             </motion.h1>
             <motion.p
               variants={fadeInUpItemVariants}
-              className="font-sans font-extralight text-base sm:text-lg text-white/85 leading-relaxed tracking-wide pt-2"
+              className="font-sans font-extralight text-sm sm:text-lg text-white/85 leading-relaxed tracking-wide pt-2"
             >
               DNA TECH bridges organizations with real-world market intelligence. We replace speculation with verified primary field research, predictive analytics, and custom enterprise technology.
             </motion.p>
@@ -59,21 +69,21 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-20 p-8 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 relative overflow-hidden shadow-2xl"
+          className="mb-10 sm:mb-20 p-6 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 relative overflow-hidden shadow-2xl"
         >
           <div className="max-w-4xl mx-auto space-y-6">
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight border-b border-white/10 pb-4">
+            <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight border-b border-white/10 pb-4">
               Why DNA TECH Exists
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-              <div className="space-y-4">
-                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Closing the Local Decision Gap</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">Closing the Local Decision Gap</h3>
                 <p>
                   DNA TECH was founded to make empirical field data accessible, providing decision-makers with the exact evidence needed to launch, scale, and de-risk operations.
                 </p>
               </div>
-              <div className="space-y-4">
-                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>
                 <p>
                   Having audited over 1,300 community responses across 10+ completed projects, we guarantee audit-ready data neutrality for every client.
                 </p>
@@ -83,8 +93,8 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
         </motion.section>
 
         {/* 4. KEY FACTORS */}
-        <section className="mb-20" id="key-factors">
-          <div className="text-center mb-12">
+        <section className="mb-10 sm:mb-20" id="key-factors">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
               Key Factors
             </h2>
@@ -98,30 +108,43 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
             {keyFactors.map((val) => (
               <motion.div key={val.id} variants={fadeInUpItemVariants}>
-                <FlipCard
-                  minHeight="h-64"
-                  front={
-                    <div className="space-y-3 text-left">
-                      <div className="font-mono text-2xl font-bold text-white/50">
-                        {val.id}
+                {/* Desktop FlipCard */}
+                <div className="hidden md:block">
+                  <FlipCard
+                    minHeight="h-64"
+                    front={
+                      <div className="space-y-3 text-left">
+                        <div className="font-mono text-2xl font-bold text-white/50">
+                          {val.id}
+                        </div>
+                        <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
                       </div>
-                      <span className="font-mono text-[10px] text-white/40 uppercase tracking-widest block"></span>
-                      <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
-                    </div>
-                  }
-                  back={
-                    <div className="space-y-3 text-left">
-                      <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">{val.title}</h3>
-                      <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-                        {val.description}
-                      </p>
-                    </div>
-                  }
-                />
+                    }
+                    back={
+                      <div className="space-y-3 text-left">
+                        <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">{val.title}</h3>
+                        <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
+                          {val.description}
+                        </p>
+                      </div>
+                    }
+                  />
+                </div>
+
+                {/* Mobile Compact Direct Card (No flip required) */}
+                <div className="block md:hidden p-5 rounded-[16px] bg-[#0B2545] border border-white/20 space-y-2 text-left shadow-md">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xl font-bold text-white/40">{val.id}</span>
+                    <h3 className="font-sans font-extrabold text-base text-white tracking-tight">{val.title}</h3>
+                  </div>
+                  <p className="font-sans font-extralight text-xs text-white/80 leading-relaxed tracking-wide pt-1">
+                    {val.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -175,8 +198,8 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
         </section>
 
         {/* 5. FOUNDERS & ADVISORS */}
-        <section className="mb-20" id="team">
-          <div className="text-center mb-12">
+        <section className="mb-10 sm:mb-20" id="team">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
               Founders
             </h2>
@@ -187,28 +210,27 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-16"
           >
             {founders.map((f, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUpItemVariants}
-                className="p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
+                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
               >
                 <div>
-                  <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border border-white/20 shadow-sm mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
+                  <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
                     <LazyImage
                       src={f.image}
                       alt={f.name}
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-cover transition-all duration-300"
                       containerClassName="w-full h-full rounded-full"
                       onError={handleImageError}
                     />
-                    <span className="absolute">{getInitials(f.name)}</span>
                   </div>
 
-                  <h3 className="font-sans font-extrabold text-lg text-white mb-0.5 tracking-tight">{f.name}</h3>
-                  <p className="text-white/80 font-mono text-xs uppercase tracking-widest font-bold mb-4">{f.role}</p>
+                  <h3 className="font-sans font-extrabold text-base sm:text-lg text-white mb-0.5 tracking-tight">{f.name}</h3>
+                  <p className="text-white/80 font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold mb-3 sm:mb-4">{f.role}</p>
 
                   <p className="font-sans font-extralight text-white/80 leading-relaxed text-xs tracking-wide">
                     {f.bio}
@@ -218,7 +240,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             ))}
           </motion.div>
 
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
               Advisors
             </h2>
@@ -229,32 +251,122 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
           >
             {advisors.map((ad, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUpItemVariants}
-                className="p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
+                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
               >
                 <div>
-                  <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border border-white/20 shadow-sm mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
+                  <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
                     <LazyImage
                       src={ad.image}
                       alt={ad.name}
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-cover transition-all duration-300"
                       containerClassName="w-full h-full rounded-full"
                       onError={handleImageError}
                     />
-                    <span className="absolute">{getInitials(ad.name)}</span>
                   </div>
 
-                  <h3 className="font-sans font-extrabold text-lg text-white mb-0.5 tracking-tight">{ad.name}</h3>
-                  <p className="text-white/80 font-mono text-xs uppercase tracking-widest font-bold mb-4">{ad.role}</p>
+                  <h3 className="font-sans font-extrabold text-base sm:text-lg text-white mb-0.5 tracking-tight">{ad.name}</h3>
+                  <p className="text-white/80 font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold mb-3 sm:mb-4">{ad.role}</p>
 
                   <p className="font-sans font-extralight text-white/80 leading-relaxed text-xs tracking-wide">
                     {ad.bio}
                   </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* GALLERY SECTION */}
+        <section id="gallery" className="mb-10 sm:mb-20">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+              DNA TECH GALLERY
+            </h2>
+            <p className="text-white/60 text-xs font-mono uppercase tracking-widest mt-2">
+              Empirical market research, pitching forums, & field operations
+            </p>
+          </div>
+
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"
+          >
+            {galleryImages.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={fadeInUpItemVariants}
+                className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#0B2545] border border-white/15 hover:border-white/50 transition-all duration-300 shadow-xl flex flex-col justify-between"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#010610]">
+                  <LazyImage
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    containerClassName="w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545] via-transparent to-transparent opacity-80" />
+                </div>
+                <div className="p-3 sm:p-5 relative z-10 space-y-1">
+                  {item.category && (
+                    <span className="font-mono text-[9px] sm:text-[10px] text-white/50 uppercase tracking-widest block">
+                      {item.category}
+                    </span>
+                  )}
+                  <h3 className="font-sans font-bold text-xs sm:text-sm text-white tracking-tight truncate">
+                    {item.title}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* TESTIMONIALS SECTION */}
+        <section id="testimonials" className="mb-10 sm:mb-20">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+              Client Testimonials
+            </h2>
+            <p className="text-white/60 text-xs font-mono uppercase tracking-widest mt-2">
+              Feedback from our partners & data service clients
+            </p>
+          </div>
+
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {testimonialsData.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={fadeInUpItemVariants}
+                className="p-6 rounded-2xl bg-[#0B2545]/60 border border-white/15 hover:border-white/40 transition-all duration-300 shadow-lg flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Quote className="w-6 h-6 text-white/40" />
+                    <span className="font-mono text-[10px] text-white/40 font-bold">{item.id}</span>
+                  </div>
+                  <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
+                    {item.quote}
+                  </p>
+                </div>
+                <div className="pt-6 mt-4 border-t border-white/10">
+                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
+                    {item.client}
+                  </h3>
                 </div>
               </motion.div>
             ))}

@@ -3,7 +3,8 @@ import { PageType } from '../types';
 import {
   companyProfile,
   solutionsData,
-  partners
+  partners,
+  partnerLogos
 } from '../data';
 import { motion } from 'motion/react';
 import {
@@ -50,8 +51,8 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_55%)] pointer-events-none" />
 
-        {/* Subtle Floating Abstract Data-Blobs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        {/* Subtle Floating Abstract Data-Blobs (Desktop only to prevent mobile visual clutter) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden sm:block">
           {/* Primary glowing data-blob top-left */}
           <div className="absolute -top-12 -left-12 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-[#134074]/20 via-[#8DA9C4]/10 to-transparent rounded-full blur-2xl animate-data-blob-1 opacity-40" />
 
@@ -136,26 +137,24 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       </section>
 
       {/* 2. REPEAT CLIENTS MARQUEE */}
-      <section className="py-6 bg-transparent border-b border-white/5 relative overflow-hidden">
+      <section className="py-4 sm:py-6 bg-transparent border-b border-white/5 relative overflow-hidden">
         <div className="relative w-full overflow-hidden flex">
           <motion.div
-            className="flex items-center space-x-12 whitespace-nowrap min-w-max py-2"
+            className="flex items-center space-x-6 sm:space-x-10 whitespace-nowrap min-w-max py-2"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              x: { repeat: Infinity, repeatType: "loop", duration: 25, ease: "linear" }
+              x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" }
             }}
           >
-            {[
-              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO",
-              "GHION MARKETING SOLUTION", "BALANCE TAX SOLUTION", "LOVED HOPE",
-              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO",
-              "GHION MARKETING SOLUTION", "BALANCE TAX SOLUTION", "LOVED HOPE"
-            ].map((name, idx) => (
-              <div key={idx} className="inline-flex items-center space-x-12 px-2">
-                <span className="font-sans font-semibold text-sm tracking-wider uppercase text-white/90 hover:text-white transition-colors">
-                  {name}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+            {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((partner, idx) => (
+              <div key={idx} className="inline-flex items-center px-2">
+                <div className="bg-[#0B2545]/90 hover:bg-[#0E2E54] border border-white/15 rounded-xl px-4 sm:px-6 py-2 flex items-center justify-center h-12 sm:h-16 shadow-md transition-all">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-7 sm:max-h-10 w-auto object-contain max-w-[130px] sm:max-w-[170px]"
+                  />
+                </div>
               </div>
             ))}
           </motion.div>
@@ -253,39 +252,65 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
           >
             {solutionsData.items.map((sol, idx) => (
               <motion.div key={idx} variants={fadeInUpItemVariants}>
-                <FlipCard
-                  minHeight="h-72"
+                {/* Desktop FlipCard */}
+                <div className="hidden md:block">
+                  <FlipCard
+                    minHeight="h-72"
+                    onClick={() => setCurrentPage('solutions')}
+                    front={
+                      <div className="space-y-4 text-left">
+                        <div className="w-10 h-10 rounded-[12px] bg-[#0B2545] border border-white/20 flex items-center justify-center text-white font-mono text-xs font-bold">
+                          0{idx + 1}
+                        </div>
+                        <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest block">SPECIALIZED SOLUTION</span>
+                        <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">
+                          {sol.title}
+                        </h3>
+                      </div>
+                    }
+                    back={
+                      <div className="space-y-4 text-left">
+                        <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">
+                          {sol.title}
+                        </h3>
+                        <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
+                          {sol.description}
+                        </p>
+                        <div className="pt-2 flex items-center text-xs font-mono text-white font-bold">
+                          <span>Explore Solution</span>
+                          <ArrowRight className="w-3.5 h-3.5 ml-1 text-white" />
+                        </div>
+                      </div>
+                    }
+                  />
+                </div>
+
+                {/* Mobile Direct Readable Card (No flip required) */}
+                <div
                   onClick={() => setCurrentPage('solutions')}
-                  front={
-                    <div className="space-y-4 text-left">
-                      <div className="w-10 h-10 rounded-[12px] bg-[#0B2545] border border-white/20 flex items-center justify-center text-white font-mono text-xs font-bold">
-                        0{idx + 1}
-                      </div>
-                      <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest block">SPECIALIZED SOLUTION</span>
-                      <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">
-                        {sol.title}
-                      </h3>
+                  className="block md:hidden p-6 rounded-[20px] bg-[#0B2545] border border-white/20 space-y-3 text-left cursor-pointer active:scale-[0.99] transition-transform"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-8 h-8 rounded-[10px] bg-[#0B2442] border border-white/20 flex items-center justify-center text-white font-mono text-xs font-bold">
+                      0{idx + 1}
                     </div>
-                  }
-                  back={
-                    <div className="space-y-4 text-left">
-                      <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">
-                        {sol.title}
-                      </h3>
-                      <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
-                        {sol.description}
-                      </p>
-                      <div className="pt-2 flex items-center text-xs font-mono text-white font-bold">
-                        <span>Explore Solution</span>
-                        <ArrowRight className="w-3.5 h-3.5 ml-1 text-white" />
-                      </div>
-                    </div>
-                  }
-                />
+                    <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest">SPECIALIZED SOLUTION</span>
+                  </div>
+                  <h3 className="font-sans font-extrabold text-lg text-white tracking-tight">
+                    {sol.title}
+                  </h3>
+                  <p className="font-sans font-extralight text-xs text-white/80 leading-relaxed tracking-wide">
+                    {sol.description}
+                  </p>
+                  <div className="pt-1 flex items-center text-xs font-mono text-white font-bold">
+                    <span>Explore Solution</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1 text-white" />
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>

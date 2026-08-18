@@ -1,4 +1,29 @@
-import { TeamMember, PartnerItem } from './types';
+import { TeamMember, PartnerItem, PartnerLogo, Testimonial, GalleryItem } from './types';
+
+// Asset Imports
+import jaleneImg from './assets/founders/Jalene.png';
+import naolImg from './assets/founders/Naol.png';
+import tadesseImg from './assets/founders/Tadesse.png';
+
+import meronImg from './assets/advisors/Meron.png';
+import mikiyasImg from './assets/advisors/Mikiyas.png';
+import shewayeImg from './assets/advisors/Shewaye.png';
+
+import balancedTaxLogo from './assets/partners/Balanced Tax Solution.png';
+import lijeCareLogo from './assets/partners/Lije Care.png';
+import lovedHopeLogo from './assets/partners/Loved Hope.png';
+import shemanLogo from './assets/partners/SHEMAN.png';
+import teryaLogo from './assets/partners/TERYA.co.png';
+import yneLogo from './assets/partners/Youth Network Ethiopia.jpg';
+
+import auAwardImg from './assets/AU AWARD.png';
+import auPitchImg from './assets/AU PITCH.png';
+import eventPitchImg from './assets/EVENT PITCH.png';
+import eventImg from './assets/EVENT.png';
+import shegerPitchImg from './assets/SHEGER PITCH.png';
+import yesuaTechImg from './assets/YESUA TECH.png';
+import seedImg from './assets/SEED.png';
+import dataImg from './assets/DATA.png';
 
 export const companyProfile = {
   fullName: "Data Neutral Analysis Technology (DNA TECH)",
@@ -102,21 +127,21 @@ export const founders: TeamMember[] = [
     name: "JALENE T. CHALI",
     role: "Co-Founder & CEO",
     bio: "Founder of DNA TECH who recognized the importance of data in driving economic growth and set out to address data underutilization in decision-making.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
+    image: jaleneImg,
     isFounder: true
   },
   {
     name: "NAOL T. CHALI",
     role: "Co-founder",
     bio: "Holds a Bachelor's degree in Statistics and works as an Insurance Manager, bringing extensive experience in working with various types of local data and analysis.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
+    image: naolImg,
     isFounder: true
   },
   {
     name: "TADESSE C. WAKENE",
     role: "Co-founder",
     bio: "Contributes over 20 years of business experience, having built multiple factories and companies from the ground up, offering valuable insights into building startups and supporting business growth.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
+    image: tadesseImg,
     isFounder: true
   }
 ];
@@ -126,21 +151,21 @@ export const advisors: TeamMember[] = [
     name: "MS. SHEWAYA",
     role: "Operational Advisor at DNA TECHS",
     bio: "UNECA Research Lead and Economist.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
+    image: shewayeImg,
     isFounder: false
   },
   {
     name: "MR. MICHEYAS",
     role: "Legal Advisor at DNA TECHS",
     bio: "Attorney & Legal Consultant at Mikias Melak & Associates Law Office.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
+    image: mikiyasImg,
     isFounder: false
   },
   {
     name: "MISS. MERON",
     role: "Financial Advisor at DNA TECH",
     bio: "Project & Operations Coordinator | Business Development & Youth Development | Training Facilitation & Administrative Support.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
+    image: meronImg,
     isFounder: false
   }
 ];
@@ -182,6 +207,44 @@ export const partners: PartnerItem[] = [
     color: "#0B2442",
     description: "Social impact assessment and community development partner."
   }
+];
+
+export const partnerLogos: PartnerLogo[] = [
+  { name: "Balanced Tax Solution", logo: balancedTaxLogo },
+  { name: "Lije Care", logo: lijeCareLogo },
+  { name: "Loved Hope", logo: lovedHopeLogo },
+  { name: "SHEMAN", logo: shemanLogo },
+  { name: "TERYA.co", logo: teryaLogo },
+  { name: "Youth Network Ethiopia", logo: yneLogo }
+];
+
+export const testimonialsData: Testimonial[] = [
+  {
+    id: "01",
+    client: "Lije Care",
+    quote: "“The accuracy of the data service, enhanced by the included audio recordings, provided highly reliable and valuable insights that helped us understand our market and connect effectively with our target customers before launch.”"
+  },
+  {
+    id: "02",
+    client: "YOUTH NETWORK ETHIOPIA (YNE)",
+    quote: "“We’ve never experienced such a detailed and clearly presented data service before, and we’re thrilled with the actionable insights we’ve already begun implementing.”"
+  },
+  {
+    id: "03",
+    client: "TERYA.co",
+    quote: "“We greatly values the data collection service for its accuracy, authenticity, and professionally organized digital presentation, which has significantly supported our forest regeneration initiatives.”"
+  }
+];
+
+export const galleryImages: GalleryItem[] = [
+  { id: "g1", title: "AU Pitch Showcase", category: "PITCH & AWARDS", image: auPitchImg },
+  { id: "g2", title: "African Union Recognition Award", category: "PITCH & AWARDS", image: auAwardImg },
+  { id: "g3", title: "Sheger Pitch Forum", category: "EVENTS & FORUMS", image: shegerPitchImg },
+  { id: "g4", title: "Empirical Field Research Event", category: "FIELDWORK & EVENTS", image: eventImg },
+  { id: "g5", title: "National Innovation Pitch", category: "EVENTS & FORUMS", image: eventPitchImg },
+  { id: "g6", title: "Yesua Tech Ecosystem", category: "PARTNERSHIPS", image: yesuaTechImg },
+  { id: "g7", title: "Seed Capital & Pitch Forum", category: "ECOSYSTEM", image: seedImg },
+  { id: "g8", title: "DNA TECH Data Collection Framework", category: "METHODOLOGY", image: dataImg }
 ];
 
 export const achievementsList = [

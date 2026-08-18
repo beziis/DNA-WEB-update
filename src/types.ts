@@ -23,3 +23,21 @@ export interface PartnerItem {
   color: string;
   description: string;
 }
+
+export interface PartnerLogo {
+  name: string;
+  logo: string;
+}
+
+export interface Testimonial {
+  id: string;
+  client: string;
+  quote: string;
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category?: string;
+  image: string;
+}
