@@ -26,8 +26,17 @@ const CONTACT_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const CONTACT_RATE_LIMIT_MAX_REQUESTS = 5;
 const contactRequestLog = new Map<string, { count: number; resetAt: number }>();
 
+function pruneExpiredRateLimits(now: number) {
+  for (const [ip, record] of contactRequestLog.entries()) {
+    if (record.resetAt <= now) {
+      contactRequestLog.delete(ip);
+    }
+  }
+}
+
 function isContactRateLimited(ipAddress: string) {
   const now = Date.now();
+  pruneExpiredRateLimits(now);
   const record = contactRequestLog.get(ipAddress);
 
   if (!record || record.resetAt <= now) {
@@ -89,7 +98,8 @@ app.get("/api/health", (req, res) => {
 });
 
 app.post("/api/contact", async (req, res) => {
-  if (isContactRateLimited(req.ip)) {
+  const clientIp = req.ip || req.socket.remoteAddress || "unknown-ip";
+  if (isContactRateLimited(clientIp)) {
     return res.status(429).json({
       success: false,
       message: "Please wait a few minutes before sending another message."
@@ -205,7 +215,7 @@ async function bootstrap() {
       console.log(`DNA TECH Platform Running at http://localhost:${port}`);
     });
 
-    srv.on('error', (err: any) => {
+    srv.on('error', (err: NodeJS.ErrnoException) => {
       if (err && err.code === 'EADDRINUSE' && attempts > 0) {
         console.warn(`Port ${port} in use. Trying port ${port + 1}...`);
         setTimeout(() => startServer(port + 1, attempts - 1), 250);

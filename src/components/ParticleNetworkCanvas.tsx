@@ -39,14 +39,15 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
     };
 
     let particles: Particle[] = [];
+    let isLightMode = document.documentElement.classList.contains('light');
     // Default (dark mode) palette uses light particles; switch when .light class present
-    const getColorPalette = () => {
-      if (document.documentElement.classList.contains('light')) {
+    const getPalette = (light: boolean) => {
+      if (light) {
         return ['#0A2546', '#0A2546', '#0A2546', '#0A2546', '#0A2546'];
       }
       return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#E2E8F0', '#FFFFFF'];
     };
-    let colorPalette = getColorPalette();
+    let colorPalette = getPalette(isLightMode);
 
     // Resize Handler
     const updateDimensions = () => {
@@ -126,6 +127,18 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       resizeObserver.observe(canvas.parentElement);
     }
 
+    const themeObserver = new MutationObserver(() => {
+      const currentLight = document.documentElement.classList.contains('light');
+      if (currentLight !== isLightMode) {
+        isLightMode = currentLight;
+        colorPalette = getPalette(isLightMode);
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].color = colorPalette[i % colorPalette.length];
+        }
+      }
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
     window.addEventListener('mousemove', handlePointerMove, { passive: true });
     window.addEventListener('mouseleave', handlePointerLeave, { passive: true });
     window.addEventListener('touchmove', handlePointerMove, { passive: true });
@@ -148,14 +161,11 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
       ctx.clearRect(0, 0, width, height);
 
+      const strokeColor = isLightMode ? '#0A2546' : '#FFFFFF';
+
       // Update & Render Particles
-        // Update color palette dynamically in case theme changed
-        colorPalette = getColorPalette();
-        for (let i = 0; i < particles.length; i++) {
+      for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        // Apply the current palette to existing particles as well as newly
-        // created ones, so a live theme switch updates every network node.
-        p.color = colorPalette[i % colorPalette.length];
 
         // Particle position update
         p.x += p.vx * dt * 60;
@@ -198,7 +208,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = document.documentElement.classList.contains('light') ? '#0A2546' : '#FFFFFF';
+            ctx.strokeStyle = strokeColor;
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 0.88;
             ctx.stroke();
@@ -214,7 +224,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
                 ctx.beginPath();
                 ctx.arc(pulseX, pulseY, 1.6, 0, Math.PI * 2);
-                ctx.fillStyle = document.documentElement.classList.contains('light') ? '#0A2546' : '#FFFFFF';
+                ctx.fillStyle = strokeColor;
                 ctx.globalAlpha = Math.min(alpha * 2.0, 0.68);
                 ctx.fill();
               }
@@ -232,7 +242,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
-            ctx.strokeStyle = document.documentElement.classList.contains('light') ? '#0A2546' : '#FFFFFF';
+            ctx.strokeStyle = strokeColor;
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 1.05;
             ctx.stroke();
@@ -249,6 +259,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
     return () => {
       cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
+      themeObserver.disconnect();
       window.removeEventListener('mousemove', handlePointerMove);
       window.removeEventListener('mouseleave', handlePointerLeave);
       window.removeEventListener('touchmove', handlePointerMove);

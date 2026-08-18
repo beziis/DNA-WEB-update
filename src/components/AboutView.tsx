@@ -18,13 +18,17 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
     return name.split(" ").map(n => n[0]).join("");
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLElement, Event>) => {
+    (e.target as HTMLElement).style.display = 'none';
+  };
+
   return (
     <div id="about-page" className="bg-transparent text-white min-h-screen py-16 relative overflow-hidden font-sans text-left">
       {/* Background Interactive Particle Network & Data Nodes */}
       <DataScrollBackground />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* 1. ABOUT US OVERVIEW */}
         <section className="mb-20">
           <motion.div
@@ -34,14 +38,14 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             viewport={{ once: true, amount: 0.2 }}
             className="text-center max-w-3xl mx-auto space-y-4 mb-12"
           >
-            <motion.h1 
-              variants={fadeInUpItemVariants} 
+            <motion.h1
+              variants={fadeInUpItemVariants}
               className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]"
             >
               Empowering Growth Through Unbiased Intelligence
             </motion.h1>
-            <motion.p 
-              variants={fadeInUpItemVariants} 
+            <motion.p
+              variants={fadeInUpItemVariants}
               className="font-sans font-extralight text-base sm:text-lg text-white/85 leading-relaxed tracking-wide pt-2"
             >
               DNA TECH bridges organizations with real-world market intelligence. We replace speculation with verified primary field research, predictive analytics, and custom enterprise technology.
@@ -50,7 +54,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
         </section>
 
         {/* 2. WHY WE EXIST & OUR FOUNDING STORY */}
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -69,7 +73,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                 </p>
               </div>
               <div className="space-y-4">
-                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>      
+                <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">Industrial & Academic Rigor</h3>
                 <p>
                   Having audited over 1,300 community responses across 10+ completed projects, we guarantee audit-ready data neutrality for every client.
                 </p>
@@ -89,7 +93,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             </p>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={fastStaggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -126,7 +130,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
 
         {/* 3. VISION & MISSION */}
         <section className="mb-20">
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -134,7 +138,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             className="py-12 px-6 sm:px-12 border border-white/20 bg-[#0B2545] rounded-2xl shadow-xl relative overflow-hidden"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-              
+
               {/* Vision */}
               <motion.div variants={fadeInUpItemVariants} className="p-6 rounded-xl bg-[#0B2442] border border-white/20 flex space-x-4">
                 <div className="flex-shrink-0 mt-1">
@@ -178,7 +182,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             </h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -186,28 +190,26 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
           >
             {founders.map((f, idx) => (
-              <motion.div 
-                key={idx} 
+              <motion.div
+                key={idx}
                 variants={fadeInUpItemVariants}
                 className="p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
               >
                 <div>
                   <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border border-white/20 shadow-sm mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
-                    <LazyImage 
-                      src={f.image} 
-                      alt={f.name} 
+                    <LazyImage
+                      src={f.image}
+                      alt={f.name}
                       className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
                       containerClassName="w-full h-full rounded-full"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
+                      onError={handleImageError}
                     />
                     <span className="absolute">{getInitials(f.name)}</span>
                   </div>
 
                   <h3 className="font-sans font-extrabold text-lg text-white mb-0.5 tracking-tight">{f.name}</h3>
                   <p className="text-white/80 font-mono text-xs uppercase tracking-widest font-bold mb-4">{f.role}</p>
-                  
+
                   <p className="font-sans font-extralight text-white/80 leading-relaxed text-xs tracking-wide">
                     {f.bio}
                   </p>
@@ -222,7 +224,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             </h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -230,28 +232,26 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {advisors.map((ad, idx) => (
-              <motion.div 
-                key={idx} 
+              <motion.div
+                key={idx}
                 variants={fadeInUpItemVariants}
                 className="p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
               >
                 <div>
                   <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border border-white/20 shadow-sm mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
-                    <LazyImage 
-                      src={ad.image} 
-                      alt={ad.name} 
+                    <LazyImage
+                      src={ad.image}
+                      alt={ad.name}
                       className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
                       containerClassName="w-full h-full rounded-full"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
+                      onError={handleImageError}
                     />
                     <span className="absolute">{getInitials(ad.name)}</span>
                   </div>
 
                   <h3 className="font-sans font-extrabold text-lg text-white mb-0.5 tracking-tight">{ad.name}</h3>
                   <p className="text-white/80 font-mono text-xs uppercase tracking-widest font-bold mb-4">{ad.role}</p>
-                  
+
                   <p className="font-sans font-extralight text-white/80 leading-relaxed text-xs tracking-wide">
                     {ad.bio}
                   </p>
@@ -269,7 +269,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             </h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -283,9 +283,9 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                 className="bg-[#0B2545]/40 border border-white/10 rounded-xl overflow-hidden group hover:border-white transition-all duration-300 shadow-xl"
               >
                 <div className="relative h-44 overflow-hidden bg-[#010610]">
-                  <LazyImage 
-                    src={item.image} 
-                    alt={item.title} 
+                  <LazyImage
+                    src={item.image}
+                    alt={item.title}
                     className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
                     containerClassName="w-full h-full"
                   />

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { PageType } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
-import { 
-  TrendingUp, FileText, BarChart3, LayoutDashboard, Cpu, Code, 
-  CheckCircle2, ChevronRight, ArrowRight,
-  ShieldCheck, Lightbulb, Smartphone, Users2, Award, Headset,
-  Building2, Users, Landmark, Rocket, GraduationCap, Globe2
+import {
+  TrendingUp, FileText, BarChart3, LayoutDashboard, Cpu, Code,
+  CheckCircle2, ArrowRight,
+  ShieldCheck, Lightbulb, Smartphone, Users2, Award, Headset
 } from 'lucide-react';
 import DataScrollBackground from './DataScrollBackground';
 import LazyImage from './LazyImage';
@@ -84,15 +83,6 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
   ];
 
 
-  const industries = [
-    { icon: Building2, name: "Businesses", desc: "Improve growth through customer and market insights." },
-    { icon: Users, name: "NGOs", desc: "Collect reliable community data and evaluate project impact." },
-    { icon: Landmark, name: "Government", desc: "Support evidence-based planning and public service improvement." },
-    { icon: Rocket, name: "Startups", desc: "Validate market ideas and product-market fit before investing resources." },
-    { icon: GraduationCap, name: "Education", desc: "Research student needs and institutional performance." },
-    { icon: Globe2, name: "Development Partners", desc: "Support multi-region research initiatives with empirical reporting." }
-  ];
-
   const diffFactors = [
     { icon: ShieldCheck, title: "Ethical Data", desc: "Reliable information collected responsibly with strict privacy compliance." },
     { icon: Lightbulb, title: "Practical Insights", desc: "Clear recommendations you can actually use to make decisions immediately." },
@@ -114,7 +104,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
       <DataScrollBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
-        
+
         {/* 1. PAGE HERO */}
         <section className="text-center max-w-4xl mx-auto pt-6">
           <motion.div
@@ -194,7 +184,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
                   <p className="font-sans font-extralight text-sm text-white/90 leading-relaxed tracking-wide mb-4">
                     {coreServices[activeTab].whatWeDo}
                   </p>
-                  
+
                   {/* Image Reveal with CSS Clip Path */}
                   <div className="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl group">
                     <LazyImage
@@ -248,7 +238,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Why Our Services Are Different</h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={fastStaggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -258,8 +248,8 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             {diffFactors.map((df, dIdx) => {
               const DfIcon = df.icon;
               return (
-                <motion.div 
-                  key={dIdx} 
+                <motion.div
+                  key={dIdx}
                   variants={fadeInUpItemVariants}
                   className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] space-y-3 card-hover-lift shadow-xl transition-all"
                 >

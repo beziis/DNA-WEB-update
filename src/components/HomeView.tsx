@@ -1,13 +1,13 @@
 import React from 'react';
 import { PageType } from '../types';
-import { 
-  companyProfile, 
-  solutionsData, 
+import {
+  companyProfile,
+  solutionsData,
   partners
 } from '../data';
 import { motion } from 'motion/react';
-import { 
-  staggerContainerVariants, 
+import {
+  staggerContainerVariants,
   fadeInUpItemVariants,
   scaleInItemVariants
 } from '../utils/animationVariants';
@@ -20,8 +20,8 @@ import heroImg from '../assets/images/hero_data_visualization_1784490808515.jpg'
 import collabImg from '../assets/images/data_collaboration_1784490822102.jpg';
 import techHubImg from '../assets/images/tech_analytics_hub_1784880241845.jpg';
 import FlipCard from './FlipCard';
-import { 
-  ArrowRight, Database, LayoutDashboard, 
+import {
+  ArrowRight, Database, LayoutDashboard,
   Shield, Phone, Sparkles, AlertCircle,
   Handshake, Mail
 } from 'lucide-react';
@@ -34,14 +34,14 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
   return (
     <div className="bg-transparent text-white overflow-x-hidden font-sans relative">
       <DataScrollBackground />
-      
+
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/5 bg-gradient-to-b from-[#0B2545]/40 via-[#051329]/20 to-transparent overflow-hidden">
         {/* Background Overlay */}
         <div className="absolute inset-0 z-0 pointer-events-none opacity-45 overflow-hidden">
-          <LazyImage 
-            src={techHubImg} 
-            alt="Tech Analytics Background" 
+          <LazyImage
+            src={techHubImg}
+            alt="Tech Analytics Background"
             className="w-full h-full object-cover scale-105"
             containerClassName="w-full h-full"
           />
@@ -49,23 +49,23 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
         </div>
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_55%)] pointer-events-none" />
-        
+
         {/* Subtle Floating Abstract Data-Blobs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Primary glowing data-blob top-left */}
           <div className="absolute -top-12 -left-12 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-[#134074]/20 via-[#8DA9C4]/10 to-transparent rounded-full blur-2xl animate-data-blob-1 opacity-40" />
-          
+
           {/* Secondary glowing data-blob bottom-right */}
           <div className="absolute -bottom-16 -right-16 w-80 h-80 sm:w-[450px] sm:h-[450px] bg-gradient-to-bl from-[#0B2545]/25 via-[#134074]/15 to-transparent rounded-full blur-3xl animate-data-blob-2 opacity-35" />
-          
+
           {/* Subtle floating abstract mesh shape center-right */}
           <div className="absolute top-1/4 right-8 w-48 h-48 sm:w-64 sm:h-64 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
         </div>
-        
+
         <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-8">
-          
+
           {/* One-Column Hero Header Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -74,7 +74,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             <h1 className="font-sans font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.08]">
               Turning Data Into Better Decisions.
             </h1>
-            
+
             <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto">
               DNA TECH delivers verified market research, field data collection, and AI-driven analytics that eliminate guesswork, de-risk expansion, and accelerate growth for enterprises, NGOs, and public institutions.
             </p>
@@ -102,7 +102,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
           </motion.div>
 
           {/* One-Column Hero Visual Stacked Below */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -146,9 +146,9 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             }}
           >
             {[
-              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO", 
+              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO",
               "GHION MARKETING SOLUTION", "BALANCE TAX SOLUTION", "LOVED HOPE",
-              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO", 
+              "Youth Network Ethiopia", "LIJE CARE", "SHEMAN DESIGN", "TERYA.CO",
               "GHION MARKETING SOLUTION", "BALANCE TAX SOLUTION", "LOVED HOPE"
             ].map((name, idx) => (
               <div key={idx} className="inline-flex items-center space-x-12 px-2">
@@ -176,14 +176,14 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             </div>
           </ScrollFadeIn>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            <motion.div 
+            <motion.div
               variants={fadeInUpItemVariants}
               className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
@@ -196,7 +196,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={fadeInUpItemVariants}
               className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
@@ -209,7 +209,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={fadeInUpItemVariants}
               className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
@@ -248,7 +248,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             </div>
           </ScrollFadeIn>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -323,9 +323,9 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
               <div className="lg:col-span-5 relative flex items-center justify-center">
                 <div className="w-full h-full rounded-[18px] overflow-hidden border border-white/10 relative min-h-[220px]">
-                  <LazyImage 
-                    src={collabImg} 
-                    alt="DNA TECH Team Market Research Collaboration" 
+                  <LazyImage
+                    src={collabImg}
+                    alt="DNA TECH Team Market Research Collaboration"
                     className="w-full h-full object-cover opacity-60 rounded-[18px]"
                     containerClassName="w-full h-full"
                   />
@@ -355,7 +355,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             </div>
           </ScrollFadeIn>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
