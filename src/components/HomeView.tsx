@@ -67,35 +67,43 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
           {/* One-Column Hero Header Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6 max-w-3xl mx-auto"
+            transition={{ duration: 0.5 }}
+            className="space-y-4 sm:space-y-6 max-w-3xl mx-auto"
           >
-            <h1 className="font-sans font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.08]">
+            {/* Small DNA TECH identity label on mobile & desktop */}
+            <div>
+              <span className="inline-block font-mono text-[9px] sm:text-xs text-white/70 uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+                DNA TECH // DATA NEUTRAL ANALYSIS
+              </span>
+            </div>
+
+            <h1 className="font-sans font-extrabold text-2.5xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
               Turning Data Into Better Decisions.
             </h1>
 
-            <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto">
+            <p className="font-sans font-extralight text-xs sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto px-2 sm:px-0">
               DNA TECH delivers verified market research, field data collection, and AI-driven analytics that eliminate guesswork, de-risk expansion, and accelerate growth for enterprises, NGOs, and public institutions.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1 sm:pt-2">
               <motion.button
-                whileHover={{ scale: 1.03, y: -2 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentPage('contact')}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-[12px] bg-white hover:bg-white/90 text-[#0B2442] font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-lg flex items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
+                className="w-full sm:w-auto px-7 py-3 rounded-[12px] bg-white hover:bg-white/90 text-[#0B2442] font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-lg flex items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 text-[#0B2442]" />
               </motion.button>
 
+              {/* "Explore Services" CTA hidden on mobile, preserved for tablet/desktop */}
               <motion.button
-                whileHover={{ scale: 1.03, y: -2 }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentPage('services')}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-[12px] border border-white/40 bg-white/10 hover:bg-white hover:text-[#0B2442] text-white font-sans text-xs uppercase tracking-wider font-bold transition-all flex items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
+                className="hidden sm:inline-flex w-full sm:w-auto px-7 py-3 rounded-[12px] border border-white/40 bg-white/10 hover:bg-white hover:text-[#0B2442] text-white font-sans text-xs uppercase tracking-wider font-bold transition-all items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
               >
                 <span>Explore Services</span>
               </motion.button>
@@ -104,31 +112,31 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
           {/* One-Column Hero Visual Stacked Below */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="max-w-3xl mx-auto pt-4"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="max-w-3xl mx-auto pt-2 sm:pt-4"
           >
-            {/* Empirical Highlights Bar */}
-            <div className="bg-[#0B2545]/90 border border-white/10 p-4 rounded-[18px] backdrop-blur-md shadow-md">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                <div className="p-2.5 rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-xl sm:text-2xl font-sans font-extrabold text-white">
+            {/* Compact Empirical Highlights Bar */}
+            <div className="bg-[#0B2545]/90 border border-white/10 p-3 sm:p-4 rounded-[16px] sm:rounded-[18px] backdrop-blur-md shadow-md">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="10+" />
                   </div>
-                  <div className="text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Projects Completed</div>
+                  <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Projects</div>
                 </div>
-                <div className="p-2.5 rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-xl sm:text-2xl font-sans font-extrabold text-white">
+                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="1,308+" />
                   </div>
-                  <div className="text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Responses Audited</div>
+                  <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Responses</div>
                 </div>
-                <div className="p-2.5 rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-xl sm:text-2xl font-sans font-extrabold text-white">
+                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="100%" />
                   </div>
-                  <div className="text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Ethical Data</div>
+                  <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Ethical Data</div>
                 </div>
               </div>
             </div>

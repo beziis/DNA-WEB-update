@@ -51,9 +51,9 @@ export default function ContactView() {
       <DataScrollBackground />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
@@ -72,9 +72,9 @@ export default function ContactView() {
 
         {/* Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-          
+
           {/* Left: Contact Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -85,26 +85,27 @@ export default function ContactView() {
               <h2 className="font-sans font-extrabold text-2xl text-white border-b border-white/10 pb-4 tracking-tight">
                 LET'S WORK TOGETHER
               </h2>
-              
-              <motion.div 
+
+              <motion.div
                 variants={staggerContainerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 className="space-y-6 text-sm"
               >
-                
+
                 {/* Address */}
                 <motion.div variants={fadeInUpItemVariants} className="flex items-start space-x-4">
                   <MapPin className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
                   <div className="text-xs text-white/80 leading-relaxed">
-                    <p className="font-bold text-white uppercase font-mono text-[11px] mb-1">Address</p>
-                    <p className="text-white/90">{companyProfile.address}</p>
-                    <a 
+                    <p className="font-bold text-white uppercase font-mono text-[11px] mb-1">ADDIS ABABA</p>
+                    <p className="text-white/90 font-medium">Bambis &rarr; Kazanchis</p>
+                    <p className="text-white/80">Eyobed Apartment, 1st Floor</p>
+                    <a
                       href={companyProfile.mapsUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-white hover:underline font-mono text-[11px] mt-2 block font-semibold"
+                      className="text-white hover:underline font-mono text-[11px] mt-2 block font-semibold min-h-[44px] flex items-center"
                     >
                       View on Google Maps &rarr;
                     </a>
@@ -166,7 +167,7 @@ export default function ContactView() {
           </motion.div>
 
           {/* Right: Message Form */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -193,48 +194,48 @@ export default function ContactView() {
                     </p>
                   )}
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-white/70 mb-2">Full Name *</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <label className="block text-xs font-mono uppercase tracking-wider text-white/80 mb-2">Full Name *</label>
+                    <input
+                      type="text"
+                      required
                       value={formState.name}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormState({ ...formState, name: e.target.value })}
                       placeholder="Your name"
-                      className="w-full px-4 py-3 rounded-lg bg-[#0B2442] border border-white/10 text-white placeholder-white/30 text-xs focus:outline-none focus:border-white"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0B2442] border border-white/20 text-white placeholder-white/30 text-base focus:outline-none focus:border-white min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-white/70 mb-2">Email Address *</label>
-                    <input 
-                      type="email" 
-                      required 
+                    <label className="block text-xs font-mono uppercase tracking-wider text-white/80 mb-2">Email Address *</label>
+                    <input
+                      type="email"
+                      required
                       value={formState.email}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormState({ ...formState, email: e.target.value })}
                       placeholder="your.email@organization.com"
-                      className="w-full px-4 py-3 rounded-lg bg-[#0B2442] border border-white/10 text-white placeholder-white/30 text-xs focus:outline-none focus:border-white"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0B2442] border border-white/20 text-white placeholder-white/30 text-base focus:outline-none focus:border-white min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-white/70 mb-2">Your Message *</label>
-                    <textarea 
-                      required 
+                    <label className="block text-xs font-mono uppercase tracking-wider text-white/80 mb-2">Your Message *</label>
+                    <textarea
+                      required
                       rows={5}
                       value={formState.message}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormState({ ...formState, message: e.target.value })}
                       placeholder="Tell us about your project or data needs..."
-                      className="w-full px-4 py-3 rounded-lg bg-[#0B2442] border border-white/10 text-white placeholder-white/30 text-xs focus:outline-none focus:border-white"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0B2442] border border-white/20 text-white placeholder-white/30 text-base focus:outline-none focus:border-white"
                     />
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-lg bg-white text-[#0B2442] hover:bg-white/90 font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+                    className="w-full min-h-[48px] py-3.5 rounded-xl bg-white text-[#0B2442] hover:bg-white/90 font-mono text-xs uppercase tracking-wider font-bold transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
                   >
                     <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-                    <Send className="w-3.5 h-3.5" />
+                    <Send className="w-4 h-4" />
                   </button>
                 </form>
               )}

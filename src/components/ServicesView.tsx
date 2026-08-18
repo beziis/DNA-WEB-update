@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
 import {
   TrendingUp, FileText, BarChart3, LayoutDashboard, Cpu, Code,
-  CheckCircle2, ArrowRight,
+  CheckCircle2, ArrowRight, ChevronRight,
   ShieldCheck, Lightbulb, Smartphone, Users2, Award, Headset
 } from 'lucide-react';
 import DataScrollBackground from './DataScrollBackground';
@@ -149,8 +149,8 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             </h2>
           </div>
 
-          {/* Selector Tabs */}
-          <div className="flex items-center space-x-2 overflow-x-auto pb-4 mb-8">
+          {/* Desktop/Tablet Selector Tabs */}
+          <div className="hidden md:flex items-center space-x-2 overflow-x-auto pb-4 mb-8">
             {coreServices.map((srv, idx) => (
               <button
                 key={srv.id}
@@ -162,6 +162,27 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
                 }`}
               >
                 {srv.title}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Vertical Compact Selector List */}
+          <div className="block md:hidden space-y-2 mb-6">
+            {coreServices.map((srv, idx) => (
+              <button
+                key={srv.id}
+                onClick={() => setActiveTab(idx)}
+                className={`w-full flex items-center justify-between p-3.5 rounded-xl font-mono text-xs font-bold transition-all min-h-[44px] cursor-pointer ${
+                  activeTab === idx
+                    ? 'bg-white text-[#0B2442] shadow-md border-l-4 border-[#0B2442]'
+                    : 'bg-[#0B2442] text-white/80 hover:bg-white/10 border border-white/15'
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <span className="text-[10px] opacity-60">0{idx + 1}</span>
+                  <span className="font-sans font-bold text-xs">{srv.title}</span>
+                </div>
+                <ChevronRight className="w-4 h-4 flex-shrink-0" />
               </button>
             ))}
           </div>

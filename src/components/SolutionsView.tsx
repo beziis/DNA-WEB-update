@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { PageType } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
-import { 
-  Building2, Users, Landmark, Rocket, GraduationCap, 
+import {
+  Building2, Users, Landmark, Rocket, GraduationCap,
   CheckCircle2, ArrowRight, TrendingUp, Layers, LayoutDashboard,
   Cpu, Code, Database, BarChart3, ShieldCheck, Sparkles, FileText,
-  Activity, Zap, Compass, RefreshCw
+  Activity, Zap, Compass, RefreshCw, ChevronRight
 } from 'lucide-react';
 import DataScrollBackground from './DataScrollBackground';
 import FlipCard from './FlipCard';
@@ -126,7 +126,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
       <DataScrollBackground />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
-        
+
         {/* HERO */}
         <section className="text-center max-w-4xl mx-auto pt-6">
           <motion.div
@@ -189,8 +189,8 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Solutions by Industry</h2>
           </div>
 
-          {/* Industry Tabs */}
-          <div className="flex items-center space-x-2 overflow-x-auto pb-4 justify-start lg:justify-center">
+          {/* Desktop/Tablet Industry Tabs */}
+          <div className="hidden md:flex items-center space-x-2 overflow-x-auto pb-4 justify-start lg:justify-center">
             {industrySolutions.map((ind, idx) => {
               const IndIcon = ind.icon;
               return (
@@ -205,6 +205,30 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
                 >
                   <IndIcon className="w-4 h-4" />
                   <span>{ind.sector}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Mobile Vertical Compact Industry Selector */}
+          <div className="block md:hidden space-y-2 mb-6">
+            {industrySolutions.map((ind, idx) => {
+              const IndIcon = ind.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedIndustry(idx)}
+                  className={`w-full flex items-center justify-between p-3.5 rounded-xl font-mono text-xs font-bold transition-all min-h-[44px] cursor-pointer ${
+                    selectedIndustry === idx
+                      ? 'bg-white text-[#0B2442] shadow-md border-l-4 border-[#0B2442]'
+                      : 'bg-[#0B2442] text-white/80 hover:bg-white/10 border border-white/15'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <IndIcon className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-sans font-bold text-xs">{ind.sector}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 flex-shrink-0" />
                 </button>
               );
             })}
@@ -275,7 +299,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Case Study Highlights</h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -284,38 +308,60 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
           >
             {caseStudies.map((cs, cIdx) => (
               <motion.div key={cIdx} variants={fadeInUpItemVariants}>
-                <FlipCard
-                  minHeight="h-80"
-                  front={
-                    <div className="space-y-4 text-left">
-                      <span className="px-2.5 py-1 rounded-md bg-[#051329] border border-white/10 font-mono text-[10px] uppercase font-bold text-white inline-block">
-                        {cs.tag}
-                      </span>
-                      <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">
-                        {cs.title}
-                      </h3>
-                      <p className="font-mono text-xs text-white/50">{cs.client}</p>
-                      <div className="text-xl font-sans font-extrabold text-white py-2 border-y border-white/10 tracking-tight">
-                        {cs.metric}
+                {/* Desktop/Tablet FlipCard */}
+                <div className="hidden md:block">
+                  <FlipCard
+                    minHeight="h-80"
+                    front={
+                      <div className="space-y-4 text-left">
+                        <span className="px-2.5 py-1 rounded-md bg-[#051329] border border-white/10 font-mono text-[10px] uppercase font-bold text-white inline-block">
+                          {cs.tag}
+                        </span>
+                        <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">
+                          {cs.title}
+                        </h3>
+                        <p className="font-mono text-xs text-white/50">{cs.client}</p>
+                        <div className="text-xl font-sans font-extrabold text-white py-2 border-y border-white/10 tracking-tight">
+                          {cs.metric}
+                        </div>
                       </div>
-                    </div>
-                  }
-                  back={
-                    <div className="space-y-4 text-left">
-                      <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest block">KEY HIGHLIGHT</span>
-                      <h3 className="font-sans font-extrabold text-lg text-white border-b border-white/10 pb-2 tracking-tight">
-                        {cs.title}
-                      </h3>
-                      <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
-                        {cs.highlight}
-                      </p>
-                      <div className="pt-2 border-t border-white/10 text-xs text-white/90">
-                        <span className="font-mono font-bold block text-[10px] text-white/50 uppercase">Client Profile:</span>
-                        <span>{cs.client}</span>
+                    }
+                    back={
+                      <div className="space-y-4 text-left">
+                        <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest block">KEY HIGHLIGHT</span>
+                        <h3 className="font-sans font-extrabold text-lg text-white border-b border-white/10 pb-2 tracking-tight">
+                          {cs.title}
+                        </h3>
+                        <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
+                          {cs.highlight}
+                        </p>
+                        <div className="pt-2 border-t border-white/10 text-xs text-white/90">
+                          <span className="font-mono font-bold block text-[10px] text-white/50 uppercase">Client Profile:</span>
+                          <span>{cs.client}</span>
+                        </div>
                       </div>
-                    </div>
-                  }
-                />
+                    }
+                  />
+                </div>
+
+                {/* Mobile Direct Readable Card (No 3D flip required) */}
+                <div className="block md:hidden p-5 rounded-2xl bg-[#0B2545] border border-white/20 space-y-3 text-left shadow-md">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 rounded-md bg-[#051329] border border-white/10 font-mono text-[9px] uppercase font-bold text-white inline-block">
+                      {cs.tag}
+                    </span>
+                    <span className="font-mono text-xs font-extrabold text-white">{cs.metric}</span>
+                  </div>
+                  <h3 className="font-sans font-extrabold text-base text-white tracking-tight">
+                    {cs.title}
+                  </h3>
+                  <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
+                    {cs.highlight}
+                  </p>
+                  <p className="font-mono text-[10px] text-white/50 border-t border-white/10 pt-2">
+                    Client: {cs.client}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -394,7 +440,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Why Our Approach Works</h2>
           </div>
 
-          <motion.div 
+          <motion.div
             variants={fastStaggerContainerVariants}
             initial="hidden"
             whileInView="visible"
@@ -402,8 +448,8 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {whyItWorks.map((item, wIdx) => (
-              <motion.div 
-                key={wIdx} 
+              <motion.div
+                key={wIdx}
                 variants={fadeInUpItemVariants}
                 className="p-6 rounded-2xl bg-[#0B2545]/50 border border-white/10 space-y-2 card-hover-lift"
               >

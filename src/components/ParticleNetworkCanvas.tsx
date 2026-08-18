@@ -73,10 +73,14 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
     // Initialize Particles with mobile optimization
     const initParticles = () => {
       particles = [];
-      const densityArea = isMobile ? 22400 : 14400;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        return;
+      }
+      const densityArea = isMobile ? 32000 : 14400;
       const count = Math.min(
-        Math.max(Math.floor((width * height) / densityArea), isMobile ? 19 : 35),
-        isMobile ? 28 : 53
+        Math.max(Math.floor((width * height) / densityArea), isMobile ? 12 : 35),
+        isMobile ? 18 : 53
       );
 
       for (let i = 0; i < count; i++) {

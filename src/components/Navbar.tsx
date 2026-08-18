@@ -48,12 +48,12 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
           {/* Logo Section */}
-          <div 
-            onClick={() => { setCurrentPage('home'); setIsOpen(false); }} 
+          <div
+            onClick={() => { setCurrentPage('home'); setIsOpen(false); }}
             className="flex items-center space-x-3 cursor-pointer group"
             id="nav-logo"
           >
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.08, rotate: 3 }}
               whileTap={{ scale: 0.95 }}
               className={`relative flex items-center justify-center w-10 h-10 rounded-[12px] p-2 shadow-md overflow-hidden transition-colors ${
@@ -99,7 +99,7 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
                   >
                     {item.label}
                     {currentPage === item.page && (
-                      <motion.div 
+                      <motion.div
                         layoutId="navbar-indicator"
                         className={`absolute bottom-0 left-3 right-3 h-0.5 ${isLight ? 'bg-[#0B2442]' : 'bg-white'}`}
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
@@ -123,8 +123,8 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
             <button
               onClick={() => setCurrentPage('contact')}
               className={`flex items-center space-x-2 px-5 py-2.5 rounded-[12px] text-xs font-sans font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md keep-dark-cta ${
-                isLight 
-                  ? 'bg-slate-900 text-white hover:bg-slate-800' 
+                isLight
+                  ? 'bg-slate-900 text-white hover:bg-slate-800'
                   : 'bg-white text-[#0B2442] hover:bg-white/90 hover:shadow-lg'
               }`}
             >
@@ -133,19 +133,13 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
           </div>
 
           {/* Mobile Actions */}
-          <div className="flex md:hidden items-center space-x-2">
-              <button
-                onClick={() => toggleTheme?.()}
-              aria-label="Toggle theme"
-              className={`p-2 rounded-md transition-colors focus:outline-none ${isLight ? 'text-slate-700 hover:bg-slate-100' : 'text-white/80 hover:bg-white/5'}`}
-            >
-              {isLight ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
+          <div className="flex md:hidden items-center space-x-1">
             <motion.button
               whileTap={{ scale: 0.9 }}
               id="mobile-menu-toggle"
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded hover:bg-white/5 focus:outline-none cursor-pointer ${isLight ? 'text-slate-800' : 'text-white/70 hover:text-white'}`}
+              className={`p-2.5 rounded-lg hover:bg-white/5 focus:outline-none cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${isLight ? 'text-slate-800' : 'text-white'}`}
+              aria-label="Toggle navigation menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
@@ -156,7 +150,7 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
       {/* Mobile Menu Panel */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -167,7 +161,7 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
                 : 'bg-[#0B2442] border-white/10'
             }`}
           >
-            <motion.div initial="hidden" animate="visible" variants={fastStaggerContainerVariants} className="space-y-2">
+            <motion.div initial="hidden" animate="visible" variants={fastStaggerContainerVariants} className="space-y-1">
               {navItems.map((item) => (
                 <motion.button
                   key={item.page}
@@ -177,28 +171,39 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
                     setCurrentPage(item.page);
                     setIsOpen(false);
                   }}
-                  className={`block w-full text-left px-4 py-3 rounded text-sm font-semibold tracking-wider uppercase transition-all ${
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-semibold tracking-wider uppercase transition-all min-h-[44px] flex items-center ${
                     currentPage === item.page
                       ? isLight
                         ? 'text-[#0A2546] bg-slate-100 border-l-4 border-[#0A2546]'
                         : 'text-white bg-white/10 border-l-4 border-white'
                       : isLight
                         ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        : 'text-white/60 hover:text-white hover:bg-white/5'
+                        : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {item.label}
                 </motion.button>
               ))}
             </motion.div>
-            <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 space-y-3">
+            <div className="pt-3 border-t border-slate-200/80 dark:border-white/10 space-y-2">
               <a
                 href={`tel:${companyProfile.phone.replace(/\s+/g, '')}`}
-                className="flex items-center justify-center space-x-2 w-full px-4 py-3 rounded text-sm font-bold uppercase tracking-wider bg-white text-[#0B2442] hover:bg-white/90 cursor-pointer"
+                className="flex items-center justify-center space-x-2 w-full px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider bg-white text-[#0B2442] hover:bg-white/90 cursor-pointer min-h-[44px]"
               >
                 <Phone className="w-4 h-4 text-[#0B2442]" />
                 <span>CALL US</span>
               </a>
+              <button
+                onClick={() => toggleTheme?.()}
+                className={`flex items-center justify-center space-x-2 w-full px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider border transition-colors cursor-pointer min-h-[44px] ${
+                  isLight
+                    ? 'border-slate-300 text-slate-700 bg-slate-100'
+                    : 'border-white/15 text-white/80 bg-white/5'
+                }`}
+              >
+                {isLight ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                <span>Switch Theme ({isLight ? 'Light' : 'Dark'})</span>
+              </button>
             </div>
           </motion.div>
         )}
