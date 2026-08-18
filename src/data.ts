@@ -218,21 +218,32 @@ export const partnerLogos: PartnerLogo[] = [
   { name: "Youth Network Ethiopia", logo: yneLogo }
 ];
 
+export const achievementImages = [
+  auPitchImg,
+  auAwardImg,
+  shegerPitchImg,
+  eventImg,
+  eventPitchImg,
+  yesuaTechImg,
+  seedImg,
+  dataImg
+];
+
 export const testimonialsData: Testimonial[] = [
   {
     id: "01",
     client: "Lije Care",
-    quote: "“The accuracy of the data service, enhanced by the included audio recordings, provided highly reliable and valuable insights that helped us understand our market and connect effectively with our target customers before launch.”"
+    quote: "The accuracy of the data service, enhanced by the included audio recordings, provided highly reliable and valuable insights that helped us understand our market and connect effectively with our target customers before launch."
   },
   {
     id: "02",
     client: "YOUTH NETWORK ETHIOPIA (YNE)",
-    quote: "“We’ve never experienced such a detailed and clearly presented data service before, and we’re thrilled with the actionable insights we’ve already begun implementing.”"
+    quote: "We’ve never experienced such a detailed and clearly presented data service before, and we’re thrilled with the actionable insights we’ve already begun implementing."
   },
   {
     id: "03",
     client: "TERYA.co",
-    quote: "“We greatly values the data collection service for its accuracy, authenticity, and professionally organized digital presentation, which has significantly supported our forest regeneration initiatives.”"
+    quote: "We greatly values the data collection service for its accuracy, authenticity, and professionally organized digital presentation, which has significantly supported our forest regeneration initiatives."
   }
 ];
 

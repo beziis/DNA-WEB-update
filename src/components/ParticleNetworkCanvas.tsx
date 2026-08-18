@@ -78,27 +78,25 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
         return;
       }
 
-      // PHONE (<768px): Disable heavy animation canvas to prevent mobile overload and keep static background clean
-      if (width < 768) {
-        return;
-      }
-
-      const isTablet = width >= 768 && width < 1024;
-
+      // Responsive Particle Density Rules:
+      // PHONE (<768px): Subtle low-density particles to maintain tech vibe without visual overload
       // TABLET (768px-1023px): Moderate particle count & reduced speed
       // DESKTOP (1024px+): Full density particle network
-      const count = isTablet ? 14 : Math.min(Math.max(Math.floor((width * height) / 16000), 30), 48);
-      const velocityScale = isTablet ? 0.15 : 0.3;
+      const isPhone = width < 768;
+      const isTablet = width >= 768 && width < 1024;
+
+      const count = isPhone ? 8 : isTablet ? 16 : Math.min(Math.max(Math.floor((width * height) / 16000), 30), 48);
+      const velocityScale = isPhone ? 0.08 : isTablet ? 0.15 : 0.3;
 
       for (let i = 0; i < count; i++) {
-        const radius = Math.random() * 1.2 + 1.0;
+        const radius = isPhone ? Math.random() * 0.9 + 0.8 : Math.random() * 1.2 + 1.0;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * velocityScale,
           vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: isTablet ? Math.random() * 0.2 + 0.15 : Math.random() * 0.3 + 0.3,
+          alpha: isPhone ? Math.random() * 0.15 + 0.1 : isTablet ? Math.random() * 0.2 + 0.15 : Math.random() * 0.3 + 0.3,
           color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
           pulseProgress: Math.random()
         });

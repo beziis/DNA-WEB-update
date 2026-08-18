@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { PageType } from '../types';
+import { testimonialsData } from '../data';
 import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants, fastStaggerContainerVariants } from '../utils/animationVariants';
 import {
   TrendingUp, FileText, BarChart3, LayoutDashboard, Cpu, Code,
-  CheckCircle2, ArrowRight, ChevronRight,
+  CheckCircle2, ArrowRight, ChevronRight, ChevronLeft, Quote,
   ShieldCheck, Lightbulb, Smartphone, Users2, Award, Headset
 } from 'lucide-react';
 import DataScrollBackground from './DataScrollBackground';
@@ -18,6 +19,7 @@ interface ServicesViewProps {
 
 export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [testimonialIdx, setTestimonialIdx] = useState<number>(0);
 
   const coreServices = [
     {
@@ -306,7 +308,99 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
           </motion.div>
         </section>
 
-        {/* 8. FINAL CTA */}
+        {/* 8. CLIENT TESTIMONIALS */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+              CLIENT TESTIMONIALS
+            </h2>
+            <p className="text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest">
+              Feedback from our data service partners & clients
+            </p>
+          </div>
+
+          {/* Desktop 3-Column Layout (1024px+) */}
+          <div className="hidden lg:grid grid-cols-3 gap-6">
+            {testimonialsData.map((item) => (
+              <div
+                key={item.id}
+                className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Quote className="w-6 h-6 text-white/40" />
+                    <span className="font-mono text-[10px] text-white/40 font-bold">{item.id}</span>
+                  </div>
+                  <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
+                    “{item.quote}”
+                  </p>
+                </div>
+                <div className="pt-5 mt-4 border-t border-white/10">
+                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
+                    {item.client}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile & Tablet 1-at-a-time Carousel (<1024px) */}
+          <div className="block lg:hidden max-w-2xl mx-auto">
+            <div className="p-6 sm:p-8 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[220px]">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <Quote className="w-6 h-6 text-white/50" />
+                  <span className="font-mono text-[10px] text-white/50 font-bold">{testimonialsData[testimonialIdx].id}</span>
+                </div>
+                <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
+                  “{testimonialsData[testimonialIdx].quote}”
+                </p>
+              </div>
+
+              <div>
+                <div className="pt-4 mt-4 border-t border-white/10">
+                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
+                    {testimonialsData[testimonialIdx].client}
+                  </h3>
+                </div>
+
+                {/* Carousel Navigation */}
+                <div className="flex items-center justify-between pt-4 mt-2">
+                  <button
+                    onClick={() => setTestimonialIdx((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1))}
+                    className="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
+                    aria-label="Previous testimonial"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <div className="flex items-center space-x-2">
+                    {testimonialsData.map((_, dotIdx) => (
+                      <button
+                        key={dotIdx}
+                        onClick={() => setTestimonialIdx(dotIdx)}
+                        className={`h-2.5 rounded-full transition-all cursor-pointer ${
+                          testimonialIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
+                        }`}
+                        aria-label={`Go to testimonial ${dotIdx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setTestimonialIdx((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1))}
+                    className="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
+                    aria-label="Next testimonial"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. FINAL CTA */}
         <section className="rounded-3xl bg-[#0B2442] border border-white/15 p-10 sm:p-16 text-center space-y-6 relative overflow-hidden shadow-2xl">
           <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
             <h2 className="font-sans font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-snug">

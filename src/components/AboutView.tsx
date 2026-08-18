@@ -6,11 +6,10 @@ import {
   keyFactors,
   founders,
   advisors,
-  achievementsList,
-  testimonialsData,
+  achievementImages,
   galleryImages
 } from '../data';
-import { Target, Shield, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Target, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { staggerContainerVariants, fadeInUpItemVariants } from '../utils/animationVariants';
 import DataScrollBackground from './DataScrollBackground';
@@ -25,7 +24,6 @@ interface AboutViewProps {
 export default function AboutView({ setCurrentPage }: AboutViewProps) {
   const [founderIdx, setFounderIdx] = useState(0);
   const [advisorIdx, setAdvisorIdx] = useState(0);
-  const [testimonialIdx, setTestimonialIdx] = useState(0);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLElement, Event>) => {
     (e.target as HTMLElement).style.display = 'none';
@@ -351,181 +349,89 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           </div>
         </section>
 
-        {/* 7. TESTIMONIALS */}
-        <section id="testimonials">
-          <div className="text-center mb-6 sm:mb-10">
-            <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
-              Client Testimonials
-            </h2>
-            <p className="text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest mt-1">
-              Feedback from our partners & data service clients
-            </p>
-          </div>
-
-          {/* Desktop & Tablet Grid */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonialsData.map((item) => (
-              <div
-                key={item.id}
-                className="p-6 rounded-2xl bg-[#0B2545]/60 border border-white/15 hover:border-white/40 transition-all duration-300 shadow-lg flex flex-col justify-between relative overflow-hidden"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <Quote className="w-6 h-6 text-white/40" />
-                    <span className="font-mono text-[10px] text-white/40 font-bold">{item.id}</span>
-                  </div>
-                  <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
-                    {item.quote}
-                  </p>
-                </div>
-                <div className="pt-6 mt-4 border-t border-white/10">
-                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
-                    {item.client}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile Testimonial Carousel */}
-          <div className="block md:hidden">
-            <div className="p-5 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-lg flex flex-col justify-between min-h-[200px]">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Quote className="w-5 h-5 text-white/50" />
-                  <span className="font-mono text-[10px] text-white/40 font-bold">{testimonialsData[testimonialIdx].id}</span>
-                </div>
-                <p className="font-sans font-extralight text-xs text-white/90 leading-relaxed italic tracking-wide">
-                  {testimonialsData[testimonialIdx].quote}
-                </p>
-              </div>
-
-              <div>
-                <div className="pt-3 mt-3 border-t border-white/10">
-                  <h3 className="font-sans font-extrabold text-xs text-white tracking-wider uppercase">
-                    {testimonialsData[testimonialIdx].client}
-                  </h3>
-                </div>
-
-                <div className="flex items-center justify-between pt-3 mt-2">
-                  <button
-                    onClick={() => setTestimonialIdx((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1))}
-                    className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <div className="flex items-center space-x-1.5">
-                    {testimonialsData.map((_, dotIdx) => (
-                      <button
-                        key={dotIdx}
-                        onClick={() => setTestimonialIdx(dotIdx)}
-                        className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                          testimonialIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
-                        }`}
-                        aria-label={`Go to testimonial ${dotIdx + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => setTestimonialIdx((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1))}
-                    className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 8. KEY FACTORS & ACHIEVEMENTS */}
-        <section id="key-factors" className="space-y-10 sm:space-y-16">
-          {/* Key Factors */}
-          <div>
-            <div className="text-center mb-6 sm:mb-10">
-              <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
-                Key Factors
-              </h2>
-              <p className="text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest mt-1">
-                Guiding principles behind our research and insights
-              </p>
-            </div>
-
-            {/* Desktop FlipCard */}
-            <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {keyFactors.map((val) => (
-                <div key={val.id}>
-                  <FlipCard
-                    minHeight="h-64"
-                    front={
-                      <div className="space-y-3 text-left">
-                        <div className="font-mono text-2xl font-bold text-white/50">
-                          {val.id}
-                        </div>
-                        <h3 className="font-sans font-extrabold text-lg sm:text-xl text-white tracking-tight">{val.title}</h3>
-                      </div>
-                    }
-                    back={
-                      <div className="space-y-3 text-left">
-                        <h3 className="font-sans font-extrabold text-lg text-white tracking-tight border-b border-white/10 pb-2">{val.title}</h3>
-                        <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-                          {val.description}
-                        </p>
-                      </div>
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile Compressed Editorial Grid */}
-            <div className="grid grid-cols-2 md:hidden gap-3 text-left">
-              {keyFactors.map((val) => (
-                <div key={val.id} className="p-3.5 rounded-xl bg-[#0B2545]/90 border border-white/20 space-y-1 shadow-md">
-                  <span className="font-mono text-[10px] font-bold text-white/50 block">{val.id}</span>
-                  <h3 className="font-sans font-extrabold text-xs text-white tracking-tight uppercase">{val.title}</h3>
-                  <p className="font-sans font-extralight text-[11px] text-white/80 leading-snug pt-0.5">
-                    {val.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievements */}
+          {/* Achievements - Visually Driven Masonry Gallery */}
           <div id="achievements" className="pt-8 border-t border-white/10">
             <div className="text-center mb-6 sm:mb-10">
               <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
-                ACHIEVEMENTS — DNA TECH
+                ACHIEVEMENTS
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              {achievementsList.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="bg-[#0B2545]/40 border border-white/10 rounded-xl overflow-hidden group hover:border-white transition-all duration-300 shadow-xl"
-                >
-                  <div className="relative h-36 sm:h-44 overflow-hidden bg-[#010610]">
-                    <LazyImage
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
-                      containerClassName="w-full h-full"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B2545] via-transparent to-transparent pointer-events-none" />
-                  </div>
-                  <div className="p-4 space-y-1.5">
-                    <h3 className="font-sans font-extrabold text-sm sm:text-base text-white tracking-tight">{item.title}</h3>
-                    <p className="text-[11px] sm:text-xs text-white/80 font-sans font-extralight leading-relaxed tracking-wide">{item.description}</p>
-                  </div>
-                </div>
-              ))}
+            {/* Masonry Image Gallery without text/captions */}
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-5">
+              {/* Row 1: Two medium images */}
+              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[0]}
+                  alt="DNA TECH Achievement 1"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[1]}
+                  alt="DNA TECH Achievement 2"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+
+              {/* Row 2: Large featured center image */}
+              <div className="col-span-2 md:col-span-12 relative aspect-[21/9] sm:aspect-[21/8] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[2]}
+                  alt="DNA TECH Achievement Featured"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+
+              {/* Row 3: Three distinct column images */}
+              <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[3]}
+                  alt="DNA TECH Achievement 4"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+              <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[4]}
+                  alt="DNA TECH Achievement 5"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+              <div className="col-span-2 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[5]}
+                  alt="DNA TECH Achievement 6"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+
+              {/* Row 4: Two wide images */}
+              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[6]}
+                  alt="DNA TECH Achievement 7"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
+              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+                <LazyImage
+                  src={achievementImages[7]}
+                  alt="DNA TECH Achievement 8"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  containerClassName="w-full h-full"
+                />
+              </div>
             </div>
           </div>
-        </section>
 
       </div>
     </div>

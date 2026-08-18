@@ -37,30 +37,31 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       <DataScrollBackground />
 
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/5 bg-gradient-to-b from-[#0B2545]/40 via-[#051329]/20 to-transparent overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-gradient-to-b from-[#0B2545]/70 via-[#051329]/90 to-[#010610] overflow-hidden">
         {/* Background Overlay */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-45 overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-40 overflow-hidden">
           <LazyImage
             src={techHubImg}
             alt="Tech Analytics Background"
             className="w-full h-full object-cover scale-105"
             containerClassName="w-full h-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B2545]/50 via-[#051329]/70 to-[#010610]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B2545]/60 via-[#051329]/80 to-[#010610]" />
         </div>
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08)_0%,transparent_55%)] pointer-events-none" />
+        {/* Deep Navy Gradient Radial Overlay (Replacing white/light overlay) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(11,37,69,0.55)_0%,rgba(5,19,41,0.85)_50%,#010610_100%)] pointer-events-none" />
 
-        {/* Subtle Floating Abstract Data-Blobs (Desktop only to prevent mobile visual clutter) */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 hidden sm:block">
+        {/* Floating Abstract Data-Blobs (Visible on mobile, tablet, desktop with responsive intensity) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Primary glowing data-blob top-left */}
-          <div className="absolute -top-12 -left-12 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-[#134074]/20 via-[#8DA9C4]/10 to-transparent rounded-full blur-2xl animate-data-blob-1 opacity-40" />
+          <div className="absolute -top-12 -left-12 w-48 h-48 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#134074]/30 via-[#0B2545]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-1 opacity-20 sm:opacity-30 lg:opacity-40" />
 
           {/* Secondary glowing data-blob bottom-right */}
-          <div className="absolute -bottom-16 -right-16 w-80 h-80 sm:w-[450px] sm:h-[450px] bg-gradient-to-bl from-[#0B2545]/25 via-[#134074]/15 to-transparent rounded-full blur-3xl animate-data-blob-2 opacity-35" />
+          <div className="absolute -bottom-16 -right-16 w-56 h-56 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px] bg-gradient-to-bl from-[#0B2545]/30 via-[#134074]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-2 opacity-15 sm:opacity-25 lg:opacity-35" />
 
           {/* Subtle floating abstract mesh shape center-right */}
-          <div className="absolute top-1/4 right-8 w-48 h-48 sm:w-64 sm:h-64 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
+          <div className="absolute top-1/4 right-8 w-36 h-36 sm:w-56 sm:h-56 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
         </div>
 
         <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-8">
@@ -72,7 +73,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             transition={{ duration: 0.5 }}
             className="space-y-4 sm:space-y-6 max-w-3xl mx-auto"
           >
-            
+
 
             <h1 className="font-sans font-extrabold text-2.5xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
               Turning Data Into Better Decisions.
