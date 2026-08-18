@@ -189,8 +189,8 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Solutions by Industry</h2>
           </div>
 
-          {/* Desktop/Tablet Industry Tabs */}
-          <div className="hidden md:flex items-center space-x-2 overflow-x-auto pb-4 justify-start lg:justify-center">
+          {/* Desktop Industry Tabs (1024px+) */}
+          <div className="hidden lg:flex items-center space-x-2 overflow-x-auto pb-4 justify-center">
             {industrySolutions.map((ind, idx) => {
               const IndIcon = ind.icon;
               return (
@@ -210,7 +210,31 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             })}
           </div>
 
-          {/* Mobile Vertical Compact Industry Selector */}
+          {/* Tablet 2-Column Industry Selector Grid (768px - 1023px) */}
+          <div className="hidden md:grid md:grid-cols-2 lg:hidden gap-3 mb-6">
+            {industrySolutions.map((ind, idx) => {
+              const IndIcon = ind.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedIndustry(idx)}
+                  className={`flex items-center justify-between p-3.5 rounded-xl font-mono text-xs font-bold transition-all min-h-[44px] cursor-pointer text-left ${
+                    selectedIndustry === idx
+                      ? 'bg-white text-[#0B2442] shadow-md border-l-4 border-[#0B2442]'
+                      : 'bg-[#0B2442] text-white/80 hover:bg-white/10 border border-white/15'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3 truncate">
+                    <IndIcon className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-sans font-bold text-xs truncate">{ind.sector}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 flex-shrink-0 ml-2" />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Mobile Vertical Compact Industry Selector (<768px) */}
           <div className="block md:hidden space-y-2 mb-6">
             {industrySolutions.map((ind, idx) => {
               const IndIcon = ind.icon;
@@ -261,7 +285,8 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Desktop & Tablet 3-Column Card Layout (768px+) */}
+              <div className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-8">
                 <div className="p-6 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-2 card-hover-lift">
                   <span className="font-mono text-[10px] text-white/60 uppercase tracking-widest font-bold block">
                     1. The Challenge
@@ -285,6 +310,33 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
                     3. Measurable Result
                   </span>
                   <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
+                    {industrySolutions[selectedIndustry].results}
+                  </p>
+                </div>
+              </div>
+
+              {/* Mobile Editorial Stacked View (<768px) */}
+              <div className="block md:hidden space-y-6 divide-y divide-white/10 pt-2">
+                <div className="pt-2 space-y-1.5 text-left">
+                  <div className="font-mono text-2xl font-extrabold text-white/40">01</div>
+                  <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">THE CHALLENGE</div>
+                  <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
+                    {industrySolutions[selectedIndustry].challenge}
+                  </p>
+                </div>
+
+                <div className="pt-5 space-y-1.5 text-left">
+                  <div className="font-mono text-2xl font-extrabold text-white/40">02</div>
+                  <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">DNA TECH SOLUTION</div>
+                  <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
+                    {industrySolutions[selectedIndustry].solution}
+                  </p>
+                </div>
+
+                <div className="pt-5 space-y-1.5 text-left">
+                  <div className="font-mono text-2xl font-extrabold text-white/40">03</div>
+                  <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">MEASURABLE RESULT</div>
+                  <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
                     {industrySolutions[selectedIndustry].results}
                   </p>
                 </div>

@@ -149,8 +149,8 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             </h2>
           </div>
 
-          {/* Desktop/Tablet Selector Tabs */}
-          <div className="hidden md:flex items-center space-x-2 overflow-x-auto pb-4 mb-8">
+          {/* Desktop Selector Tabs (1024px+) */}
+          <div className="hidden lg:flex items-center space-x-2 overflow-x-auto pb-4 mb-8">
             {coreServices.map((srv, idx) => (
               <button
                 key={srv.id}
@@ -166,7 +166,28 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             ))}
           </div>
 
-          {/* Mobile Vertical Compact Selector List */}
+          {/* Tablet 2-Column Compact Selector Grid (768px - 1023px) */}
+          <div className="hidden md:grid md:grid-cols-2 lg:hidden gap-3 mb-6">
+            {coreServices.map((srv, idx) => (
+              <button
+                key={srv.id}
+                onClick={() => setActiveTab(idx)}
+                className={`flex items-center justify-between p-3.5 rounded-xl font-mono text-xs font-bold transition-all min-h-[44px] cursor-pointer text-left ${
+                  activeTab === idx
+                    ? 'bg-white text-[#0B2442] shadow-md border-l-4 border-[#0B2442]'
+                    : 'bg-[#0B2442] text-white/80 hover:bg-white/10 border border-white/15'
+                }`}
+              >
+                <div className="flex items-center space-x-3 truncate">
+                  <span className="text-[10px] opacity-60 flex-shrink-0">0{idx + 1}</span>
+                  <span className="font-sans font-bold text-xs truncate">{srv.title}</span>
+                </div>
+                <ChevronRight className="w-4 h-4 flex-shrink-0 ml-2" />
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Vertical Compact Selector List (<768px) */}
           <div className="block md:hidden space-y-2 mb-6">
             {coreServices.map((srv, idx) => (
               <button

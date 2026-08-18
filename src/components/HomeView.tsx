@@ -145,29 +145,33 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       </section>
 
       {/* 2. REPEAT CLIENTS / TRUSTED PARTNERS MARQUEE */}
-      <section className="partner-marquee-section relative z-10 py-6 sm:py-8 border-y border-white/10 bg-white/[0.015] backdrop-blur-sm overflow-hidden my-0">
+      <section
+        role="region"
+        aria-label="Trusted Partners and Clients"
+        className="partner-marquee-section partner-marquee-container relative z-10 py-8 sm:py-10 border-y border-white/10 bg-[#0B2442]/30 backdrop-blur-md overflow-hidden my-0"
+      >
+        <div className="text-center mb-4 sm:mb-5">
+          <span className="inline-block font-mono text-[10px] sm:text-xs text-white/70 uppercase tracking-[0.25em] font-bold px-3.5 py-1 rounded-full bg-white/5 border border-white/10">
+            TRUSTED BY
+          </span>
+        </div>
+
         {/* Subtle Edge Fades */}
         <div className="partner-marquee-edge-left absolute left-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
         <div className="partner-marquee-edge-right absolute right-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
 
         <div className="relative w-full overflow-hidden flex items-center">
-          <motion.div
-            className="flex items-center space-x-10 sm:space-x-16 md:space-x-20 whitespace-nowrap min-w-max py-2"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" }
-            }}
-          >
+          <div className="animate-marquee items-center space-x-10 sm:space-x-16 md:space-x-20 whitespace-nowrap py-2">
             {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((partner, idx) => (
-              <div key={idx} className="inline-flex items-center justify-center px-2 sm:px-4 flex-shrink-0">
+              <div key={idx} className="inline-flex items-center justify-center px-3 sm:px-5 flex-shrink-0">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-8 sm:h-12 md:h-14 max-h-[36px] sm:max-h-[52px] w-auto object-contain transition-opacity duration-300 opacity-85 hover:opacity-100"
+                  className="h-8 sm:h-12 md:h-14 max-h-[32px] sm:max-h-[48px] w-auto object-contain transition-opacity duration-300 opacity-80 hover:opacity-100"
                 />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 

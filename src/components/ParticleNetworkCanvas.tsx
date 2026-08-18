@@ -66,32 +66,39 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       ctx.scale(dpr, dpr);
 
       isMobile = width < 768;
-      pointer.radius = isMobile ? 120 : 170;
+      pointer.radius = isMobile ? 100 : 170;
       initParticles();
     };
 
-    // Initialize Particles with mobile optimization
+    // Initialize Particles with tablet & mobile responsive density rules
     const initParticles = () => {
       particles = [];
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) {
         return;
       }
-      const densityArea = isMobile ? 32000 : 14400;
-      const count = Math.min(
-        Math.max(Math.floor((width * height) / densityArea), isMobile ? 12 : 35),
-        isMobile ? 18 : 53
-      );
+
+      // PHONE (<768px): Disable heavy animation canvas to prevent mobile overload and keep static background clean
+      if (width < 768) {
+        return;
+      }
+
+      const isTablet = width >= 768 && width < 1024;
+
+      // TABLET (768px-1023px): Moderate particle count & reduced speed
+      // DESKTOP (1024px+): Full density particle network
+      const count = isTablet ? 14 : Math.min(Math.max(Math.floor((width * height) / 16000), 30), 48);
+      const velocityScale = isTablet ? 0.15 : 0.3;
 
       for (let i = 0; i < count; i++) {
-        const radius = Math.random() * 1.3 + 1.0;
+        const radius = Math.random() * 1.2 + 1.0;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.3),
-          vy: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.3),
+          vx: (Math.random() - 0.5) * velocityScale,
+          vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: Math.random() * 0.3 + 0.3,
+          alpha: isTablet ? Math.random() * 0.2 + 0.15 : Math.random() * 0.3 + 0.3,
           color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
           pulseProgress: Math.random()
         });

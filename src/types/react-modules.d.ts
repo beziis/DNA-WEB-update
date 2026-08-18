@@ -166,6 +166,8 @@ declare module 'lucide-react' {
   export const Filter: Icon;
   export const Zap: Icon;
   export const ChevronRight: Icon;
+  export const ChevronLeft: Icon;
+  export const Quote: Icon;
   export const Activity: Icon;
   export const Landmark: Icon;
   export const Rocket: Icon;
