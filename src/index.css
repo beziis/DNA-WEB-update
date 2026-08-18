@@ -617,3 +617,25 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+
+/* Partner Logo Marquee Strip */
+.partner-marquee-edge-left {
+  background: linear-gradient(to right, #051329 0%, transparent 100%);
+}
+
+.partner-marquee-edge-right {
+  background: linear-gradient(to left, #051329 0%, transparent 100%);
+}
+
+.light .partner-marquee-edge-left {
+  background: linear-gradient(to right, #F8FAFC 0%, transparent 100%);
+}
+
+.light .partner-marquee-edge-right {
+  background: linear-gradient(to left, #F8FAFC 0%, transparent 100%);
+}
+
+.light .partner-marquee-section {
+  background-color: rgba(15, 23, 42, 0.02) !important;
+  border-color: #E2E8F0 !important;
+}

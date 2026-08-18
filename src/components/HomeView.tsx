@@ -136,25 +136,27 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
         </div>
       </section>
 
-      {/* 2. REPEAT CLIENTS MARQUEE */}
-      <section className="py-4 sm:py-6 bg-transparent border-b border-white/5 relative overflow-hidden">
-        <div className="relative w-full overflow-hidden flex">
+      {/* 2. REPEAT CLIENTS / TRUSTED PARTNERS MARQUEE */}
+      <section className="partner-marquee-section relative z-10 py-6 sm:py-8 border-y border-white/10 bg-white/[0.015] backdrop-blur-sm overflow-hidden my-0">
+        {/* Subtle Edge Fades */}
+        <div className="partner-marquee-edge-left absolute left-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
+        <div className="partner-marquee-edge-right absolute right-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
+
+        <div className="relative w-full overflow-hidden flex items-center">
           <motion.div
-            className="flex items-center space-x-6 sm:space-x-10 whitespace-nowrap min-w-max py-2"
+            className="flex items-center space-x-10 sm:space-x-16 md:space-x-20 whitespace-nowrap min-w-max py-2"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" }
             }}
           >
             {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((partner, idx) => (
-              <div key={idx} className="inline-flex items-center px-2">
-                <div className="bg-[#0B2545]/90 hover:bg-[#0E2E54] border border-white/15 rounded-xl px-4 sm:px-6 py-2 flex items-center justify-center h-12 sm:h-16 shadow-md transition-all">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-7 sm:max-h-10 w-auto object-contain max-w-[130px] sm:max-w-[170px]"
-                  />
-                </div>
+              <div key={idx} className="inline-flex items-center justify-center px-2 sm:px-4 flex-shrink-0">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-8 sm:h-12 md:h-14 max-h-[36px] sm:max-h-[52px] w-auto object-contain transition-opacity duration-300 opacity-85 hover:opacity-100"
+                />
               </div>
             ))}
           </motion.div>
