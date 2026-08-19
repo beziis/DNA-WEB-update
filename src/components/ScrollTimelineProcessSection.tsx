@@ -91,7 +91,7 @@ export default function ScrollTimelineProcessSection() {
     let closestIndex = 0;
     let minDistance = Infinity;
 
-    stageCardRefs.current?.forEach((card) => {
+    stageCardRefs.current?.forEach((card, idx) => {
       if (card) {
         const rect = card.getBoundingClientRect();
         const cardCenterY = rect.top + rect.height / 2;
@@ -221,10 +221,10 @@ export default function ScrollTimelineProcessSection() {
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                       onClick={() => scrollToStage(idx)}
                       className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${isCurrent
-                          ? isLight
-                            ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
-                            : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
-                          : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
+                        ? isLight
+                          ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
+                          : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
+                        : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
                         }`}
                     >
                       {/* Active Background Glow Bar */}
