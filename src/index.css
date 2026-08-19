@@ -316,7 +316,11 @@ textarea {
   border-color: rgba(11, 36, 66, 0.50) !important;
 }
 
-/* Light mode active card accent lines & glows */
+/* Ensure DataScrollBackground overlay does not hide particle canvas in light mode */
+.light .fixed.inset-0.bg-\[\#051329\],
+.light .absolute.inset-0.bg-\[\#051329\]\/20 {
+  background: transparent !important;
+}
 .light .process-stage-card [class*="via-white"] {
   background-image: linear-gradient(to right, transparent, #0A2546, transparent) !important;
 }

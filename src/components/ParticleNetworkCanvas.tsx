@@ -40,10 +40,10 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
     let particles: Particle[] = [];
     let isLightMode = document.documentElement.classList.contains('light');
-    // Palette definition: single-color white for dark mode, single-color deep navy for light mode
+    // Palette definition: high-contrast single-color for dark and light theme
     const getPalette = (light: boolean) => {
       if (light) {
-        return ['#0A2546', '#0A2546', '#0A2546', '#0A2546'];
+        return ['#0B2442', '#0B2442', '#0B2442', '#0B2442'];
       }
       return ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'];
     };
@@ -86,19 +86,15 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       const velocityScale = isPhone ? 0.22 : isTablet ? 0.25 : 0.3;
 
       for (let i = 0; i < count; i++) {
-        const radius = isPhone ? Math.random() * 1.2 + 1.0 : Math.random() * 1.4 + 1.1;
+        const radius = isPhone ? Math.random() * 1.3 + 1.1 : Math.random() * 1.5 + 1.2;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * velocityScale,
           vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: isPhone
-            ? (isLightMode ? Math.random() * 0.35 + 0.35 : Math.random() * 0.4 + 0.4)
-            : isTablet
-              ? (isLightMode ? Math.random() * 0.4 + 0.35 : Math.random() * 0.45 + 0.4)
-              : (isLightMode ? Math.random() * 0.4 + 0.4 : Math.random() * 0.45 + 0.45),
-          color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
+          alpha: Math.random() * 0.35 + 0.45,
+          color: colorPalette[i % colorPalette.length],
           pulseProgress: Math.random()
         });
       }
@@ -171,7 +167,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
       ctx.clearRect(0, 0, width, height);
 
-      const strokeColor = isLightMode ? '#0A2546' : '#FFFFFF';
+      const strokeColor = isLightMode ? '#0B2442' : '#FFFFFF';
 
       // Update & Render Particles
       for (let i = 0; i < particles.length; i++) {
@@ -193,7 +189,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dy = pointer.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < pointer.radius && dist > 0) {
-            const force = (1 - dist / pointer.radius) * 0.32;
+            const force = (1 - dist / pointer.radius) * 0.35;
             p.x -= (dx / dist) * force;
             p.y -= (dy / dist) * force;
           }
@@ -202,8 +198,8 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
         // Draw node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = strokeColor;
+        ctx.globalAlpha = isLightMode ? 0.75 : p.alpha;
         ctx.fill();
 
         // Network connection lines
@@ -214,13 +210,13 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * (isLightMode ? 0.32 : 0.38);
+            const lineAlpha = (1 - dist / maxDistance) * (isLightMode ? 0.52 : 0.45);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = strokeColor;
-            ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.95;
+            ctx.globalAlpha = lineAlpha;
+            ctx.lineWidth = isLightMode ? 1.3 : 1.0;
             ctx.stroke();
 
             // Data flow signal pulse
@@ -228,14 +224,14 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
               p.pulseProgress += 0.003;
               if (p.pulseProgress > 1) p.pulseProgress = 0;
 
-              if (alpha > 0.04 && i % 2 === 0) {
+              if (lineAlpha > 0.04 && i % 2 === 0) {
                 const pulseX = p.x + (p2.x - p.x) * p.pulseProgress;
                 const pulseY = p.y + (p2.y - p.y) * p.pulseProgress;
 
                 ctx.beginPath();
-                ctx.arc(pulseX, pulseY, 1.8, 0, Math.PI * 2);
+                ctx.arc(pulseX, pulseY, 2.0, 0, Math.PI * 2);
                 ctx.fillStyle = strokeColor;
-                ctx.globalAlpha = Math.min(alpha * 2.2, 0.78);
+                ctx.globalAlpha = Math.min(lineAlpha * 2.2, 0.85);
                 ctx.fill();
               }
             }
@@ -248,13 +244,13 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dy = p.y - pointer.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < pointer.radius) {
-            const alpha = (1 - dist / pointer.radius) * (isLightMode ? 0.40 : 0.45);
+            const pointerAlpha = (1 - dist / pointer.radius) * (isLightMode ? 0.55 : 0.50);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
             ctx.strokeStyle = strokeColor;
-            ctx.globalAlpha = alpha;
-            ctx.lineWidth = 1.15;
+            ctx.globalAlpha = pointerAlpha;
+            ctx.lineWidth = 1.3;
             ctx.stroke();
           }
         }
