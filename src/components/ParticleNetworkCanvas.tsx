@@ -153,7 +153,6 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
     updateDimensions();
 
-    const maxDistance = isMobile ? 100 : 125;
     let lastTime = performance.now();
 
     // Main Animation Loop
@@ -168,7 +167,9 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
       ctx.clearRect(0, 0, width, height);
 
-      const strokeColor = isLightMode ? '#0A2546' : '#FFFFFF';
+      const strokeColor = isLightMode ? '#0B2442' : '#FFFFFF';
+      const pulseColor = isLightMode ? '#0284C7' : '#38BDF8';
+      const maxDistance = width < 768 ? 115 : width < 1024 ? 130 : 145;
 
       // Update & Render Particles
       for (let i = 0; i < particles.length; i++) {
@@ -211,28 +212,28 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.28;
+            const lineAlpha = (1 - dist / maxDistance) * (isLightMode ? 0.38 : 0.32);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = strokeColor;
-            ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.88;
+            ctx.globalAlpha = lineAlpha;
+            ctx.lineWidth = isLightMode ? 1.15 : 0.95;
             ctx.stroke();
 
             // Data flow signal pulse
             if (p.pulseProgress !== undefined) {
-              p.pulseProgress += 0.0025;
+              p.pulseProgress += 0.003;
               if (p.pulseProgress > 1) p.pulseProgress = 0;
 
-              if (alpha > 0.05 && i % 2 === 0) {
+              if (lineAlpha > 0.04 && i % 2 === 0) {
                 const pulseX = p.x + (p2.x - p.x) * p.pulseProgress;
                 const pulseY = p.y + (p2.y - p.y) * p.pulseProgress;
 
                 ctx.beginPath();
-                ctx.arc(pulseX, pulseY, 1.6, 0, Math.PI * 2);
-                ctx.fillStyle = strokeColor;
-                ctx.globalAlpha = Math.min(alpha * 2.0, 0.68);
+                ctx.arc(pulseX, pulseY, 1.8, 0, Math.PI * 2);
+                ctx.fillStyle = pulseColor;
+                ctx.globalAlpha = Math.min(lineAlpha * 2.2, 0.80);
                 ctx.fill();
               }
             }
@@ -245,13 +246,13 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dy = p.y - pointer.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < pointer.radius) {
-            const alpha = (1 - dist / pointer.radius) * 0.35;
+            const pointerAlpha = (1 - dist / pointer.radius) * (isLightMode ? 0.42 : 0.38);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
-            ctx.strokeStyle = strokeColor;
-            ctx.globalAlpha = alpha;
-            ctx.lineWidth = 1.05;
+            ctx.strokeStyle = pulseColor;
+            ctx.globalAlpha = pointerAlpha;
+            ctx.lineWidth = 1.15;
             ctx.stroke();
           }
         }
