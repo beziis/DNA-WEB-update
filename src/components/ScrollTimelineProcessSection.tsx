@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
 import {
   FileText, Database, Filter, Cpu, BarChart3, LayoutDashboard
@@ -65,7 +65,7 @@ const pipelineStages: PipelineStage[] = [
 ];
 
 export default function ScrollTimelineProcessSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const stageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const [lineFillProgress, setLineFillProgress] = useState<number>(0);
@@ -91,7 +91,7 @@ export default function ScrollTimelineProcessSection() {
     let closestIndex = 0;
     let minDistance = Infinity;
 
-    stageCardRefs.current.forEach((card, idx) => {
+    stageCardRefs.current?.forEach((card) => {
       if (card) {
         const rect = card.getBoundingClientRect();
         const cardCenterY = rect.top + rect.height / 2;
@@ -107,8 +107,8 @@ export default function ScrollTimelineProcessSection() {
     setActiveStageIndex(closestIndex);
 
     // Calculate vertical fill progress for timeline axis
-    const firstCard = stageCardRefs.current[0];
-    const lastCard = stageCardRefs.current[pipelineStages.length - 1];
+    const firstCard = stageCardRefs.current?.[0];
+    const lastCard = stageCardRefs.current?.[pipelineStages.length - 1];
 
     if (firstCard && lastCard) {
       const firstRect = firstCard.getBoundingClientRect();
@@ -144,7 +144,7 @@ export default function ScrollTimelineProcessSection() {
   }, [handleScroll]);
 
   const scrollToStage = (index: number) => {
-    const targetCard = stageCardRefs.current[index];
+    const targetCard = stageCardRefs.current?.[index];
     if (targetCard) {
       targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -199,7 +199,7 @@ export default function ScrollTimelineProcessSection() {
                 <div
                   key={stage.id}
                   ref={(el: HTMLDivElement | null) => {
-                    if (el) {
+                    if (stageCardRefs.current && el) {
                       stageCardRefs.current[idx] = el;
                     }
                   }}
@@ -220,13 +220,12 @@ export default function ScrollTimelineProcessSection() {
                       }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                       onClick={() => scrollToStage(idx)}
-                      className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${
-                        isCurrent
+                      className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${isCurrent
                           ? isLight
                             ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
                             : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
                           : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
-                      }`}
+                        }`}
                     >
                       {/* Active Background Glow Bar */}
                       {isCurrent && (
@@ -266,9 +265,8 @@ export default function ScrollTimelineProcessSection() {
                           boxShadow: isCurrent ? (isLight ? '0 0 24px rgba(10,37,70,0.2)' : '0 0 30px rgba(255,255,255,0.6)') : 'none'
                         }}
                         transition={{ duration: 0.3 }}
-                        className={`w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all relative ${
-                          isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white'
-                        }`}
+                        className={`w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all relative ${isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white'
+                          }`}
                       >
                         <StageIcon className={`w-6 h-6 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
                       </motion.div>
