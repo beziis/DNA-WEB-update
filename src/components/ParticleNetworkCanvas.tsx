@@ -40,12 +40,12 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
     let particles: Particle[] = [];
     let isLightMode = document.documentElement.classList.contains('light');
-    // Default (dark mode) palette uses light particles; switch when .light class present
+    // Palette definition for both light and dark themes
     const getPalette = (light: boolean) => {
       if (light) {
-        return ['#0A2546', '#0A2546', '#0A2546', '#0A2546', '#0A2546'];
+        return ['#0A2546', '#0B2442', '#1E3A8A', '#0284C7', '#0A2546'];
       }
-      return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#E2E8F0', '#FFFFFF'];
+      return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#38BDF8', '#FFFFFF'];
     };
     let colorPalette = getPalette(isLightMode);
 
@@ -66,11 +66,11 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       ctx.scale(dpr, dpr);
 
       isMobile = width < 768;
-      pointer.radius = isMobile ? 100 : 170;
+      pointer.radius = width < 768 ? 120 : width < 1024 ? 150 : 180;
       initParticles();
     };
 
-    // Initialize Particles with tablet & mobile responsive density rules
+    // Initialize Particles with rich responsive density across phone, tablet, desktop
     const initParticles = () => {
       particles = [];
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -78,25 +78,26 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
         return;
       }
 
-      // Responsive Particle Density Rules:
-      // PHONE (<768px): Subtle low-density particles to maintain tech vibe without visual overload
-      // TABLET (768px-1023px): Moderate particle count & reduced speed
-      // DESKTOP (1024px+): Full density particle network
+      // Responsive Density across Phone (<768px), Tablet (768px-1023px), Desktop (1024px+)
       const isPhone = width < 768;
       const isTablet = width >= 768 && width < 1024;
 
-      const count = isPhone ? 8 : isTablet ? 16 : Math.min(Math.max(Math.floor((width * height) / 16000), 30), 48);
-      const velocityScale = isPhone ? 0.08 : isTablet ? 0.15 : 0.3;
+      const count = isPhone ? 22 : isTablet ? 32 : Math.min(Math.max(Math.floor((width * height) / 16000), 38), 54);
+      const velocityScale = isPhone ? 0.18 : isTablet ? 0.22 : 0.3;
 
       for (let i = 0; i < count; i++) {
-        const radius = isPhone ? Math.random() * 0.9 + 0.8 : Math.random() * 1.2 + 1.0;
+        const radius = isPhone ? Math.random() * 1.1 + 0.9 : Math.random() * 1.3 + 1.0;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * velocityScale,
           vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: isPhone ? Math.random() * 0.15 + 0.1 : isTablet ? Math.random() * 0.2 + 0.15 : Math.random() * 0.3 + 0.3,
+          alpha: isPhone
+            ? (isLightMode ? Math.random() * 0.25 + 0.25 : Math.random() * 0.3 + 0.3)
+            : isTablet
+              ? (isLightMode ? Math.random() * 0.3 + 0.3 : Math.random() * 0.35 + 0.35)
+              : (isLightMode ? Math.random() * 0.35 + 0.35 : Math.random() * 0.4 + 0.4),
           color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
           pulseProgress: Math.random()
         });
@@ -155,7 +156,7 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
     updateDimensions();
 
-    const maxDistance = isMobile ? 100 : 125;
+    const maxDistance = width < 768 ? 110 : 135;
     let lastTime = performance.now();
 
     // Main Animation Loop
@@ -186,13 +187,13 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
         if (p.y < 0) { p.y = 0; p.vy *= -1; }
         if (p.y > height) { p.y = height; p.vy *= -1; }
 
-        // Subtle pointer displacement effect
+        // Pointer displacement effect
         if (pointer.active) {
           const dx = pointer.x - p.x;
           const dy = pointer.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < pointer.radius && dist > 0) {
-            const force = (1 - dist / pointer.radius) * 0.28;
+            const force = (1 - dist / pointer.radius) * 0.32;
             p.x -= (dx / dist) * force;
             p.y -= (dy / dist) * force;
           }
@@ -213,47 +214,47 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.28;
+            const alpha = (1 - dist / maxDistance) * (isLightMode ? 0.32 : 0.38);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = strokeColor;
             ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.88;
+            ctx.lineWidth = 0.95;
             ctx.stroke();
 
             // Data flow signal pulse
             if (p.pulseProgress !== undefined) {
-              p.pulseProgress += 0.0025;
+              p.pulseProgress += 0.003;
               if (p.pulseProgress > 1) p.pulseProgress = 0;
 
-              if (alpha > 0.05 && i % 2 === 0) {
+              if (alpha > 0.04 && i % 2 === 0) {
                 const pulseX = p.x + (p2.x - p.x) * p.pulseProgress;
                 const pulseY = p.y + (p2.y - p.y) * p.pulseProgress;
 
                 ctx.beginPath();
-                ctx.arc(pulseX, pulseY, 1.6, 0, Math.PI * 2);
-                ctx.fillStyle = strokeColor;
-                ctx.globalAlpha = Math.min(alpha * 2.0, 0.68);
+                ctx.arc(pulseX, pulseY, 1.8, 0, Math.PI * 2);
+                ctx.fillStyle = isLightMode ? '#0284C7' : '#38BDF8';
+                ctx.globalAlpha = Math.min(alpha * 2.2, 0.75);
                 ctx.fill();
               }
             }
           }
         }
 
-        // Connect particle to cursor if nearby
+        // Connect particle to cursor/touch pointer
         if (pointer.active) {
           const dx = p.x - pointer.x;
           const dy = p.y - pointer.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < pointer.radius) {
-            const alpha = (1 - dist / pointer.radius) * 0.35;
+            const alpha = (1 - dist / pointer.radius) * (isLightMode ? 0.40 : 0.45);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(pointer.x, pointer.y);
-            ctx.strokeStyle = strokeColor;
+            ctx.strokeStyle = isLightMode ? '#0284C7' : '#38BDF8';
             ctx.globalAlpha = alpha;
-            ctx.lineWidth = 1.05;
+            ctx.lineWidth = 1.15;
             ctx.stroke();
           }
         }
