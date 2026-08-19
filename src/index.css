@@ -172,6 +172,68 @@ textarea {
   color: #0F172A !important;
 }
 
+/* Hero Section: Fundamental dark navy atmosphere preserved across BOTH themes */
+.hero-section {
+  background-color: #010610 !important;
+  color: #FFFFFF !important;
+}
+
+.hero-section h1,
+.hero-section p {
+  color: #FFFFFF !important;
+}
+
+.light .hero-section {
+  background-color: #010610 !important;
+  color: #FFFFFF !important;
+}
+
+.light .hero-section h1,
+.light .hero-section p {
+  color: #FFFFFF !important;
+}
+
+/* Light Theme Hero Foreground Card Treatment: White panel background + Navy text */
+.light .hero-section .hero-card {
+  background-color: #FFFFFF !important;
+  border-color: rgba(11, 36, 66, 0.2) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+}
+
+.light .hero-section .hero-card * {
+  color: #0B2442 !important;
+}
+
+.light .hero-section .hero-card-subitem {
+  background-color: #F8FAFC !important;
+  border-color: rgba(11, 36, 66, 0.12) !important;
+}
+
+.light .hero-section .hero-card-subitem * {
+  color: #0B2442 !important;
+}
+
+/* Ensure Hero buttons maintain the exact dark mode CTA treatment in Light Mode */
+.light .hero-section button.hero-primary-btn,
+.light .hero-section .hero-primary-btn {
+  background-color: #FFFFFF !important;
+  color: #0B2442 !important;
+}
+.light .hero-section button.hero-primary-btn *,
+.light .hero-section .hero-primary-btn * {
+  color: #0B2442 !important;
+}
+.light .hero-section button.hero-secondary-btn,
+.light .hero-section .hero-secondary-btn {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+.light .hero-section button.hero-secondary-btn *,
+.light .hero-section .hero-secondary-btn * {
+  color: #FFFFFF !important;
+}
+
 /* Preserve the data-grid background in both themes with theme-appropriate contrast. */
 .technical-grid {
   background-image:

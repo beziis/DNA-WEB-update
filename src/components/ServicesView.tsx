@@ -319,24 +319,24 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             </p>
           </div>
 
-          {/* Desktop 3-Column Layout (1024px+) */}
-          <div className="hidden lg:grid grid-cols-3 gap-6">
+          {/* Desktop & Tablet 3-Column Layout (768px+) */}
+          <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6">
             {testimonialsData.map((item) => (
               <div
                 key={item.id}
-                className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl flex flex-col justify-between"
+                className="p-5 lg:p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl flex flex-col justify-between h-full"
               >
-                <div className="space-y-4">
+                <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-center justify-between">
-                    <Quote className="w-6 h-6 text-white/40" />
+                    <Quote className="w-5 h-5 lg:w-6 lg:h-6 text-white/40" />
                     <span className="font-mono text-[10px] text-white/40 font-bold">{item.id}</span>
                   </div>
-                  <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
+                  <p className="font-sans font-extralight text-xs lg:text-sm text-white/90 leading-relaxed italic tracking-wide">
                     “{item.quote}”
                   </p>
                 </div>
-                <div className="pt-5 mt-4 border-t border-white/10">
-                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
+                <div className="pt-4 lg:pt-5 mt-4 border-t border-white/10">
+                  <h3 className="font-sans font-extrabold text-xs lg:text-sm text-white tracking-wider uppercase">
                     {item.client}
                   </h3>
                 </div>
@@ -344,31 +344,31 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             ))}
           </div>
 
-          {/* Mobile & Tablet 1-at-a-time Carousel (<1024px) */}
-          <div className="block lg:hidden max-w-2xl mx-auto">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[220px]">
-              <div className="space-y-4">
+          {/* Mobile 1-at-a-time Carousel (<768px) */}
+          <div className="block md:hidden max-w-2xl mx-auto">
+            <div className="p-5 sm:p-7 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[200px]">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Quote className="w-6 h-6 text-white/50" />
+                  <Quote className="w-5 h-5 text-white/50" />
                   <span className="font-mono text-[10px] text-white/50 font-bold">{testimonialsData[testimonialIdx].id}</span>
                 </div>
-                <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed italic tracking-wide">
+                <p className="font-sans font-extralight text-xs text-white/90 leading-relaxed italic tracking-wide">
                   “{testimonialsData[testimonialIdx].quote}”
                 </p>
               </div>
 
               <div>
-                <div className="pt-4 mt-4 border-t border-white/10">
-                  <h3 className="font-sans font-extrabold text-xs sm:text-sm text-white tracking-wider uppercase">
+                <div className="pt-3 mt-3 border-t border-white/10">
+                  <h3 className="font-sans font-extrabold text-xs text-white tracking-wider uppercase">
                     {testimonialsData[testimonialIdx].client}
                   </h3>
                 </div>
 
                 {/* Carousel Navigation */}
-                <div className="flex items-center justify-between pt-4 mt-2">
+                <div className="flex items-center justify-between pt-3 mt-1">
                   <button
                     onClick={() => setTestimonialIdx((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1))}
-                    className="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
+                    className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
                     aria-label="Previous testimonial"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -389,7 +389,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
 
                   <button
                     onClick={() => setTestimonialIdx((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1))}
-                    className="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
+                    className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
                     aria-label="Next testimonial"
                   >
                     <ChevronRight className="w-5 h-5" />

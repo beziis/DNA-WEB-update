@@ -233,29 +233,29 @@ export default function Footer({ currentView, setView }: FooterProps) {
         </div>
 
         {/* ========================================================================= */}
-        {/* TABLET FOOTER LAYOUT (768px - 1023px) */}
+        {/* TABLET FOOTER LAYOUT (768px - 1023px) - BALANCED 3-COLUMN COMPOSITION */}
         {/* ========================================================================= */}
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 mb-10 text-left">
-          {/* Left Tablet Column: Identity & Socials */}
-          <div className="space-y-5">
+        <div className="hidden md:grid lg:hidden grid-cols-12 gap-8 mb-10 text-left">
+          {/* Column 1: Brand & Socials */}
+          <div className="col-span-5 space-y-4">
             <button
               type="button"
               onClick={() => handleNavClick("home")}
               className="inline-flex items-center space-x-3 cursor-pointer group text-left"
             >
-              <div className="w-10 h-10 rounded-[12px] bg-white text-[#0B2442] p-2 flex items-center justify-center shadow-md">
+              <div className="w-9 h-9 rounded-[12px] bg-white text-[#0B2442] p-2 flex items-center justify-center shadow-md">
                 <LogoIcon className="w-full h-full" />
               </div>
-              <span className="font-sans text-lg font-extrabold tracking-tight text-white">
+              <span className="font-sans text-base font-extrabold tracking-tight text-white">
                 DNA <span className="font-sans font-extrabold text-white">TECH</span>
               </span>
             </button>
 
-            <p className="text-xs text-white/75 leading-relaxed font-normal max-w-sm">
-              DNA TECH helps organizations transform data into actionable insights through research, analytics, AI-powered solutions, and technology innovation.
+            <p className="text-xs text-white/75 leading-relaxed font-normal">
+              Empowering organizations with ethical market research, predictive analytics, and custom software across Africa.
             </p>
 
-            <div className="flex items-center space-x-3 pt-1">
+            <div className="flex items-center space-x-2.5 pt-1">
               {[
                 { icon: Linkedin, href: companyProfile.socials.linkedin, title: "LinkedIn" },
                 { icon: Send, href: companyProfile.socials.telegram, title: "Telegram" },
@@ -269,7 +269,7 @@ export default function Footer({ currentView, setView }: FooterProps) {
                     href={soc.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-[12px] bg-white/5 border border-white/15 hover:border-white text-white/80 hover:text-[#0B2442] hover:bg-white flex items-center justify-center transition-all min-h-[44px] min-w-[44px]"
+                    className="w-10 h-10 rounded-[12px] bg-white/5 border border-white/15 hover:border-white text-white/80 hover:text-[#0B2442] hover:bg-white flex items-center justify-center transition-all min-h-[40px] min-w-[40px]"
                     aria-label={`Follow DNA TECH on ${soc.title}`}
                   >
                     <IconComponent className="w-4 h-4" />
@@ -277,72 +277,71 @@ export default function Footer({ currentView, setView }: FooterProps) {
                 );
               })}
             </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <nav aria-label="Tablet Quick Links" className="col-span-3 space-y-3">
+            <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">
+              QUICK LINKS
+            </h3>
+            <ul className="space-y-1.5 text-xs">
+              {navLinks.map((link) => (
+                <li key={link.view}>
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick(link.view)}
+                    className={`text-left py-1 transition-colors cursor-pointer min-h-[36px] flex items-center ${
+                      currentView === link.view ? 'text-white font-bold underline' : 'text-white/75 hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Column 3: Contact Info & CTA */}
+          <section aria-label="Tablet Contact Information" className="col-span-4 space-y-3 text-xs">
+            <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">
+              CONTACT
+            </h3>
+            <address className="not-italic space-y-2.5 text-white/75">
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-3.5 h-3.5 text-white/80 flex-shrink-0 mt-0.5" />
+                <span className="text-[11px] leading-snug">{addressText}</span>
+              </div>
+              <div className="flex flex-col space-y-1 border-t border-white/10 pt-2">
+                {phoneNumbers.map((phone) => (
+                  <a
+                    key={phone}
+                    href={`tel:${phone.replace(/\s+/g, '')}`}
+                    className="font-mono text-[11px] text-white/80 hover:text-white hover:underline min-h-[32px] flex items-center"
+                  >
+                    {phone}
+                  </a>
+                ))}
+              </div>
+              <div className="border-t border-white/10 pt-2">
+                <a
+                  href={`mailto:${emailText}`}
+                  className="font-mono text-[11px] lowercase text-white/80 hover:text-white hover:underline break-all min-h-[32px] flex items-center"
+                >
+                  {emailText}
+                </a>
+              </div>
+            </address>
 
             <div className="pt-2">
               <button
                 type="button"
                 onClick={() => handleNavClick('contact')}
-                className="px-5 py-2.5 rounded-xl bg-white text-[#0B2442] font-mono text-xs font-bold uppercase tracking-wider hover:bg-white/90 cursor-pointer min-h-[44px]"
+                className="w-full px-4 py-2.5 rounded-xl bg-white text-[#0B2442] font-mono text-xs font-bold uppercase tracking-wider hover:bg-white/90 cursor-pointer min-h-[40px] flex items-center justify-center"
               >
                 Get Started
               </button>
             </div>
-          </div>
-
-          {/* Right Tablet Column: Quick Links & Contact */}
-          <div className="grid grid-cols-2 gap-6">
-            <nav aria-label="Tablet Quick Links" className="space-y-3">
-              <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">
-                QUICK LINKS
-              </h3>
-              <ul className="space-y-2 text-xs">
-                {navLinks.map((link) => (
-                  <li key={link.view}>
-                    <button
-                      type="button"
-                      onClick={() => handleNavClick(link.view)}
-                      className={`text-left py-1 transition-colors cursor-pointer min-h-[44px] flex items-center ${
-                        currentView === link.view ? 'text-white font-bold underline' : 'text-white/75 hover:text-white'
-                      }`}
-                    >
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <section aria-label="Tablet Contact Information" className="space-y-3 text-xs">
-              <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2">
-                CONTACT
-              </h3>
-              <address className="not-italic space-y-3 text-white/75">
-                <div className="flex items-start space-x-2">
-                  <MapPin className="w-4 h-4 text-white/80 flex-shrink-0 mt-0.5" />
-                  <span className="text-[11px]">{addressText}</span>
-                </div>
-                <div className="flex flex-col space-y-1 border-t border-white/10 pt-2">
-                  {phoneNumbers.map((phone) => (
-                    <a
-                      key={phone}
-                      href={`tel:${phone.replace(/\s+/g, '')}`}
-                      className="font-mono text-[11px] text-white/80 hover:text-white hover:underline min-h-[36px] flex items-center"
-                    >
-                      {phone}
-                    </a>
-                  ))}
-                </div>
-                <div className="border-t border-white/10 pt-2">
-                  <a
-                    href={`mailto:${emailText}`}
-                    className="font-mono text-[11px] lowercase text-white/80 hover:text-white hover:underline break-all min-h-[36px] flex items-center"
-                  >
-                    {emailText}
-                  </a>
-                </div>
-              </address>
-            </section>
-          </div>
+          </section>
         </div>
 
         {/* ========================================================================= */}

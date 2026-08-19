@@ -37,9 +37,9 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       <DataScrollBackground />
 
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-gradient-to-b from-[#0B2545]/70 via-[#051329]/90 to-[#010610] overflow-hidden">
+      <section className="hero-section relative min-h-0 sm:min-h-[85vh] lg:min-h-screen flex flex-col justify-center pt-20 sm:pt-28 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-gradient-to-b from-[#0B2545]/70 via-[#051329]/90 to-[#010610] overflow-hidden">
         {/* Background Overlay */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-40 overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-30 sm:opacity-40 overflow-hidden">
           <LazyImage
             src={techHubImg}
             alt="Tech Analytics Background"
@@ -49,57 +49,54 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B2545]/60 via-[#051329]/80 to-[#010610]" />
         </div>
 
-        {/* Deep Navy Gradient Radial Overlay (Replacing white/light overlay) */}
+        {/* Deep Navy Gradient Radial Overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(11,37,69,0.55)_0%,rgba(5,19,41,0.85)_50%,#010610_100%)] pointer-events-none" />
 
-        {/* Floating Abstract Data-Blobs (Visible on mobile, tablet, desktop with responsive intensity) */}
+        {/* Floating Abstract Data-Blobs (Visible across mobile, tablet, desktop) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Primary glowing data-blob top-left */}
-          <div className="absolute -top-12 -left-12 w-48 h-48 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#134074]/30 via-[#0B2545]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-1 opacity-20 sm:opacity-30 lg:opacity-40" />
+          <div className="absolute -top-10 -left-10 w-36 h-36 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#134074]/30 via-[#0B2545]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-1 opacity-20 sm:opacity-30 lg:opacity-40" />
 
           {/* Secondary glowing data-blob bottom-right */}
-          <div className="absolute -bottom-16 -right-16 w-56 h-56 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px] bg-gradient-to-bl from-[#0B2545]/30 via-[#134074]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-2 opacity-15 sm:opacity-25 lg:opacity-35" />
+          <div className="absolute -bottom-12 -right-12 w-44 h-44 sm:w-72 sm:h-72 lg:w-[450px] lg:h-[450px] bg-gradient-to-bl from-[#0B2545]/30 via-[#134074]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-2 opacity-15 sm:opacity-25 lg:opacity-35" />
 
           {/* Subtle floating abstract mesh shape center-right */}
-          <div className="absolute top-1/4 right-8 w-36 h-36 sm:w-56 sm:h-56 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
+          <div className="absolute top-1/4 right-4 sm:right-8 w-28 h-28 sm:w-56 sm:h-56 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
         </div>
 
-        <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-8">
+        <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-6 sm:space-y-8">
 
           {/* One-Column Hero Header Content */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-4 sm:space-y-6 max-w-3xl mx-auto"
+            className="space-y-3.5 sm:space-y-6 max-w-3xl mx-auto"
           >
-
-
-            <h1 className="font-sans font-extrabold text-2.5xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
+            <h1 className="font-sans font-extrabold text-2xl xs:text-3xl sm:text-5xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
               Turning Data Into Better Decisions.
             </h1>
 
-            <p className="font-sans font-extralight text-xs sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto px-2 sm:px-0">
+            <p className="font-sans font-extralight text-xs sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto px-1 sm:px-0">
               DNA TECH delivers verified market research, field data collection, and AI-driven analytics that eliminate guesswork, de-risk expansion, and accelerate growth for enterprises, NGOs, and public institutions.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1 sm:pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1 sm:pt-2 w-full max-w-xs sm:max-w-none mx-auto">
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentPage('contact')}
-                className="w-full sm:w-auto px-7 py-3 rounded-[12px] bg-white hover:bg-white/90 text-[#0B2442] font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-lg flex items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
+                className="hero-primary-btn w-full sm:w-auto px-7 py-3.5 rounded-[12px] bg-white hover:bg-white/90 text-[#0B2442] font-sans text-xs uppercase tracking-wider font-bold transition-all shadow-lg flex items-center justify-center space-x-2 cursor-pointer min-h-[48px]"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 text-[#0B2442]" />
               </motion.button>
 
-              {/* "Explore Services" CTA hidden on mobile, preserved for tablet/desktop */}
               <motion.button
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentPage('services')}
-                className="hidden sm:inline-flex w-full sm:w-auto px-7 py-3 rounded-[12px] border border-white/40 bg-white/10 hover:bg-white hover:text-[#0B2442] text-white font-sans text-xs uppercase tracking-wider font-bold transition-all items-center justify-center space-x-2 cursor-pointer min-h-[44px]"
+                className="hero-secondary-btn w-full sm:w-auto px-7 py-3.5 rounded-[12px] border border-white/40 bg-white/10 hover:bg-white hover:text-[#0B2442] text-white font-sans text-xs uppercase tracking-wider font-bold transition-all flex items-center justify-center space-x-2 cursor-pointer min-h-[48px]"
               >
                 <span>Explore Services</span>
               </motion.button>
@@ -113,23 +110,23 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="max-w-3xl mx-auto pt-2 sm:pt-4"
           >
-            {/* Compact Empirical Highlights Bar */}
-            <div className="bg-[#0B2545]/90 border border-white/10 p-3 sm:p-4 rounded-[16px] sm:rounded-[18px] backdrop-blur-md shadow-md">
+            {/* Compact Empirical Highlights Bar (Foreground Hero Card) */}
+            <div className="hero-card bg-[#0B2545]/90 border border-white/10 p-3 sm:p-4 rounded-[16px] sm:rounded-[18px] backdrop-blur-md shadow-md">
               <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
-                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
+                <div className="hero-card-subitem p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-sm xs:text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="10+" />
                   </div>
                   <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Projects</div>
                 </div>
-                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
+                <div className="hero-card-subitem p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-sm xs:text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="1,308+" />
                   </div>
                   <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Responses</div>
                 </div>
-                <div className="p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
-                  <div className="text-base sm:text-2xl font-sans font-extrabold text-white">
+                <div className="hero-card-subitem p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
+                  <div className="text-sm xs:text-base sm:text-2xl font-sans font-extrabold text-white">
                     <AnimatedCounter value="100%" />
                   </div>
                   <div className="text-[8px] sm:text-[9px] text-white/70 font-mono uppercase tracking-wider mt-0.5">Ethical Data</div>
@@ -144,26 +141,26 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       <section
         role="region"
         aria-label="Trusted Partners and Clients"
-        className="partner-marquee-section partner-marquee-container relative z-10 py-8 sm:py-10 border-y border-white/10 bg-[#0B2442]/30 backdrop-blur-md overflow-hidden my-0"
+        className="partner-marquee-section partner-marquee-container relative z-10 py-6 sm:py-8 border-y border-white/10 bg-[#0B2442]/30 backdrop-blur-md overflow-hidden my-0"
       >
-        <div className="text-center mb-4 sm:mb-5">
-          <span className="inline-block font-mono text-[10px] sm:text-xs text-white/70 uppercase tracking-[0.25em] font-bold px-3.5 py-1 rounded-full bg-white/5 border border-white/10">
+        <div className="text-center mb-3 sm:mb-4">
+          <span className="inline-block font-mono text-[9px] sm:text-xs text-white/70 uppercase tracking-[0.25em] font-bold px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-white/5 border border-white/10">
             TRUSTED BY
           </span>
         </div>
 
         {/* Subtle Edge Fades */}
-        <div className="partner-marquee-edge-left absolute left-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
-        <div className="partner-marquee-edge-right absolute right-0 top-0 bottom-0 w-12 sm:w-32 z-10 pointer-events-none" />
+        <div className="partner-marquee-edge-left absolute left-0 top-0 bottom-0 w-8 sm:w-24 md:w-32 z-10 pointer-events-none" />
+        <div className="partner-marquee-edge-right absolute right-0 top-0 bottom-0 w-8 sm:w-24 md:w-32 z-10 pointer-events-none" />
 
         <div className="relative w-full overflow-hidden flex items-center">
-          <div className="animate-marquee items-center space-x-10 sm:space-x-16 md:space-x-20 whitespace-nowrap py-2">
+          <div className="animate-marquee items-center space-x-8 sm:space-x-14 md:space-x-18 whitespace-nowrap py-1">
             {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((partner, idx) => (
-              <div key={idx} className="inline-flex items-center justify-center px-3 sm:px-5 flex-shrink-0">
+              <div key={idx} className="inline-flex items-center justify-center px-2.5 sm:px-4 flex-shrink-0">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-8 sm:h-12 md:h-14 max-h-[32px] sm:max-h-[48px] w-auto object-contain transition-opacity duration-300 opacity-80 hover:opacity-100"
+                  className="h-7 sm:h-10 md:h-12 max-h-[28px] sm:max-h-[40px] md:max-h-[48px] w-auto object-contain transition-opacity duration-300 opacity-80 hover:opacity-100"
                 />
               </div>
             ))}
