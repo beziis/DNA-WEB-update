@@ -65,7 +65,6 @@ export default function ContactView() {
               Let's Start a Conversation
             </motion.h1>
             <motion.p variants={fadeInUpItemVariants} className="max-w-xl mx-auto text-white/85 mt-3 text-xs sm:text-sm font-sans font-extralight leading-relaxed tracking-wide">
-              Every successful project begins with understanding your goals. Tell us about your organization and we'll explore how research, analytics, or technology can support your next decision.
             </motion.p>
           </div>
         </motion.div>

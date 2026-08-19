@@ -54,7 +54,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               variants={fadeInUpItemVariants}
               className="font-sans font-extralight text-xs sm:text-lg text-white/85 leading-relaxed tracking-wide pt-1 sm:pt-2"
             >
-              DNA TECH bridges organizations with real-world market intelligence. We replace speculation with verified primary field research, predictive analytics, and custom enterprise technology.
+          
             </motion.p>
           </motion.div>
         </section>

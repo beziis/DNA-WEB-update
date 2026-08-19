@@ -118,9 +118,6 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             <h1 className="font-sans font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-[1.1] mb-6">
               Our Capabilities & Services
             </h1>
-            <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto mb-8">
-              Verified market research, primary field data collection, predictive AI models, and custom software engineered to eliminate operational risk and drive growth.
-            </p>
             <div className="flex justify-center">
               <button
                 onClick={() => handleNavClick('contact')}
@@ -138,9 +135,6 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
           <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-white tracking-tight leading-snug">
             End-to-End Data & Technology Engine
           </h2>
-          <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
-            From field-level primary survey deployment to live executive analytics dashboards, our integrated modular stack supports your entire strategic lifecycle.
-          </p>
         </section>
 
         {/* 4. EXPANDABLE SERVICE DETAIL SECTION */}
@@ -314,9 +308,6 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
               CLIENT TESTIMONIALS
             </h2>
-            <p className="text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest">
-              Feedback from our data service partners & clients
-            </p>
           </div>
 
           {/* Desktop & Tablet 3-Column Layout (768px+) */}
@@ -406,9 +397,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             <h2 className="font-sans font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-snug">
               Ready to Transform Your Data Into Action?
             </h2>
-          <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 max-w-xl mx-auto leading-relaxed tracking-wide">
-            Let's discuss your goals and build a solution tailored to your organization.
-          </p>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <button
               onClick={() => handleNavClick('contact')}

@@ -138,9 +138,6 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
             <h1 className="font-sans font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-[1.1] mb-6">
               Engineered Solutions for Proven Market Results
             </h1>
-            <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto mb-8">
-              Transforming raw field data into high-conviction strategic decisions. Explore our industry-specific frameworks designed to de-risk strategy and accelerate execution.
-            </p>
             <div className="flex justify-center">
               <button
                 onClick={() => handleNavClick('contact')}
@@ -486,32 +483,6 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
         </section>
 
 
-        {/* 6. WHY OUR APPROACH WORKS */}
-        <section className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">Why Our Approach Works</h2>
-          </div>
-
-          <motion.div
-            variants={fastStaggerContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {whyItWorks.map((item, wIdx) => (
-              <motion.div
-                key={wIdx}
-                variants={fadeInUpItemVariants}
-                className="p-6 rounded-2xl bg-[#0B2545]/50 border border-white/10 space-y-2 card-hover-lift"
-              >
-                <CheckCircle2 className="w-5 h-5 text-white" />
-                <h3 className="font-sans font-extrabold text-lg text-white tracking-tight">{item.title}</h3>
-                <p className="font-sans font-extralight text-xs text-white/80 leading-relaxed tracking-wide">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
 
         {/* 7. FINAL CTA */}
         <section className="rounded-3xl bg-[#0B2442] border border-white/15 p-10 sm:p-16 text-center space-y-6 relative overflow-hidden shadow-2xl">

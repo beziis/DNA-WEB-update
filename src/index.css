@@ -282,7 +282,72 @@ textarea {
 
 
 
-/* Light mode text contrast */
+/* Light mode border line contrast mapping */
+.light .border-white\/5,
+.light [class*="border-white\/5"] {
+  border-color: rgba(11, 36, 66, 0.10) !important;
+}
+
+.light .border-white\/10,
+.light [class*="border-white\/10"] {
+  border-color: rgba(11, 36, 66, 0.16) !important;
+}
+
+.light .border-white\/15,
+.light [class*="border-white\/15"] {
+  border-color: rgba(11, 36, 66, 0.20) !important;
+}
+
+.light .border-white\/20,
+.light [class*="border-white\/20"] {
+  border-color: rgba(11, 36, 66, 0.24) !important;
+}
+
+.light .border-white\/25,
+.light [class*="border-white\/25"] {
+  border-color: rgba(11, 36, 66, 0.28) !important;
+}
+
+.light .border-white\/30,
+.light [class*="border-white\/30"] {
+  border-color: rgba(11, 36, 66, 0.32) !important;
+}
+
+.light .border-white\/40,
+.light [class*="border-white\/40"] {
+  border-color: rgba(11, 36, 66, 0.42) !important;
+}
+
+.light .border-white\/50,
+.light [class*="border-white\/50"] {
+  border-color: rgba(11, 36, 66, 0.52) !important;
+}
+
+/* Light mode divide line mapping */
+.light .divide-white\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(11, 36, 66, 0.16) !important;
+}
+
+.light .divide-white\/15 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(11, 36, 66, 0.20) !important;
+}
+
+/* Light mode chart bars and console elements */
+.light .bg-white\/20 {
+  background-color: rgba(10, 37, 70, 0.20) !important;
+}
+
+.light .hover\:bg-white:hover {
+  background-color: #0A2546 !important;
+}
+
+.light .process-stage-card [class*="via-white"] {
+  background-image: linear-gradient(to right, transparent, #0A2546, transparent) !important;
+}
+
+.light span.animate-pulse {
+  background-color: #0A2546 !important;
+}
 .light h1,
 .light h2,
 .light h3,
