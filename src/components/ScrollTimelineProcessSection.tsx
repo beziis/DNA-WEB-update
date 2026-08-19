@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
 import {
-  FileText, Database, Filter, Cpu, BarChart3, LayoutDashboard,
-  CheckCircle2, Sparkles, ArrowDown, Zap, ChevronRight, Activity
+  FileText, Database, Filter, Cpu, BarChart3, LayoutDashboard
 } from 'lucide-react';
 
 export interface PipelineStage {
@@ -199,7 +198,11 @@ export default function ScrollTimelineProcessSection() {
               return (
                 <div
                   key={stage.id}
-                  ref={(el: HTMLDivElement | null) => { stageCardRefs.current[idx] = el; }}
+                  ref={(el: HTMLDivElement | null) => {
+                    if (el) {
+                      stageCardRefs.current[idx] = el;
+                    }
+                  }}
                   className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-16 sm:pl-24 lg:pl-0"
                 >
 
