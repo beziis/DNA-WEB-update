@@ -185,7 +185,7 @@ export default function ScrollTimelineProcessSection() {
           </div>
 
           {/* Mobile Vertical Timeline Axis Line */}
-          <div className={`timeline-axis lg:hidden absolute left-6 top-10 bottom-10 w-1 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
+          <div className={`timeline-axis lg:hidden absolute left-6 sm:left-10 top-10 bottom-10 w-1 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
             <div
               style={{ height: `${lineFillProgress * 100}%` }}
               className={`timeline-axis-fill w-full transition-all duration-150 ease-out rounded-full ${isLight ? 'bg-gradient-to-b from-[#0A2546]/40 via-[#0A2546]/75 to-[#0A2546] shadow-[0_0_18px_rgba(10,37,70,0.35)]' : 'bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)]'}`}
@@ -204,7 +204,7 @@ export default function ScrollTimelineProcessSection() {
                 <div
                   key={stage.id}
                   ref={(el: HTMLDivElement | null) => { stageCardRefs.current[idx] = el; }}
-                  className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-14 lg:pl-0"
+                  className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-16 sm:pl-24 lg:pl-0"
                 >
 
                   {/* Desktop Left Content (for even stages) / Desktop Right Content (for odd stages) */}
@@ -277,21 +277,21 @@ export default function ScrollTimelineProcessSection() {
                   </div>
 
                   {/* Mobile Absolute Left Axis Node Circle */}
-                  <div className="lg:hidden absolute left-0 top-6 -translate-x-1/2 z-20">
+                  <div className="lg:hidden absolute left-6 sm:left-10 top-6 -translate-x-1/2 z-20">
                     <button
                       onClick={() => scrollToStage(idx)}
                       className="cursor-pointer focus:outline-none"
                     >
                       <motion.div
                         animate={{
-                          scale: isCurrent ? 1.15 : 0.9,
+                          scale: isCurrent ? 1.12 : 0.9,
                           borderColor: isLight ? '#0A2546' : isCurrent ? '#FFFFFF' : 'rgba(255,255,255,0.3)',
                           backgroundColor: isLight ? (isCurrent ? '#FFFFFF' : '#EAF0F7') : isCurrent ? '#FFFFFF' : '#0B2545'
                         }}
                         transition={{ duration: 0.3 }}
-                        className={`w-11 h-11 rounded-xl border-2 flex items-center justify-center ${isLight ? 'text-[#0A2546]' : 'text-white'}`}
+                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl border-2 flex items-center justify-center ${isLight ? 'text-[#0A2546]' : 'text-white'}`}
                       >
-                        <StageIcon className={`w-5 h-5 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
+                        <StageIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
                       </motion.div>
                     </button>
                   </div>
