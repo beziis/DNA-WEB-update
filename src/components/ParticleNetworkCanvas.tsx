@@ -40,16 +40,17 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
     let particles: Particle[] = [];
     let isLightMode = document.documentElement.classList.contains('light');
-    // Default (dark mode) palette uses light particles; switch when .light class present
+
+    // Theme Palette: Navy/blue visual language for light mode, bright white/ice blue for dark mode
     const getPalette = (light: boolean) => {
       if (light) {
-        return ['#0A2546', '#0A2546', '#0A2546', '#0A2546', '#0A2546'];
+        return ['#0B2442', '#0A2546', '#1E3A8A', '#0284C7', '#0B2442'];
       }
-      return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#E2E8F0', '#FFFFFF'];
+      return ['#FFFFFF', '#F8FAFC', '#F1F5F9', '#38BDF8', '#FFFFFF'];
     };
     let colorPalette = getPalette(isLightMode);
 
-    // Resize Handler
+    // Resize Handler with safe transform reset (ctx.setTransform) to prevent compounding DPR scale
     const updateDimensions = () => {
       const parent = canvas.parentElement || canvas.ownerDocument.body;
       if (!parent) return;
@@ -63,14 +64,14 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
 
-      ctx.scale(dpr, dpr);
+      // Safe transform matrix reset before applying DPR scaling
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      isMobile = width < 768;
-      pointer.radius = isMobile ? 100 : 170;
+      pointer.radius = width < 768 ? 120 : width < 1024 ? 150 : 180;
       initParticles();
     };
 
-    // Initialize Particles with tablet & mobile responsive density rules
+    // Initialize Particles with responsive density across phone, tablet, desktop
     const initParticles = () => {
       particles = [];
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -78,26 +79,23 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
         return;
       }
 
-      // Responsive Particle Density Rules:
-      // PHONE (<768px): Subtle low-density particles to maintain tech vibe without visual overload
-      // TABLET (768px-1023px): Moderate particle count & reduced speed
-      // DESKTOP (1024px+): Full density particle network
       const isPhone = width < 768;
       const isTablet = width >= 768 && width < 1024;
 
-      const count = isPhone ? 8 : isTablet ? 16 : Math.min(Math.max(Math.floor((width * height) / 16000), 30), 48);
-      const velocityScale = isPhone ? 0.08 : isTablet ? 0.15 : 0.3;
+      // Responsive Density: ~16 on mobile, ~26 on tablet, ~36–48 on desktop
+      const count = isPhone ? 16 : isTablet ? 26 : Math.min(Math.max(Math.floor((width * height) / 16000), 36), 48);
+      const velocityScale = isPhone ? 0.18 : isTablet ? 0.22 : 0.28;
 
       for (let i = 0; i < count; i++) {
-        const radius = isPhone ? Math.random() * 0.9 + 0.8 : Math.random() * 1.2 + 1.0;
+        const radius = isPhone ? Math.random() * 0.9 + 1.1 : Math.random() * 1.1 + 1.2;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * velocityScale,
           vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: isPhone ? Math.random() * 0.15 + 0.1 : isTablet ? Math.random() * 0.2 + 0.15 : Math.random() * 0.3 + 0.3,
-          color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
+          alpha: Math.random() * 0.35 + 0.40,
+          color: colorPalette[i % colorPalette.length],
           pulseProgress: Math.random()
         });
       }
