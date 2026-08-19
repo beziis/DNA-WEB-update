@@ -141,18 +141,27 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           </div>
 
           {/* Desktop & Tablet Grid */}
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
             {founders.map((f, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
+                variants={fadeInUpItemVariants}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
               >
                 <div>
                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
                     <LazyImage
                       src={f.image}
                       alt={f.name}
-                      className="w-full h-full object-cover transition-all duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       containerClassName="w-full h-full rounded-full"
                       onError={handleImageError}
                     />
@@ -165,13 +174,18 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                     {f.bio}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Mobile 1-at-a-time Carousel */}
           <div className="block md:hidden">
-            <div className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
+            >
               <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-3 flex items-center justify-center bg-[#0B2442]">
                 <LazyImage
                   src={founders[founderIdx].image}
@@ -215,7 +229,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -228,18 +242,27 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           </div>
 
           {/* Desktop & Tablet Grid */}
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
             {advisors.map((ad, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl"
+                variants={fadeInUpItemVariants}
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
               >
                 <div>
                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
                     <LazyImage
                       src={ad.image}
                       alt={ad.name}
-                      className="w-full h-full object-cover transition-all duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       containerClassName="w-full h-full rounded-full"
                       onError={handleImageError}
                     />
@@ -252,13 +275,18 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                     {ad.bio}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Mobile 1-at-a-time Carousel */}
           <div className="block md:hidden">
-            <div className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
+            >
               <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-3 flex items-center justify-center bg-[#0B2442]">
                 <LazyImage
                   src={advisors[advisorIdx].image}
@@ -302,7 +330,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 

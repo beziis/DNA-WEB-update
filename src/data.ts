@@ -221,9 +221,9 @@ export const partnerLogos: PartnerLogo[] = [
 export const achievementImages = [
   auPitchImg,
   auAwardImg,
-  shegerPitchImg,
-  eventImg,
   eventPitchImg,
+  eventImg,
+  shegerPitchImg,
   yesuaTechImg,
   seedImg,
   dataImg
@@ -250,7 +250,7 @@ export const testimonialsData: Testimonial[] = [
 export const galleryImages: GalleryItem[] = [
   { id: "g2", title: "African Union Recognition Award", category: "PITCH & AWARDS", image: auAwardImg },
   { id: "g4", title: "Empirical Field Research Event", category: "FIELDWORK & EVENTS", image: eventImg },
-  { id: "g5", title: "National Innovation Pitch", category: "EVENTS & FORUMS", image: eventPitchImg },
+  { id: "g5", title: "National Innovation Pitch", category: "EVENTS & FORUMS", image: shegerPitchImg },
   { id: "g6", title: "Yesua Tech Ecosystem", category: "PARTNERSHIPS", image: yesuaTechImg }
 ];
 

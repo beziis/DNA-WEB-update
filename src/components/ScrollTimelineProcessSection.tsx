@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
-import { 
+import {
   FileText, Database, Filter, Cpu, BarChart3, LayoutDashboard,
   CheckCircle2, Sparkles, ArrowDown, Zap, ChevronRight, Activity
 } from 'lucide-react';
@@ -152,7 +152,7 @@ export default function ScrollTimelineProcessSection() {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="py-24 px-4 sm:px-6 lg:px-8 bg-[#051329]/20 border-b border-white/10 relative overflow-hidden text-left"
       id="process-timeline-section"
@@ -161,7 +161,7 @@ export default function ScrollTimelineProcessSection() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-radial from-[#0B2545]/20 to-transparent rounded-full pointer-events-none opacity-30" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <h2 className="font-sans font-extrabold text-2xl sm:text-5xl text-white tracking-tight leading-tight">
@@ -171,38 +171,14 @@ export default function ScrollTimelineProcessSection() {
           <p className="font-sans font-extralight text-xs sm:text-base text-white/80 leading-relaxed tracking-wide max-w-2xl mx-auto">
             Explore our 6-stage end-to-end analytical pipeline transforming raw ground feedback into decision-ready executive intelligence.
           </p>
-
-          {/* Quick Stage Selector Bar */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
-            {pipelineStages.map((st, idx) => {
-              const isAct = activeStageIndex === idx;
-              return (
-                <button
-                  key={st.id}
-                  onClick={() => scrollToStage(idx)}
-                  className={`process-stage-selector ${isAct ? 'is-active' : ''} px-3 py-1 rounded-full text-[11px] font-mono font-bold transition-all cursor-pointer border ${
-                    isAct 
-                      ? isLight
-                        ? 'bg-[#0A2546] text-white border-[#0A2546] shadow-lg scale-105'
-                        : 'bg-white text-[#0B2442] border-white shadow-lg scale-105'
-                      : isLight
-                        ? 'bg-white/80 text-slate-600 border-slate-300 hover:border-[#0A2546]/40 hover:text-[#0A2546]'
-                        : 'bg-[#0B2545]/60 text-white/60 border-white/10 hover:border-white/30 hover:text-white'
-                  }`}
-                >
-                  ST {st.stageNum}
-                </button>
-              );
-            })}
-          </div>
         </div>
 
         {/* Timeline Main Container */}
         <div className="relative">
-          
+
           {/* Central Vertical Timeline Axis Line (Desktop: center, Mobile: left aligned) */}
           <div className={`timeline-axis hidden lg:block absolute left-1/2 top-10 bottom-10 w-1 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
-            <div 
+            <div
               style={{ height: `${lineFillProgress * 100}%` }}
               className={`timeline-axis-fill w-full transition-all duration-150 ease-out rounded-full ${isLight ? 'bg-gradient-to-b from-[#0A2546]/40 via-[#0A2546]/75 to-[#0A2546] shadow-[0_0_18px_rgba(10,37,70,0.35)]' : 'bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)]'}`}
             />
@@ -210,7 +186,7 @@ export default function ScrollTimelineProcessSection() {
 
           {/* Mobile Vertical Timeline Axis Line */}
           <div className={`timeline-axis lg:hidden absolute left-6 top-10 bottom-10 w-1 rounded-full overflow-hidden pointer-events-none z-0 ${isLight ? 'bg-[#0A2546]/20' : 'bg-white/10'}`}>
-            <div 
+            <div
               style={{ height: `${lineFillProgress * 100}%` }}
               className={`timeline-axis-fill w-full transition-all duration-150 ease-out rounded-full ${isLight ? 'bg-gradient-to-b from-[#0A2546]/40 via-[#0A2546]/75 to-[#0A2546] shadow-[0_0_18px_rgba(10,37,70,0.35)]' : 'bg-gradient-to-b from-white/70 via-white to-white shadow-[0_0_18px_rgba(255,255,255,0.9)]'}`}
             />
@@ -225,12 +201,12 @@ export default function ScrollTimelineProcessSection() {
               const isEven = idx % 2 === 0;
 
               return (
-                <div 
+                <div
                   key={stage.id}
                   ref={(el: HTMLDivElement | null) => { stageCardRefs.current[idx] = el; }}
                   className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-14 lg:pl-0"
                 >
-                  
+
                   {/* Desktop Left Content (for even stages) / Desktop Right Content (for odd stages) */}
                   <div className={`lg:col-span-5 ${isEven ? 'lg:text-right lg:order-1' : 'lg:order-3'}`}>
                     <motion.div
@@ -246,7 +222,7 @@ export default function ScrollTimelineProcessSection() {
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                       onClick={() => scrollToStage(idx)}
                       className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${
-                        isCurrent 
+                        isCurrent
                           ? isLight
                             ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
                             : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
