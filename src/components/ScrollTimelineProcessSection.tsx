@@ -167,10 +167,6 @@ export default function ScrollTimelineProcessSection() {
           <h2 className="font-sans font-extrabold text-2xl sm:text-5xl text-white tracking-tight leading-tight">
             How DNA TECH Works In Real-Time
           </h2>
-
-          <p className="font-sans font-extralight text-xs sm:text-base text-white/80 leading-relaxed tracking-wide max-w-2xl mx-auto">
-            Explore our 6-stage end-to-end analytical pipeline transforming raw ground feedback into decision-ready executive intelligence.
-          </p>
         </div>
 
         {/* Timeline Main Container */}

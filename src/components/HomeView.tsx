@@ -169,9 +169,6 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
               <h2 className="font-sans font-extrabold text-2xl sm:text-4xl text-white tracking-tight leading-snug">
                 Drive Decisions with Proven Ground Data
               </h2>
-              <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
-                Replace assumptions with empirical evidence to optimize capital allocation and capture market demand.
-              </p>
             </div>
           </ScrollFadeIn>
 
@@ -362,9 +359,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
               <h2 className="font-sans font-extrabold text-2xl sm:text-4xl text-white tracking-tight leading-snug">
                 KEY PARTNERS & ALLIANCES
               </h2>
-              <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
-                Collaborating with specialized leaders in marketing, tax advisory, and social impact across Ethiopia.
-              </p>
+
             </div>
           </ScrollFadeIn>
 
