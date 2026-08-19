@@ -683,19 +683,19 @@ textarea {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 22s linear infinite;
   will-change: transform;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .animate-marquee {
-    animation-duration: 48s;
+    animation-duration: 30s;
   }
 }
 
 @media (max-width: 767px) {
   .animate-marquee {
-    animation-duration: 60s;
+    animation-duration: 38s;
   }
 }
 

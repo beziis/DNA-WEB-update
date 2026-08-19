@@ -201,9 +201,8 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                     <button
                       key={dotIdx}
                       onClick={() => setFounderIdx(dotIdx)}
-                      className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                        founderIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
-                      }`}
+                      className={`h-2.5 rounded-full transition-all cursor-pointer ${founderIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
+                        }`}
                       aria-label={`Go to founder ${dotIdx + 1}`}
                     />
                   ))}
@@ -289,9 +288,8 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                     <button
                       key={dotIdx}
                       onClick={() => setAdvisorIdx(dotIdx)}
-                      className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                        advisorIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
-                      }`}
+                      className={`h-2.5 rounded-full transition-all cursor-pointer ${advisorIdx === dotIdx ? 'w-6 bg-white' : 'w-2.5 bg-white/30'
+                        }`}
                       aria-label={`Go to advisor ${dotIdx + 1}`}
                     />
                   ))}
@@ -312,11 +310,8 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
         <section id="gallery">
           <div className="text-center mb-6 sm:mb-10">
             <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
-              DNA TECH GALLERY
+              ACHIEVEMENTS
             </h2>
-            <p className="text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest mt-1">
-              Empirical market research & field operations
-            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -349,89 +344,89 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           </div>
         </section>
 
-          {/* Achievements - Visually Driven Masonry Gallery */}
-          <div id="achievements" className="pt-8 border-t border-white/10">
-            <div className="text-center mb-6 sm:mb-10">
-              <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
-                ACHIEVEMENTS
-              </h2>
+        {/* Achievements - Visually Driven Masonry Gallery */}
+        <div id="achievements" className="pt-8 border-t border-white/10">
+          <div className="text-center mb-6 sm:mb-10">
+            <h2 className="font-sans font-extrabold text-xl sm:text-3xl text-white tracking-tight">
+              GALLERY
+            </h2>
+          </div>
+
+          {/* Masonry Image Gallery without text/captions */}
+          <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-5">
+            {/* Row 1: Two medium images */}
+            <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[0]}
+                alt="DNA TECH Achievement 1"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
+            <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[1]}
+                alt="DNA TECH Achievement 2"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
             </div>
 
-            {/* Masonry Image Gallery without text/captions */}
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-5">
-              {/* Row 1: Two medium images */}
-              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[0]}
-                  alt="DNA TECH Achievement 1"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[1]}
-                  alt="DNA TECH Achievement 2"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
+            {/* Row 2: Large featured center image */}
+            <div className="col-span-2 md:col-span-12 relative aspect-[21/9] sm:aspect-[21/8] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[2]}
+                alt="DNA TECH Achievement Featured"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
 
-              {/* Row 2: Large featured center image */}
-              <div className="col-span-2 md:col-span-12 relative aspect-[21/9] sm:aspect-[21/8] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[2]}
-                  alt="DNA TECH Achievement Featured"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
+            {/* Row 3: Three distinct column images */}
+            <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[3]}
+                alt="DNA TECH Achievement 4"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
+            <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[4]}
+                alt="DNA TECH Achievement 5"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
+            <div className="col-span-2 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[5]}
+                alt="DNA TECH Achievement 6"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
 
-              {/* Row 3: Three distinct column images */}
-              <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[3]}
-                  alt="DNA TECH Achievement 4"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[4]}
-                  alt="DNA TECH Achievement 5"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
-              <div className="col-span-2 md:col-span-4 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[5]}
-                  alt="DNA TECH Achievement 6"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
-
-              {/* Row 4: Two wide images */}
-              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[6]}
-                  alt="DNA TECH Achievement 7"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
-                <LazyImage
-                  src={achievementImages[7]}
-                  alt="DNA TECH Achievement 8"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  containerClassName="w-full h-full"
-                />
-              </div>
+            {/* Row 4: Two wide images */}
+            <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[6]}
+                alt="DNA TECH Achievement 7"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
+            </div>
+            <div className="col-span-1 md:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#010610] border border-white/15 hover:border-white/40 transition-all duration-300 shadow-xl group card-hover-lift">
+              <LazyImage
+                src={achievementImages[7]}
+                alt="DNA TECH Achievement 8"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                containerClassName="w-full h-full"
+              />
             </div>
           </div>
+        </div>
 
       </div>
     </div>

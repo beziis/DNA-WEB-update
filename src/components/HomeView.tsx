@@ -18,7 +18,7 @@ import ScrollTimelineProcessSection from './ScrollTimelineProcessSection';
 import AnimatedCounter from './AnimatedCounter';
 import LazyImage from './LazyImage';
 import heroImg from '../assets/images/hero_data_visualization_1784490808515.jpg';
-import collabImg from '../assets/images/data_collaboration_1784490822102.jpg';
+import agriImg from '../assets/images/agri_telemetry_analytics_1784880228300.jpg';
 import techHubImg from '../assets/images/tech_analytics_hub_1784880241845.jpg';
 import FlipCard from './FlipCard';
 import {
@@ -37,34 +37,33 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       <DataScrollBackground />
 
       {/* 1. HERO SECTION */}
-      <section className="hero-section relative min-h-0 sm:min-h-[85vh] lg:min-h-screen flex flex-col justify-center pt-20 sm:pt-28 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-gradient-to-b from-[#0B2545]/70 via-[#051329]/90 to-[#010610] overflow-hidden">
-        {/* Background Overlay */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-30 sm:opacity-40 overflow-hidden">
+      <section className="hero-section relative min-h-0 sm:min-h-[85vh] lg:min-h-screen flex flex-col justify-center pt-16 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 bg-[#010610] overflow-hidden">
+        {/* Background Image - High Visibility */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-85 sm:opacity-95 overflow-hidden">
           <LazyImage
             src={techHubImg}
             alt="Tech Analytics Background"
-            className="w-full h-full object-cover scale-105"
+            className="w-full h-full object-cover object-center md:object-[center_30%] scale-105"
             containerClassName="w-full h-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B2545]/60 via-[#051329]/80 to-[#010610]" />
         </div>
-
-        {/* Deep Navy Gradient Radial Overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(11,37,69,0.55)_0%,rgba(5,19,41,0.85)_50%,#010610_100%)] pointer-events-none" />
 
         {/* Floating Abstract Data-Blobs (Visible across mobile, tablet, desktop) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-          {/* Primary glowing data-blob top-left */}
-          <div className="absolute -top-10 -left-10 w-36 h-36 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#134074]/30 via-[#0B2545]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-1 opacity-20 sm:opacity-30 lg:opacity-40" />
+          {/* Primary glowing data-blob top-left - positioned out of main text path */}
+          <div className="absolute -top-16 -left-16 w-36 h-36 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-tr from-[#134074]/25 via-[#0B2545]/15 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-1 opacity-20 sm:opacity-30 lg:opacity-40" />
 
           {/* Secondary glowing data-blob bottom-right */}
-          <div className="absolute -bottom-12 -right-12 w-44 h-44 sm:w-72 sm:h-72 lg:w-[450px] lg:h-[450px] bg-gradient-to-bl from-[#0B2545]/30 via-[#134074]/20 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-2 opacity-15 sm:opacity-25 lg:opacity-35" />
+          <div className="absolute -bottom-16 -right-16 w-44 h-44 sm:w-72 sm:h-72 lg:w-[450px] lg:h-[450px] bg-gradient-to-bl from-[#0B2545]/25 via-[#134074]/15 to-transparent rounded-full blur-2xl sm:blur-3xl animate-data-blob-2 opacity-15 sm:opacity-25 lg:opacity-35" />
 
           {/* Subtle floating abstract mesh shape center-right */}
           <div className="absolute top-1/4 right-4 sm:right-8 w-28 h-28 sm:w-56 sm:h-56 border border-white/10 rounded-full blur-sm animate-data-blob-1 opacity-15 bg-white/5" />
         </div>
 
-        <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-6 sm:space-y-8">
+        <div className="max-w-4xl mx-auto w-full relative z-10 my-auto text-center space-y-5 sm:space-y-8">
+
+          {/* LOCALIZED READABILITY ZONE (Soft Elliptical Navy Zone directly behind text content) */}
+          <div className="absolute -inset-x-6 sm:-inset-x-12 -inset-y-6 sm:-inset-y-10 bg-[radial-gradient(ellipse_at_center,rgba(5,19,41,0.85)_0%,rgba(5,19,41,0.45)_55%,transparent_100%)] pointer-events-none -z-10 rounded-full blur-sm" aria-hidden="true" />
 
           {/* One-Column Hero Header Content */}
           <motion.div
@@ -73,11 +72,11 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             transition={{ duration: 0.5 }}
             className="space-y-3.5 sm:space-y-6 max-w-3xl mx-auto"
           >
-            <h1 className="font-sans font-extrabold text-2xl xs:text-3xl sm:text-5xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08]">
+            <h1 className="font-sans font-extrabold text-2xl xs:text-3xl sm:text-5xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12] sm:leading-[1.08] [text-shadow:_0_2px_12px_rgba(0,0,0,0.85)]">
               Turning Data Into Better Decisions.
             </h1>
 
-            <p className="font-sans font-extralight text-xs sm:text-base text-white/85 leading-relaxed tracking-wide max-w-2xl mx-auto px-1 sm:px-0">
+            <p className="font-sans font-normal text-xs xs:text-sm sm:text-base text-white/95 leading-relaxed sm:leading-relaxed tracking-wide max-w-2xl mx-auto px-1 sm:px-0 [text-shadow:_0_1px_8px_rgba(0,0,0,0.85)]">
               DNA TECH delivers verified market research, field data collection, and AI-driven analytics that eliminate guesswork, de-risk expansion, and accelerate growth for enterprises, NGOs, and public institutions.
             </p>
 
@@ -111,7 +110,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
             className="max-w-3xl mx-auto pt-2 sm:pt-4"
           >
             {/* Compact Empirical Highlights Bar (Foreground Hero Card) */}
-            <div className="hero-card bg-[#0B2545]/90 border border-white/10 p-3 sm:p-4 rounded-[16px] sm:rounded-[18px] backdrop-blur-md shadow-md">
+            <div className="hero-card bg-[#0B2545]/90 border border-white/10 p-2.5 sm:p-4 rounded-[16px] sm:rounded-[18px] backdrop-blur-md shadow-md">
               <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
                 <div className="hero-card-subitem p-2 sm:p-2.5 rounded-[10px] sm:rounded-[12px] bg-[#051329]/70 border border-white/10">
                   <div className="text-sm xs:text-base sm:text-2xl font-sans font-extrabold text-white">
@@ -141,14 +140,8 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
       <section
         role="region"
         aria-label="Trusted Partners and Clients"
-        className="partner-marquee-section partner-marquee-container relative z-10 py-6 sm:py-8 border-y border-white/10 bg-[#0B2442]/30 backdrop-blur-md overflow-hidden my-0"
+        className="partner-marquee-section partner-marquee-container relative z-10 py-4 sm:py-6 border-y border-white/10 bg-[#0B2442]/30 backdrop-blur-md overflow-hidden my-0"
       >
-        <div className="text-center mb-3 sm:mb-4">
-          <span className="inline-block font-mono text-[9px] sm:text-xs text-white/70 uppercase tracking-[0.25em] font-bold px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-white/5 border border-white/10">
-            TRUSTED BY
-          </span>
-        </div>
-
         {/* Subtle Edge Fades */}
         <div className="partner-marquee-edge-left absolute left-0 top-0 bottom-0 w-8 sm:w-24 md:w-32 z-10 pointer-events-none" />
         <div className="partner-marquee-edge-right absolute right-0 top-0 bottom-0 w-8 sm:w-24 md:w-32 z-10 pointer-events-none" />
@@ -324,49 +317,37 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
         </div>
       </section>
 
-      {/* 6. WORLD BANK GAP SPOTLIGHT */}
+      {/* 6. TARGETED INTELLIGENCE SPOTLIGHT */}
       <section className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 bg-[#0B2442]/20 border-b border-white/5">
         <div className="max-w-5xl mx-auto">
           <ScrollFadeIn>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-gradient-to-br from-[#0B2545]/80 via-[#051329]/80 to-[#010610]/80 rounded-[20px] p-8 sm:p-12 border border-white/10 text-left relative overflow-hidden shadow-xl">
-              <div className="lg:col-span-7 space-y-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-br from-[#0B2545]/80 via-[#051329]/80 to-[#010610]/80 rounded-[20px] p-8 sm:p-12 border border-white/10 text-left relative overflow-hidden shadow-xl">
+              <div className="lg:col-span-7 space-y-4">
                 <h3 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-snug">
-                  Solving the 75% SME Failure Rate in Ethiopia
+                  Targeted Intelligence for Strategic Growth
                 </h3>
 
-                <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-                  World Bank benchmarks show <strong className="text-white font-bold underline">75% of Ethiopian SMEs fail</strong> due to unverified market intelligence and misdirected investments.
+                <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
+                  Decisions made on unverified assumptions waste capital and stall progress. Without ground-level intelligence, enterprises miscalculate market demand, NGOs struggle to quantify impact, and startups risk launching without product-market fit.
                 </p>
 
-                <p className="font-sans font-extralight text-xs sm:text-sm text-white/85 leading-relaxed tracking-wide">
-                  DNA TECH directly resolves this challenge with verified ground feedback, feasibility metrics, and custom technology that secure long-term operational survival.
+                <p className="font-sans font-extralight text-xs sm:text-sm text-white/80 leading-relaxed tracking-wide">
+                  DNA TECH replaces guesswork with audit-ready primary research, interactive telemetry dashboards, and scalable custom technology.
                 </p>
-
-                <div className="pt-2">
-                  <button
-                    onClick={() => setCurrentPage('about')}
-                    className="px-5 py-2.5 rounded-[12px] bg-white hover:bg-white/90 text-[#0B2442] font-sans text-xs uppercase tracking-wider font-bold transition-all inline-flex items-center space-x-2 cursor-pointer min-h-[44px]"
-                  >
-                    <span>Read Our Story</span>
-                    <ArrowRight className="w-4 h-4 text-[#0B2442]" />
-                  </button>
-                </div>
               </div>
 
-              <div className="lg:col-span-5 relative flex items-center justify-center">
-                <div className="w-full h-full rounded-[18px] overflow-hidden border border-white/10 relative min-h-[220px]">
-                  <LazyImage
-                    src={collabImg}
-                    alt="DNA TECH Team Market Research Collaboration"
-                    className="w-full h-full object-cover opacity-60 rounded-[18px]"
-                    containerClassName="w-full h-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#051329]/80 via-[#051329]/30 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-[14px] bg-[#0B2545]/90 border border-white/10">
-                    <div className="font-sans font-extrabold text-2xl text-white tracking-tight">December 18, 2024</div>
-                    <div className="font-mono text-[10px] text-white/70 uppercase tracking-wider mt-1">Officially Founded & Licensed</div>
-                  </div>
-                </div>
+              <div className="lg:col-span-5 relative group">
+                <LazyImage
+                  src={agriImg}
+                  alt="DNA TECH Field Analytics"
+                  clipRevealMode="center"
+                  containerClassName="rounded-2xl border border-white/20 shadow-2xl h-56 sm:h-64 w-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#051329] via-transparent to-transparent opacity-60 rounded-2xl pointer-events-none" />
+                <span className="absolute bottom-3 left-3 font-mono text-[10px] text-white uppercase font-bold tracking-wider bg-[#0B2442]/95 px-2.5 py-1 rounded border border-white/20">
+                  Empirical Research & Telemetry
+                </span>
               </div>
             </div>
           </ScrollFadeIn>

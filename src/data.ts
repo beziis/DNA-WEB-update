@@ -20,7 +20,7 @@ import auAwardImg from './assets/AU AWARD.png';
 import auPitchImg from './assets/AU PITCH.png';
 import eventPitchImg from './assets/EVENT PITCH.png';
 import eventImg from './assets/EVENT.png';
-import shegerPitchImg from './assets/SHEGER PITCH.png';
+import shegerPitchImg from './assets/SHEGER PITCH1.png';
 import yesuaTechImg from './assets/YESUA TECH.png';
 import seedImg from './assets/SEED.png';
 import dataImg from './assets/DATA.png';
@@ -248,14 +248,10 @@ export const testimonialsData: Testimonial[] = [
 ];
 
 export const galleryImages: GalleryItem[] = [
-  { id: "g1", title: "AU Pitch Showcase", category: "PITCH & AWARDS", image: auPitchImg },
   { id: "g2", title: "African Union Recognition Award", category: "PITCH & AWARDS", image: auAwardImg },
-  { id: "g3", title: "Sheger Pitch Forum", category: "EVENTS & FORUMS", image: shegerPitchImg },
   { id: "g4", title: "Empirical Field Research Event", category: "FIELDWORK & EVENTS", image: eventImg },
   { id: "g5", title: "National Innovation Pitch", category: "EVENTS & FORUMS", image: eventPitchImg },
-  { id: "g6", title: "Yesua Tech Ecosystem", category: "PARTNERSHIPS", image: yesuaTechImg },
-  { id: "g7", title: "Seed Capital & Pitch Forum", category: "ECOSYSTEM", image: seedImg },
-  { id: "g8", title: "DNA TECH Data Collection Framework", category: "METHODOLOGY", image: dataImg }
+  { id: "g6", title: "Yesua Tech Ecosystem", category: "PARTNERSHIPS", image: yesuaTechImg }
 ];
 
 export const achievementsList = [
