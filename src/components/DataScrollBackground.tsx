@@ -39,9 +39,9 @@ export default function DataScrollBackground() {
           <div
             key={i}
             style={{ top: node.top, left: node.left }}
-            className="absolute font-mono text-[9px] tracking-widest text-white/80 bg-[#0B2545]/90 px-3 py-1.5 rounded-[12px] border border-white/20 hidden md:block shadow-md"
+            className="absolute font-mono text-[8px] sm:text-[9px] tracking-widest text-white/80 bg-[#0B2545]/90 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[10px] sm:rounded-[12px] border border-white/20 shadow-md max-w-[150px] sm:max-w-none truncate"
           >
-            <span className="w-1.5 h-1.5 inline-block rounded-full bg-white mr-2 animate-pulse" />
+            <span className="w-1.5 h-1.5 inline-block rounded-full bg-white mr-1.5 sm:mr-2 animate-pulse" />
             {node.label}
           </div>
         ))}
