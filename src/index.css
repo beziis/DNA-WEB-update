@@ -249,16 +249,35 @@ textarea {
     linear-gradient(to bottom, rgba(11, 36, 66, 0.12) 1px, transparent 1px);
 }
 
-/* Light mode cards & backgrounds */
+/* Light mode cards & backgrounds - Frosted Glass Language */
+.glass-card {
+  background: rgba(11, 37, 69, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.35);
+}
+
+.light .glass-card {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(11, 36, 66, 0.12) !important;
+  box-shadow: 0 12px 32px -8px rgba(10, 37, 70, 0.10), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+  color: #0F172A !important;
+}
+
 .light .bg-\[\#051329\],
 .light .bg-\[\#020914\],
 .light .bg-\[\#010610\],
 .light .bg-\[\#0B2545\],
 .light .bg-\[\#0B2442\] {
-  background-color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   color: #0F172A !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(11, 36, 66, 0.12) !important;
+  box-shadow: 0 12px 30px -10px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Light mode translucent white overlays */
@@ -270,10 +289,12 @@ textarea {
 .light .bg-\[\#051329\]\/90,
 .light .bg-\[\#051329\]\/80,
 .light .bg-\[\#051329\]\/70 {
-  background-color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   color: #0F172A !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(11, 36, 66, 0.12) !important;
+  box-shadow: 0 12px 30px -10px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
 }
 
 /* Light mode text contrast */
@@ -357,18 +378,28 @@ textarea {
   color: #FFFFFF !important;
 }
 
-/* Light mode input & form controls */
+/* Light mode input & form controls: Frosted glass inputs */
 .light input,
 .light select,
 .light textarea {
-  background-color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+  border-color: rgba(11, 36, 66, 0.18) !important;
+}
+
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: #0A2546 !important;
+  box-shadow: 0 0 0 3px rgba(10, 37, 70, 0.12) !important;
 }
 
 .light input::placeholder,
 .light textarea::placeholder {
-  color: #94A3B8 !important;
+  color: #64748B !important;
 }
 
 /* Light mode CTA Buttons: ensure dark pill button with white text in light mode */
@@ -418,10 +449,12 @@ textarea {
   color: #475569 !important;
 }
 
-/* Footer in light mode */
+/* Footer in light mode: Frosted glass footer */
 .light footer {
-  background-color: #FFFFFF !important;
-  border-top: 1px solid #E2E8F0 !important;
+  background: rgba(255, 255, 255, 0.70) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(11, 36, 66, 0.10) !important;
   color: #334155 !important;
 }
 
@@ -459,42 +492,62 @@ textarea {
 /* Light-mode component surfaces. These intentionally target rounded UI
    elements only, leaving the page and animated background untouched. */
 .light [class*="rounded-"][class*="bg-[#0B2545]"] {
-  background-color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-color: rgba(11, 36, 66, 0.12) !important;
+  box-shadow: 0 12px 30px -10px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
 }
 
 .light [class*="rounded-"][class*="bg-[#0B2442]"] {
-  background-color: #EAF0F7 !important;
+  background: rgba(240, 245, 252, 0.68) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(11, 36, 66, 0.10) !important;
+  box-shadow: 0 4px 16px -2px rgba(10, 37, 70, 0.06) !important;
 }
 
 .light [class*="rounded-"][class*="bg-[#051329]"],
 .light [class*="rounded-"][class*="bg-[#020914]"],
 .light [class*="rounded-"][class*="bg-[#010610]"] {
-  background-color: #F1F5F9 !important;
+  background: rgba(235, 242, 250, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(11, 36, 66, 0.10) !important;
+  box-shadow: 0 4px 16px -2px rgba(10, 37, 70, 0.05) !important;
 }
 
 .light [class*="rounded-"][class~="bg-white/5"],
 .light [class*="rounded-"][class~="bg-white/10"],
 .light [class*="rounded-"][class~="bg-white/15"],
 .light [class*="rounded-"][class~="bg-white/20"] {
-  background-color: rgba(10, 37, 70, 0.05) !important;
+  background: rgba(10, 37, 70, 0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(11, 36, 66, 0.10) !important;
 }
 
 .light [class*="rounded-"][class*="border-white"] {
-  border-color: #CBD5E1 !important;
+  border-color: rgba(11, 36, 66, 0.12) !important;
 }
 
 .light [class*="rounded-"][class~="shadow-xl"],
 .light [class*="rounded-"][class~="shadow-2xl"],
 .light [class*="rounded-"][class~="shadow-inner"] {
-  box-shadow: 0 14px 30px -16px rgba(10, 37, 70, 0.22) !important;
+  box-shadow: 0 14px 32px -12px rgba(10, 37, 70, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
 }
 
 .light [class*="rounded-"][class*="bg-gradient"] {
-  background-image: linear-gradient(135deg, #FFFFFF 0%, #EAF0F7 100%) !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(234, 240, 247, 0.68) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
 }
 
-.light [class*="rounded-"][class*="hover:border-white"]:hover {
-  border-color: rgba(10, 37, 70, 0.42) !important;
+.light [class*="rounded-"][class*="hover:border-white"]:hover,
+.light .card-hover-lift:hover {
+  background: rgba(255, 255, 255, 0.86) !important;
+  border-color: rgba(11, 36, 66, 0.22) !important;
+  box-shadow: 0 18px 36px -12px rgba(10, 37, 70, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.95) !important;
 }
 
 .light footer h3,

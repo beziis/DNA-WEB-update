@@ -29,8 +29,8 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
 
   const navClass = scrolled
     ? isLight
-      ? 'sticky top-0 z-50 bg-white border-b border-slate-200 shadow-md text-slate-800 transition-all duration-300'
-      : 'sticky top-0 z-50 bg-[#051329] border-b border-white/15 shadow-lg shadow-black/20 text-white transition-all duration-300'
+      ? 'sticky top-0 z-50 bg-white/75 backdrop-blur-md border-b border-slate-200/80 shadow-sm text-slate-800 transition-all duration-300'
+      : 'sticky top-0 z-50 bg-[#051329]/80 backdrop-blur-md border-b border-white/15 shadow-lg shadow-black/20 text-white transition-all duration-300'
     : `sticky top-0 z-50 bg-transparent border-b border-transparent shadow-none ${
         isLight ? 'text-slate-800' : 'text-white'
       } transition-all duration-300`;
@@ -157,8 +157,8 @@ export default function Navbar({ currentPage, setCurrentPage, theme = 'dark', to
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className={`md:hidden border-b px-4 pt-2 pb-6 space-y-2 overflow-hidden ${
               isLight
-                ? 'bg-white border-slate-200'
-                : 'bg-[#0B2442] border-white/10'
+                ? 'bg-white/85 backdrop-blur-lg border-slate-200/80'
+                : 'bg-[#0B2442]/90 backdrop-blur-lg border-white/10'
             }`}
           >
             <motion.div initial="hidden" animate="visible" variants={fastStaggerContainerVariants} className="space-y-1">
