@@ -64,25 +64,168 @@ const pipelineStages: PipelineStage[] = [
   }
 ];
 
-export default function ScrollTimelineProcessSection() {
+interface StageNodeButtonProps {
+  key?: React.Key;
+  stage: PipelineStage;
+  isCurrent: boolean;
+  isPassed: boolean;
+  isLight: boolean;
+  onClick: () => void;
+  isMobile?: boolean;
+}
+
+const StageNodeButton: React.FC<StageNodeButtonProps> = ({
+  stage,
+  isCurrent,
+  isPassed,
+  isLight,
+  onClick,
+  isMobile = false,
+}) => {
+  const StageIcon = stage.icon;
+
+  const animateProps = isMobile
+    ? {
+      scale: isCurrent ? 1.12 : 0.9,
+      borderColor: isLight ? '#0A2546' : isCurrent ? '#FFFFFF' : 'rgba(255,255,255,0.3)',
+      backgroundColor: isLight ? (isCurrent ? '#FFFFFF' : '#EAF0F7') : isCurrent ? '#FFFFFF' : '#0B2545',
+    }
+    : {
+      scale: isCurrent ? 1.25 : 0.95,
+      borderColor: isLight
+        ? isCurrent ? '#0A2546' : 'rgba(10,37,70,0.35)'
+        : isCurrent ? '#FFFFFF' : isPassed ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
+      backgroundColor: isLight
+        ? isCurrent ? '#FFFFFF' : isPassed ? '#EAF0F7' : '#F1F5F9'
+        : isCurrent ? '#FFFFFF' : isPassed ? '#0B2545' : '#051329',
+      boxShadow: isCurrent ? (isLight ? '0 0 24px rgba(10,37,70,0.2)' : '0 0 30px rgba(255,255,255,0.6)') : 'none',
+    };
+
+  const containerClass = isMobile
+    ? `w-10 h-10 sm:w-12 sm:h-12 rounded-xl border-2 flex items-center justify-center ${isLight ? 'text-[#0A2546]' : 'text-white'}`
+    : `w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all relative ${isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white'
+    }`;
+
+  const iconClass = isMobile
+    ? `w-4 h-4 sm:w-5 sm:h-5 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`
+    : `w-6 h-6 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`;
+
+  return (
+    <button onClick={onClick} className="cursor-pointer focus:outline-none">
+      <motion.div
+        animate={animateProps}
+        transition={{ duration: 0.3 }}
+        className={containerClass}
+      >
+        <StageIcon className={iconClass} />
+      </motion.div>
+    </button>
+  );
+}
+
+interface StageCardItemProps {
+  key?: React.Key;
+  stage: PipelineStage;
+  idx: number;
+  isCurrent: boolean;
+  isPassed: boolean;
+  isLight: boolean;
+  onCardRef: (el: HTMLDivElement | null) => void;
+  onSelectStage: (idx: number) => void;
+}
+
+const StageCardItem: React.FC<StageCardItemProps> = ({
+  stage,
+  idx,
+  isCurrent,
+  isPassed,
+  isLight,
+  onCardRef,
+  onSelectStage,
+}) => {
+  const isEven = idx % 2 === 0;
+
+  return (
+    <div
+      ref={onCardRef}
+      className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-16 sm:pl-24 lg:pl-0"
+    >
+      {/* Desktop Left / Right Content */}
+      <div className={`lg:col-span-5 ${isEven ? 'lg:text-right lg:order-1' : 'lg:order-3'}`}>
+        <motion.div
+          animate={{
+            scale: isCurrent ? 1.02 : 1,
+            borderColor: isLight
+              ? isCurrent ? 'rgba(10, 37, 70, 0.45)' : isPassed ? 'rgba(10, 37, 70, 0.28)' : 'rgba(10, 37, 70, 0.16)'
+              : isCurrent ? 'rgba(255, 255, 255, 0.9)' : isPassed ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.1)',
+            backgroundColor: isLight
+              ? isCurrent ? 'rgba(255, 255, 255, 0.96)' : isPassed ? 'rgba(248, 250, 252, 0.9)' : 'rgba(241, 245, 249, 0.82)'
+              : isCurrent ? 'rgba(11, 37, 69, 0.75)' : isPassed ? 'rgba(11, 37, 69, 0.35)' : 'rgba(11, 37, 69, 0.15)'
+          }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          onClick={() => onSelectStage(idx)}
+          className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${isCurrent
+              ? isLight
+                ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
+                : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
+              : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
+            }`}
+        >
+          {/* Active Background Glow Bar */}
+          {isCurrent && (
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
+          )}
+
+          {/* Title */}
+          <h3 className={`font-sans font-extrabold text-xl sm:text-2xl tracking-tight mb-3 ${isLight ? 'text-[#0A2546]' : 'text-white'}`}>
+            {stage.title}
+          </h3>
+
+          {/* Deliverables List */}
+          <div className="mt-4 pt-4 border-t border-white/10">
+            <p className={`text-xs sm:text-sm ${isLight ? 'text-slate-600' : 'text-white/85'} ${isEven ? 'lg:text-right' : ''}`}>
+              {Array.isArray(stage.deliverables) ? stage.deliverables.join(', ') : stage.deliverables}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Center Node Circle Icon - Desktop */}
+      <div className="hidden lg:flex lg:col-span-2 lg:order-2 justify-center items-center z-20">
+        <StageNodeButton
+          stage={stage}
+          isCurrent={isCurrent}
+          isPassed={isPassed}
+          isLight={isLight}
+          onClick={() => onSelectStage(idx)}
+        />
+      </div>
+
+      {/* Mobile Absolute Left Axis Node Circle */}
+      <div className="lg:hidden absolute left-6 sm:left-10 top-6 -translate-x-1/2 z-20">
+        <StageNodeButton
+          stage={stage}
+          isCurrent={isCurrent}
+          isPassed={isPassed}
+          isLight={isLight}
+          onClick={() => onSelectStage(idx)}
+          isMobile
+        />
+      </div>
+
+      {/* Empty Spacer Column for Desktop Grid Symmetry */}
+      <div className={`hidden lg:block lg:col-span-5 ${isEven ? 'lg:order-3' : 'lg:order-1'}`} />
+    </div>
+  );
+}
+
+// Custom hook for timeline scroll detection and line fill calculation
+function useTimelineScroll(stagesCount: number) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const stageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStageIndex, setActiveStageIndex] = useState<number>(0);
   const [lineFillProgress, setLineFillProgress] = useState<number>(0);
-  const [isLight, setIsLight] = useState(() =>
-    typeof document !== 'undefined' && document.documentElement.classList.contains('light')
-  );
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const syncTheme = () => setIsLight(root.classList.contains('light'));
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    syncTheme();
-    return () => observer.disconnect();
-  }, []);
-
-  // Intersection Observer + RAF Scroll Detection
   const handleScroll = useCallback(() => {
     if (!sectionRef.current) return;
 
@@ -108,7 +251,7 @@ export default function ScrollTimelineProcessSection() {
 
     // Calculate vertical fill progress for timeline axis
     const firstCard = stageCardRefs.current?.[0];
-    const lastCard = stageCardRefs.current?.[pipelineStages.length - 1];
+    const lastCard = stageCardRefs.current?.[stagesCount - 1];
 
     if (firstCard && lastCard) {
       const firstRect = firstCard.getBoundingClientRect();
@@ -123,7 +266,7 @@ export default function ScrollTimelineProcessSection() {
         setLineFillProgress(progress);
       }
     }
-  }, []);
+  }, [stagesCount]);
 
   useEffect(() => {
     let animId: number;
@@ -149,6 +292,28 @@ export default function ScrollTimelineProcessSection() {
       targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
+
+  return { sectionRef, stageCardRefs, activeStageIndex, lineFillProgress, scrollToStage };
+}
+
+export default function ScrollTimelineProcessSection() {
+  const {
+    sectionRef,
+    stageCardRefs,
+    activeStageIndex,
+    lineFillProgress,
+    scrollToStage,
+  } = useTimelineScroll(pipelineStages.length);
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const syncTheme = () => setIsLight(root.classList.contains('light'));
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+    syncTheme();
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
@@ -189,116 +354,22 @@ export default function ScrollTimelineProcessSection() {
 
           {/* 6 Sequential Stage Nodes Loop */}
           <div className="space-y-16 lg:space-y-24 relative z-10">
-            {pipelineStages.map((stage, idx) => {
-              const StageIcon = stage.icon;
-              const isCurrent = activeStageIndex === idx;
-              const isPassed = idx < activeStageIndex;
-              const isEven = idx % 2 === 0;
-
-              return (
-                <div
-                  key={stage.id}
-                  ref={(el: HTMLDivElement | null) => {
-                    if (stageCardRefs.current && el) {
-                      stageCardRefs.current[idx] = el;
-                    }
-                  }}
-                  className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center pl-16 sm:pl-24 lg:pl-0"
-                >
-
-                  {/* Desktop Left Content (for even stages) / Desktop Right Content (for odd stages) */}
-                  <div className={`lg:col-span-5 ${isEven ? 'lg:text-right lg:order-1' : 'lg:order-3'}`}>
-                    <motion.div
-                      animate={{
-                        scale: isCurrent ? 1.02 : 1,
-                        borderColor: isLight
-                          ? isCurrent ? 'rgba(10, 37, 70, 0.45)' : isPassed ? 'rgba(10, 37, 70, 0.28)' : 'rgba(10, 37, 70, 0.16)'
-                          : isCurrent ? 'rgba(255, 255, 255, 0.9)' : isPassed ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.1)',
-                        backgroundColor: isLight
-                          ? isCurrent ? 'rgba(255, 255, 255, 0.96)' : isPassed ? 'rgba(248, 250, 252, 0.9)' : 'rgba(241, 245, 249, 0.82)'
-                          : isCurrent ? 'rgba(11, 37, 69, 0.75)' : isPassed ? 'rgba(11, 37, 69, 0.35)' : 'rgba(11, 37, 69, 0.15)'
-                      }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                      onClick={() => scrollToStage(idx)}
-                      className={`process-stage-card p-6 sm:p-7 rounded-2xl border backdrop-blur-md transition-all duration-300 cursor-pointer shadow-xl relative overflow-hidden ${isCurrent
-                        ? isLight
-                          ? 'shadow-[0_10px_30px_rgba(10,37,70,0.16)] ring-1 ring-[#0A2546]/20'
-                          : 'shadow-[0_10px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/30'
-                        : isLight ? 'hover:border-[#0A2546]/40' : 'hover:border-white/40'
-                        }`}
-                    >
-                      {/* Active Background Glow Bar */}
-                      {isCurrent && (
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-                      )}
-
-                      {/* Title */}
-                      <h3 className={`font-sans font-extrabold text-xl sm:text-2xl tracking-tight mb-3 ${isLight ? 'text-[#0A2546]' : 'text-white'}`}>
-                        {stage.title}
-                      </h3>
-
-                      {/* Deliverables List */}
-                      <div className="mt-4 pt-4 border-t border-white/10">
-                        <p className={`text-xs sm:text-sm ${isLight ? 'text-slate-600' : 'text-white/85'} ${isEven ? 'lg:text-right' : ''}`}>
-                          {Array.isArray(stage.deliverables) ? stage.deliverables.join(', ') : stage.deliverables}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Center Node Circle Icon (Desktop: Center Grid, Mobile: Absolute Left Axis) */}
-                  {/* Desktop Grid Center Column */}
-                  <div className="hidden lg:flex lg:col-span-2 lg:order-2 justify-center items-center z-20">
-                    <button
-                      onClick={() => scrollToStage(idx)}
-                      className="cursor-pointer focus:outline-none"
-                    >
-                      <motion.div
-                        animate={{
-                          scale: isCurrent ? 1.25 : 0.95,
-                          borderColor: isLight
-                            ? isCurrent ? '#0A2546' : 'rgba(10,37,70,0.35)'
-                            : isCurrent ? '#FFFFFF' : isPassed ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
-                          backgroundColor: isLight
-                            ? isCurrent ? '#FFFFFF' : isPassed ? '#EAF0F7' : '#F1F5F9'
-                            : isCurrent ? '#FFFFFF' : isPassed ? '#0B2545' : '#051329',
-                          boxShadow: isCurrent ? (isLight ? '0 0 24px rgba(10,37,70,0.2)' : '0 0 30px rgba(255,255,255,0.6)') : 'none'
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className={`w-14 h-14 rounded-2xl border-2 flex items-center justify-center transition-all relative ${isCurrent ? 'ring-4 ring-white/30 text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white'
-                          }`}
-                      >
-                        <StageIcon className={`w-6 h-6 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
-                      </motion.div>
-                    </button>
-                  </div>
-
-                  {/* Mobile Absolute Left Axis Node Circle */}
-                  <div className="lg:hidden absolute left-6 sm:left-10 top-6 -translate-x-1/2 z-20">
-                    <button
-                      onClick={() => scrollToStage(idx)}
-                      className="cursor-pointer focus:outline-none"
-                    >
-                      <motion.div
-                        animate={{
-                          scale: isCurrent ? 1.12 : 0.9,
-                          borderColor: isLight ? '#0A2546' : isCurrent ? '#FFFFFF' : 'rgba(255,255,255,0.3)',
-                          backgroundColor: isLight ? (isCurrent ? '#FFFFFF' : '#EAF0F7') : isCurrent ? '#FFFFFF' : '#0B2545'
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl border-2 flex items-center justify-center ${isLight ? 'text-[#0A2546]' : 'text-white'}`}
-                      >
-                        <StageIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isCurrent ? 'text-[#0B2442]' : isLight ? 'text-[#0A2546]' : 'text-white/70'}`} />
-                      </motion.div>
-                    </button>
-                  </div>
-
-                  {/* Empty Spacer Column for Desktop Grid Symmetry */}
-                  <div className={`hidden lg:block lg:col-span-5 ${isEven ? 'lg:order-3' : 'lg:order-1'}`} />
-
-                </div>
-              );
-            })}
+            {pipelineStages.map((stage, idx) => (
+              <StageCardItem
+                key={stage.id}
+                stage={stage}
+                idx={idx}
+                isCurrent={activeStageIndex === idx}
+                isPassed={idx < activeStageIndex}
+                isLight={isLight}
+                onCardRef={(el) => {
+                  if (stageCardRefs.current && el) {
+                    stageCardRefs.current[idx] = el;
+                  }
+                }}
+                onSelectStage={scrollToStage}
+              />
+            ))}
           </div>
 
         </div>
