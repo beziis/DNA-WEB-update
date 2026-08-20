@@ -138,7 +138,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
         </section>
 
         {/* 4. EXPANDABLE SERVICE DETAIL SECTION */}
-        <section className="p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl">
+        <section className="service-card p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl">
           <div className="border-b border-white/15 pb-6 mb-8 text-center sm:text-left">
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
               Detailed Service Breakdown
@@ -289,7 +289,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
                 <motion.div
                   key={dIdx}
                   variants={fadeInUpItemVariants}
-                  className="p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] space-y-3 card-hover-lift shadow-xl transition-all"
+                  className="service-card p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] space-y-3 card-hover-lift shadow-xl transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#0B2442] border border-white/25 flex items-center justify-center text-white shadow-md">
                     <DfIcon className="w-5 h-5" />
@@ -315,7 +315,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             {testimonialsData.map((item) => (
               <div
                 key={item.id}
-                className="p-5 lg:p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl flex flex-col justify-between h-full"
+                className="testimonial-card p-5 lg:p-6 rounded-2xl bg-[#0B2545] border border-white/20 hover:border-white/40 transition-all duration-300 shadow-xl flex flex-col justify-between h-full"
               >
                 <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-center justify-between">
@@ -337,7 +337,7 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
 
           {/* Mobile 1-at-a-time Carousel (<768px) */}
           <div className="block md:hidden max-w-2xl mx-auto">
-            <div className="p-5 sm:p-7 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[200px]">
+            <div className="testimonial-card p-5 sm:p-7 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[200px]">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <Quote className="w-5 h-5 text-white/50" />
