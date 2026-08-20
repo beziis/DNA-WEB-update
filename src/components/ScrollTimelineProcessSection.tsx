@@ -328,7 +328,7 @@ export default function ScrollTimelineProcessSection() {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <h2 className="font-sans font-extrabold text-2xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className={`font-sans font-extrabold text-2xl sm:text-5xl tracking-tight leading-tight ${isLight ? 'text-[#0A2546]' : 'text-white'}`}>
             How DNA TECH Works In Real-Time
           </h2>
         </div>

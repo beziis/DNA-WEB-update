@@ -166,10 +166,9 @@ textarea {
 }
 
 .light body,
-.light #root,
-.light .min-h-screen {
-  background-color: #F8FAFC !important;
-  color: #0F172A !important;
+.light #root {
+  background-color: #F8FAFC;
+  color: #0F172A;
 }
 
 /* Hero Section: Fundamental dark navy atmosphere preserved across BOTH themes */
@@ -259,25 +258,11 @@ textarea {
 }
 
 .light .glass-card {
-  background: rgba(255, 255, 255, 0.72) !important;
+  background: rgba(255, 255, 255, 0.68) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(11, 36, 66, 0.12) !important;
-  box-shadow: 0 12px 32px -8px rgba(10, 37, 70, 0.10), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
-  color: #0F172A !important;
-}
-
-.light .bg-\[\#051329\],
-.light .bg-\[\#020914\],
-.light .bg-\[\#010610\],
-.light .bg-\[\#0B2545\],
-.light .bg-\[\#0B2442\] {
-  background: rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  color: #0F172A !important;
-  border-color: rgba(11, 36, 66, 0.12) !important;
-  box-shadow: 0 12px 30px -10px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(11, 36, 66, 0.14) !important;
+  box-shadow: 0 12px 32px -8px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
 }
 
 
@@ -348,41 +333,11 @@ textarea {
 .light span.animate-pulse {
   background-color: #0A2546 !important;
 }
-.light h1,
-.light h2,
-.light h3,
-.light h4,
-.light h5,
-.light h6 {
-  color: #0F172A !important;
-}
-
-.light .text-white {
-  color: #0F172A !important;
-}
-
-.light .text-white\/90,
-.light .text-white\/80,
-.light .text-white\/75,
-.light .text-white\/70,
-.light .text-white\/60 {
-  color: #334155 !important;
-}
-
-.light .text-white\/50,
-.light .text-white\/40,
-.light .text-white\/30 {
-  color: #64748B !important;
-}
-
-/* Lucide icons: default deep navy in light mode; CTAs keep white */
-.light .lucide,
-.light svg.lucide {
-  color: #0B2442 !important;
-}
-.light .keep-dark-cta .lucide,
-.light .keep-dark-cta svg {
-  color: #FFFFFF !important;
+.light h1:not(.hero-section h1),
+.light h2:not(.hero-section h2),
+.light h3:not(.hero-section h3),
+.light h4:not(.hero-section h4) {
+  color: #0F172A;
 }
 
 /* Improve button hover contrast and focus outlines in light mode */
@@ -399,33 +354,6 @@ textarea {
 .light textarea:focus-visible {
   outline: 3px solid rgba(11,36,66,0.12);
   outline-offset: 2px;
-}
-
-/* Ensure small/secondary text remains legible on light backgrounds */
-.light .text-white,
-.light .text-white\/90,
-.light .text-white\/80,
-.light .text-white\/75,
-.light .text-white\/70 {
-  color: #0F172A !important;
-}
-
-/* Fallback for any element that still uses full white on light backgrounds */
-.light [class*="text-white"] {
-  color: #0F172A !important;
-}
-
-/* Ensure icon contrast in buttons and small elements */
-.light button svg,
-.light a svg,
-.light .icon {
-  color: #0B2442 !important;
-}
-
-/* Preserve white icons for dark CTAs */
-.light .keep-dark-cta svg,
-.light .keep-dark-cta .icon {
-  color: #FFFFFF !important;
 }
 
 /* Light mode input & form controls: Frosted glass inputs */

@@ -18,17 +18,17 @@ export default function DataScrollBackground() {
   ];
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#051329]">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#051329] [.light_&]:bg-[#F1F5F9]">
       {/* Interactive Particle Network Canvas representing Data & AI flow */}
       <ParticleNetworkCanvas className="opacity-100" />
 
       {/* Ambient gradient spotlights using dark navy #0B2442 / #0B2545 */}
-      <div className="hidden md:block absolute -top-40 -left-40 w-[550px] h-[550px] bg-radial from-[#0B2545]/20 to-transparent rounded-full pointer-events-none opacity-40" />
-      <div className="hidden md:block absolute top-1/2 -right-40 w-[550px] h-[550px] bg-radial from-[#0B2442]/20 to-transparent rounded-full pointer-events-none opacity-30" />
-      <div className="hidden md:block absolute -bottom-40 left-1/3 w-[550px] h-[550px] bg-radial from-[#0B2545]/20 to-transparent rounded-full pointer-events-none opacity-40" />
+      <div className="hidden md:block absolute -top-40 -left-40 w-[550px] h-[550px] bg-radial from-[#0B2545]/20 to-transparent rounded-full pointer-events-none opacity-40 [.light_&]:opacity-20" />
+      <div className="hidden md:block absolute top-1/2 -right-40 w-[550px] h-[550px] bg-radial from-[#0B2442]/20 to-transparent rounded-full pointer-events-none opacity-30 [.light_&]:opacity-15" />
+      <div className="hidden md:block absolute -bottom-40 left-1/3 w-[550px] h-[550px] bg-radial from-[#0B2545]/20 to-transparent rounded-full pointer-events-none opacity-40 [.light_&]:opacity-20" />
 
       {/* Global overlay for crisp readability */}
-      <div className="absolute inset-0 bg-[#051329]/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#051329]/20 [.light_&]:bg-transparent pointer-events-none" />
 
       {/* Technical Grid overlay for high contrast */}
       <div className="technical-grid absolute inset-0 pointer-events-none" />

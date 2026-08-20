@@ -82,19 +82,19 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
       const isPhone = width < 768;
       const isTablet = width >= 768 && width < 1024;
 
-      // Responsive Density: ~16 on mobile, ~26 on tablet, ~36–48 on desktop
-      const count = isPhone ? 16 : isTablet ? 26 : Math.min(Math.max(Math.floor((width * height) / 16000), 36), 48);
-      const velocityScale = isPhone ? 0.18 : isTablet ? 0.22 : 0.28;
+      // Responsive Density: ~18 on mobile, ~28 on tablet, ~38–48 on desktop
+      const count = isPhone ? 18 : isTablet ? 28 : Math.min(Math.max(Math.floor((width * height) / 15000), 38), 48);
+      const velocityScale = isPhone ? 0.22 : isTablet ? 0.25 : 0.28;
 
       for (let i = 0; i < count; i++) {
-        const radius = isPhone ? Math.random() * 0.9 + 1.1 : Math.random() * 1.1 + 1.2;
+        const radius = isPhone ? Math.random() * 1.0 + 1.3 : isTablet ? Math.random() * 1.1 + 1.4 : Math.random() * 1.2 + 1.5;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * velocityScale,
           vy: (Math.random() - 0.5) * velocityScale,
           radius,
-          alpha: Math.random() * 0.35 + 0.40,
+          alpha: Math.random() * 0.35 + 0.45,
           color: colorPalette[i % colorPalette.length],
           pulseProgress: Math.random()
         });
@@ -167,9 +167,9 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
 
       ctx.clearRect(0, 0, width, height);
 
-      const strokeColor = isLightMode ? '#0B2442' : '#FFFFFF';
+      const strokeColor = isLightMode ? '#0A2546' : '#FFFFFF';
       const pulseColor = isLightMode ? '#0284C7' : '#38BDF8';
-      const maxDistance = width < 768 ? 115 : width < 1024 ? 130 : 145;
+      const maxDistance = width < 768 ? 135 : width < 1024 ? 150 : 165;
 
       // Update & Render Particles
       for (let i = 0; i < particles.length; i++) {
@@ -212,13 +212,13 @@ export default function ParticleNetworkCanvas({ className = '' }: ParticleNetwor
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const lineAlpha = (1 - dist / maxDistance) * (isLightMode ? 0.38 : 0.32);
+            const lineAlpha = (1 - dist / maxDistance) * (isLightMode ? 0.45 : 0.38);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = strokeColor;
             ctx.globalAlpha = lineAlpha;
-            ctx.lineWidth = isLightMode ? 1.15 : 0.95;
+            ctx.lineWidth = isLightMode ? 1.25 : 1.05;
             ctx.stroke();
 
             // Data flow signal pulse
