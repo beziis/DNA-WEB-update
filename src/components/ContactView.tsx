@@ -58,7 +58,7 @@ export default function ContactView() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="relative p-8 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 shadow-xl text-center mb-16 overflow-hidden"
+          className="contact-card relative p-8 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 shadow-xl text-center mb-16 overflow-hidden"
         >
           <div className="max-w-2xl mx-auto relative z-10">
             <motion.h1 variants={fadeInUpItemVariants} className="font-sans font-extrabold text-4xl sm:text-5xl text-white tracking-tight leading-[1.1]">
@@ -80,7 +80,7 @@ export default function ContactView() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 space-y-8"
           >
-            <div className="p-8 rounded-2xl bg-[#0B2545] border border-white/20 space-y-6 shadow-xl">
+            <div className="contact-card p-8 rounded-2xl bg-[#0B2545] border border-white/20 space-y-6 shadow-xl">
               <h2 className="font-sans font-extrabold text-2xl text-white border-b border-white/10 pb-4 tracking-tight">
                 LET'S WORK TOGETHER
               </h2>
@@ -173,7 +173,7 @@ export default function ContactView() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7"
           >
-            <div className="p-8 sm:p-10 rounded-2xl bg-[#0B2545]/40 border border-white/10 shadow-xl">
+            <div className="contact-card p-8 sm:p-10 rounded-2xl bg-[#0B2545]/40 border border-white/10 shadow-xl">
               <h2 className="font-sans font-extrabold text-2xl text-white mb-2 tracking-tight">Send Us a Message</h2>
               <p className="text-xs text-white/80 mb-8 font-sans font-extralight tracking-wide">
                 Fill out the form below and our team will get back to you promptly.

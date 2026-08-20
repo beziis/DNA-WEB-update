@@ -18,7 +18,7 @@ export default function DataScrollBackground() {
   ];
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#051329] [.light_&]:bg-[#F1F5F9]">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#051329] [.light_&]:bg-[#FFFFFF]">
       {/* Interactive Particle Network Canvas representing Data & AI flow */}
       <ParticleNetworkCanvas className="opacity-100" />
 

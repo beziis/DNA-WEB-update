@@ -54,7 +54,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               variants={fadeInUpItemVariants}
               className="font-sans font-extralight text-xs sm:text-lg text-white/85 leading-relaxed tracking-wide pt-1 sm:pt-2"
             >
-          
+
             </motion.p>
           </motion.div>
         </section>
@@ -65,7 +65,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="p-5 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 relative overflow-hidden shadow-xl"
+          className="glass-card p-5 sm:p-12 rounded-2xl bg-[#0B2545] border border-white/20 relative overflow-hidden shadow-xl"
         >
           <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
             <h2 className="font-sans font-extrabold text-lg sm:text-3xl text-white tracking-tight border-b border-white/10 pb-3 sm:pb-4">
@@ -95,7 +95,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="py-8 sm:py-12 px-4 sm:px-12 border border-white/20 bg-[#0B2545] rounded-2xl shadow-xl relative overflow-hidden"
+            className="glass-card py-8 sm:py-12 px-4 sm:px-12 border border-white/20 bg-[#0B2545] rounded-2xl shadow-xl relative overflow-hidden"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 max-w-5xl mx-auto">
               {/* Vision */}
@@ -154,7 +154,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                 variants={fadeInUpItemVariants}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
+                className="team-card p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
               >
                 <div>
                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
@@ -184,7 +184,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
+              className="team-card p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
             >
               <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-3 flex items-center justify-center bg-[#0B2442]">
                 <LazyImage
@@ -255,7 +255,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
                 variants={fadeInUpItemVariants}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
+                className="team-card p-5 sm:p-6 rounded-xl bg-[#0B2545] border border-white/20 text-center flex flex-col justify-between hover:border-white/50 hover:bg-[#0E2E54] transition-all duration-300 shadow-xl group card-hover-lift cursor-pointer"
               >
                 <div>
                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-4 sm:mb-6 flex items-center justify-center bg-[#0B2442] font-sans font-extrabold text-xl text-white/40">
@@ -285,7 +285,7 @@ export default function AboutView({ setCurrentPage }: AboutViewProps) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
+              className="team-card p-5 rounded-xl bg-[#0B2545] border border-white/20 text-center relative shadow-lg"
             >
               <div className="relative w-20 h-20 mx-auto rounded-full overflow-hidden border-2 border-white/20 shadow-md mb-3 flex items-center justify-center bg-[#0B2442]">
                 <LazyImage

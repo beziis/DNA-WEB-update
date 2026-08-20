@@ -50,7 +50,7 @@ export default function FlipCard({
       >
         {/* FRONT SIDE */}
         <div
-          className="absolute inset-0 w-full h-full rounded-[20px] bg-[#0B2545] border border-white/20 p-6 flex flex-col justify-between shadow-xl group-hover:border-white/50 group-hover:bg-[#0E2E54] transition-all overflow-hidden"
+          className="solution-card absolute inset-0 w-full h-full rounded-[20px] bg-[#0B2545] border border-white/20 p-6 flex flex-col justify-between shadow-xl group-hover:border-white/50 group-hover:bg-[#0E2E54] transition-all overflow-hidden"
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
@@ -59,13 +59,13 @@ export default function FlipCard({
           <div className="w-full flex-1 flex flex-col justify-center">
             {front}
           </div>
-          
-          
+
+
         </div>
 
         {/* BACK SIDE */}
         <div
-          className="absolute inset-0 w-full h-full rounded-[20px] bg-[#0B2442] border border-white/25 p-6 flex flex-col justify-between shadow-xl overflow-y-auto"
+          className="solution-card absolute inset-0 w-full h-full rounded-[20px] bg-[#0B2442] border border-white/25 p-6 flex flex-col justify-between shadow-xl overflow-y-auto"
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
@@ -76,7 +76,7 @@ export default function FlipCard({
             {back}
           </div>
 
-          
+
         </div>
       </motion.div>
     </div>

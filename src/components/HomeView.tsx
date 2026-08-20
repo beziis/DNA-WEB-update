@@ -181,7 +181,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
           >
             <motion.div
               variants={fadeInUpItemVariants}
-              className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
+              className="service-card p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
               <div className="w-12 h-12 rounded-[12px] bg-[#0B2442] border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:border-white/50 transition-all">
                 <Database className="w-6 h-6 text-white" />
@@ -194,7 +194,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
             <motion.div
               variants={fadeInUpItemVariants}
-              className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
+              className="service-card p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
               <div className="w-12 h-12 rounded-[12px] bg-[#0B2442] border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:border-white/50 transition-all">
                 <Shield className="w-6 h-6 text-white" />
@@ -207,7 +207,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
 
             <motion.div
               variants={fadeInUpItemVariants}
-              className="p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
+              className="service-card p-8 rounded-[20px] bg-[#0B2545] border border-white/20 hover:border-white/50 hover:bg-[#0E2E54] shadow-xl space-y-4 text-left group card-hover-lift transition-all duration-300 relative z-10"
             >
               <div className="w-12 h-12 rounded-[12px] bg-[#0B2442] border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:border-white/50 transition-all">
                 <LayoutDashboard className="w-6 h-6 text-white" />

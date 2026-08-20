@@ -69,7 +69,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
     {
       title: "Community Impact Research Initiative",
       client: "Development Partner",
-      metric: "1,308 Responses",
+      metric: "5000+ Responses",
       highlight: "Gathered authentic community feedback across Addis Ababa neighborhoods to evaluate youth economic opportunities.",
       tag: "Data Collection"
     },
@@ -151,7 +151,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
         </section>
 
         {/* 1. THE CHALLENGE WE SOLVE */}
-        <section className="p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl relative overflow-hidden">
+        <section className="solution-card p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 space-y-4">
               <h2 className="font-sans font-extrabold text-3xl sm:text-4xl text-white tracking-tight leading-snug">
@@ -263,7 +263,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl space-y-8"
+              className="solution-card p-8 sm:p-12 rounded-3xl bg-[#0B2545] border border-white/20 shadow-2xl space-y-8"
             >
               <div className="border-b border-white/15 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
