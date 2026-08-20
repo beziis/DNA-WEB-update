@@ -319,8 +319,8 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
               >
                 <div className="space-y-3 lg:space-y-4">
                   <div className="flex items-center justify-between">
-                    <Quote className="w-5 h-5 lg:w-6 lg:h-6 text-white/40" />
-                    <span className="font-mono text-[10px] text-white/40 font-bold">{item.id}</span>
+                    <Quote className="w-5 h-5 lg:w-6 lg:h-6 text-white/70" />
+                    <span className="font-mono text-[10px] text-white/70 font-bold">{item.id}</span>
                   </div>
                   <p className="font-sans font-extralight text-xs lg:text-sm text-white/90 leading-relaxed italic tracking-wide">
                     “{item.quote}”
@@ -340,8 +340,8 @@ export default function ServicesView({ setCurrentPage }: ServicesViewProps) {
             <div className="p-5 sm:p-7 rounded-2xl bg-[#0B2545] border border-white/20 relative shadow-xl flex flex-col justify-between min-h-[200px]">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Quote className="w-5 h-5 text-white/50" />
-                  <span className="font-mono text-[10px] text-white/50 font-bold">{testimonialsData[testimonialIdx].id}</span>
+                  <Quote className="w-5 h-5 text-white/70" />
+                  <span className="font-mono text-[10px] text-white/70 font-bold">{testimonialsData[testimonialIdx].id}</span>
                 </div>
                 <p className="font-sans font-extralight text-xs text-white/90 leading-relaxed italic tracking-wide">
                   “{testimonialsData[testimonialIdx].quote}”

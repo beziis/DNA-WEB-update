@@ -466,7 +466,7 @@ export default function Footer({ currentView, setView }: FooterProps) {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="border-t border-white/10 pt-8 mt-12 text-[11px] font-mono text-white/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 pt-8 mt-12 text-[11px] font-mono text-white/70 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             &copy; 2026 DNA TECH. All Rights Reserved.
           </div>

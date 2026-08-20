@@ -263,7 +263,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
                         <div className="w-10 h-10 rounded-[12px] bg-[#0B2545] border border-white/20 flex items-center justify-center text-white font-mono text-xs font-bold">
                           0{idx + 1}
                         </div>
-                        <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest block">SPECIALIZED SOLUTION</span>
+                        <span className="font-mono text-[10px] text-white/75 uppercase tracking-widest block">SPECIALIZED SOLUTION</span>
                         <h3 className="font-sans font-extrabold text-xl text-white tracking-tight">
                           {sol.title}
                         </h3>
@@ -295,7 +295,7 @@ export default function HomeView({ setCurrentPage }: HomeViewProps) {
                     <div className="w-8 h-8 rounded-[10px] bg-[#0B2442] border border-white/20 flex items-center justify-center text-white font-mono text-xs font-bold">
                       0{idx + 1}
                     </div>
-                    <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest">SPECIALIZED SOLUTION</span>
+                    <span className="font-mono text-[9px] text-white/75 uppercase tracking-widest">SPECIALIZED SOLUTION</span>
                   </div>
                   <h3 className="font-sans font-extrabold text-lg text-white tracking-tight">
                     {sol.title}

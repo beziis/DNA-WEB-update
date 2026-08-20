@@ -168,7 +168,25 @@ textarea {
 .light body,
 .light #root {
   background-color: #F8FAFC;
-  color: #0F172A;
+  color: #334155;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light .h1,
+.light .h2,
+.light .h3,
+.light .h4 {
+  color: #0B2442;
+}
+
+.light p,
+.light li,
+.light td,
+.light th {
+  color: #334155;
 }
 
 /* Hero Section: Fundamental dark navy atmosphere preserved across BOTH themes */
@@ -199,8 +217,15 @@ textarea {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
 }
 
-.light .hero-section .hero-card * {
+.light .hero-section .hero-card h3,
+.light .hero-section .hero-card h4,
+.light .hero-section .hero-card .hero-title {
   color: #0B2442 !important;
+}
+
+.light .hero-section .hero-card p,
+.light .hero-section .hero-card span {
+  color: #334155 !important;
 }
 
 .light .hero-section .hero-card-subitem {
@@ -208,8 +233,9 @@ textarea {
   border-color: rgba(11, 36, 66, 0.12) !important;
 }
 
-.light .hero-section .hero-card-subitem * {
-  color: #0B2442 !important;
+.light .hero-section .hero-card-subitem p,
+.light .hero-section .hero-card-subitem span {
+  color: #334155 !important;
 }
 
 /* Ensure Hero buttons maintain the exact dark mode CTA treatment in Light Mode */
@@ -218,18 +244,11 @@ textarea {
   background-color: #FFFFFF !important;
   color: #0B2442 !important;
 }
-.light .hero-section button.hero-primary-btn *,
-.light .hero-section .hero-primary-btn * {
-  color: #0B2442 !important;
-}
+
 .light .hero-section button.hero-secondary-btn,
 .light .hero-section .hero-secondary-btn {
   background-color: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
-  color: #FFFFFF !important;
-}
-.light .hero-section button.hero-secondary-btn *,
-.light .hero-section .hero-secondary-btn * {
   color: #FFFFFF !important;
 }
 
@@ -263,6 +282,37 @@ textarea {
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(11, 36, 66, 0.14) !important;
   box-shadow: 0 12px 32px -8px rgba(10, 37, 70, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Light mode card text contrast */
+.light .glass-card h1, .light .glass-card h2, .light .glass-card h3, .light .glass-card h4,
+.light .service-card h1, .light .service-card h2, .light .service-card h3, .light .service-card h4,
+.light .testimonial-card h1, .light .testimonial-card h2, .light .testimonial-card h3, .light .testimonial-card h4,
+.light .team-card h1, .light .team-card h2, .light .team-card h3, .light .team-card h4,
+.light .portfolio-card h1, .light .portfolio-card h2, .light .portfolio-card h3, .light .portfolio-card h4,
+.light .solution-card h1, .light .solution-card h2, .light .solution-card h3, .light .solution-card h4,
+.light .contact-card h1, .light .contact-card h2, .light .contact-card h3, .light .contact-card h4 {
+  color: #0B2442;
+}
+
+.light .glass-card p, .light .glass-card li, .light .glass-card span,
+.light .service-card p, .light .service-card li, .light .service-card span,
+.light .testimonial-card p, .light .testimonial-card li, .light .testimonial-card span,
+.light .team-card p, .light .team-card li, .light .team-card span,
+.light .portfolio-card p, .light .portfolio-card li, .light .portfolio-card span,
+.light .solution-card p, .light .solution-card li, .light .solution-card span,
+.light .contact-card p, .light .contact-card li, .light .contact-card span {
+  color: #334155;
+}
+
+.light .glass-card .text-muted,
+.light .service-card .text-muted,
+.light .testimonial-card .text-muted,
+.light .team-card .text-muted,
+.light .portfolio-card .text-muted,
+.light .solution-card .text-muted,
+.light .contact-card .text-muted {
+  color: #64748B;
 }
 
 
@@ -333,21 +383,6 @@ textarea {
 .light span.animate-pulse {
   background-color: #0A2546 !important;
 }
-.light h1:not(.hero-section h1),
-.light h2:not(.hero-section h2),
-.light h3:not(.hero-section h3),
-.light h4:not(.hero-section h4) {
-  color: #0F172A;
-}
-
-/* Improve button hover contrast and focus outlines in light mode */
-.light button:hover,
-.light a:hover,
-.light input[type="button"]:hover,
-.light input[type="submit"]:hover {
-  background-color: rgba(11, 36, 66, 0.06) !important;
-}
-
 .light button:focus-visible,
 .light a:focus-visible,
 .light input:focus-visible,
@@ -381,30 +416,9 @@ textarea {
 }
 
 /* Light mode CTA Buttons: ensure dark pill button with white text in light mode */
-.light .keep-dark-cta,
-.light button.bg-white {
+.light .keep-dark-cta {
   background-color: #0A2546 !important;
   color: #FFFFFF !important;
-}
-
-.light button.bg-white * {
-  color: #FFFFFF !important;
-}
-
-.light button.bg-white:hover {
-  background-color: #1E293B !important;
-}
-
-.light button.border-white\/40,
-.light button.border-white\/30 {
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
-}
-
-.light button.border-white\/40:hover,
-.light button.border-white\/30:hover {
-  background-color: #F1F5F9 !important;
-  color: #0F172A !important;
 }
 
 /* Recharts Tooltip in Light Mode */

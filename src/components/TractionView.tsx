@@ -16,9 +16,9 @@ export default function TractionView() {
 
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-45 overflow-hidden">
-        <LazyImage 
-          src={techHubImg} 
-          alt="Tech Analytics Background" 
+        <LazyImage
+          src={techHubImg}
+          alt="Tech Analytics Background"
           className="w-full h-full object-cover scale-105"
           containerClassName="w-full h-full"
         />
@@ -26,9 +26,9 @@ export default function TractionView() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -36,9 +36,9 @@ export default function TractionView() {
         >
           {/* Header background banner image */}
           <div className="absolute inset-0 z-0 opacity-45 pointer-events-none">
-            <LazyImage 
-              src={agriImg} 
-              alt="Agri Telemetry Banner" 
+            <LazyImage
+              src={agriImg}
+              alt="Agri Telemetry Banner"
               className="w-full h-full object-cover"
               containerClassName="w-full h-full"
             />
@@ -64,12 +64,12 @@ export default function TractionView() {
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-white tracking-tight">TRACTION</h2>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="p-8 rounded-2xl bg-[#0B2545]/50 border border-white/10 shadow-xl mb-12"
+            className="portfolio-card p-8 rounded-2xl bg-[#0B2545]/50 border border-white/10 shadow-xl mb-12"
           >
             <p className="font-sans font-extralight text-sm sm:text-base text-white/85 leading-relaxed tracking-wide">
               {tractionData.description}
@@ -86,7 +86,7 @@ export default function TractionView() {
                 whileHover={{ y: -8, scale: 1.03 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                className="p-8 rounded-2xl bg-[#0B2545]/60 border border-white/10 text-center shadow-xl hover:border-white transition-colors cursor-pointer backdrop-blur-sm"
+                className="portfolio-card p-8 rounded-2xl bg-[#0B2545]/60 border border-white/10 text-center shadow-xl hover:border-white transition-colors cursor-pointer backdrop-blur-sm"
               >
                 <div className="text-4xl sm:text-5xl font-sans font-extrabold text-white mb-2 tracking-tight">
                   {stat.percentage}
@@ -104,7 +104,7 @@ export default function TractionView() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="p-8 rounded-2xl bg-[#0B2545]/40 border border-white/10 shadow-xl mb-16"
+            className="portfolio-card p-8 rounded-2xl bg-[#0B2545]/40 border border-white/10 shadow-xl mb-16"
           >
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -120,7 +120,7 @@ export default function TractionView() {
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
                   <XAxis dataKey="year" stroke="rgba(255,255,255,0.6)" fontSize={12} />
                   <YAxis stroke="rgba(255,255,255,0.6)" fontSize={12} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: '#0B2442', borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }}
                   />
                   <Bar dataKey="value1" fill="#FFFFFF" radius={[4, 4, 0, 0]} name="Smart Data Analysis" />
@@ -164,7 +164,7 @@ export default function TractionView() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: pIdx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="p-8 rounded-2xl bg-[#0B2545]/40 border border-white/10 hover:border-white transition-colors duration-300 shadow-xl flex flex-col justify-between cursor-pointer backdrop-blur-sm"
+                className="portfolio-card p-8 rounded-2xl bg-[#0B2545]/40 border border-white/10 hover:border-white transition-colors duration-300 shadow-xl flex flex-col justify-between cursor-pointer backdrop-blur-sm"
               >
                 <div>
                   <h3 className="font-sans font-extrabold text-xl text-white tracking-tight mb-3">{partner.name}</h3>

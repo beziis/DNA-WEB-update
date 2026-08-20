@@ -285,7 +285,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
               {/* Desktop & Tablet 3-Column Card Layout (768px+) */}
               <div className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-8">
                 <div className="p-6 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-2 card-hover-lift">
-                  <span className="font-mono text-[10px] text-white/60 uppercase tracking-widest font-bold block">
+                  <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest font-bold block">
                     1. The Challenge
                   </span>
                   <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
@@ -294,7 +294,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
                 </div>
 
                 <div className="p-6 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-2 card-hover-lift">
-                  <span className="font-mono text-[10px] text-white/60 uppercase tracking-widest font-bold block">
+                  <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest font-bold block">
                     2. DNA TECH Solution
                   </span>
                   <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
@@ -303,7 +303,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
                 </div>
 
                 <div className="p-6 rounded-2xl bg-[#0B2442] border border-white/20 shadow-xl space-y-2 card-hover-lift">
-                  <span className="font-mono text-[10px] text-white/60 uppercase tracking-widest font-bold block">
+                  <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest font-bold block">
                     3. Measurable Result
                   </span>
                   <p className="font-sans font-extralight text-xs sm:text-sm text-white/90 leading-relaxed tracking-wide">
@@ -315,7 +315,7 @@ export default function SolutionsView({ setCurrentPage }: SolutionsViewProps) {
               {/* Mobile Editorial Stacked View (<768px) */}
               <div className="block md:hidden space-y-6 divide-y divide-white/10 pt-2">
                 <div className="pt-2 space-y-1.5 text-left">
-                  <div className="font-mono text-2xl font-extrabold text-white/40">01</div>
+                  <div className="font-mono text-2xl font-extrabold text-white/70">01</div>
                   <div className="font-mono text-[11px] font-bold text-white uppercase tracking-wider">THE CHALLENGE</div>
                   <p className="font-sans font-extralight text-xs text-white/85 leading-relaxed tracking-wide">
                     {industrySolutions[selectedIndustry].challenge}
