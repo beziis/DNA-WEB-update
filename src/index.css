@@ -11,6 +11,23 @@
   --color-navy-800: #0B2442;
   --color-navy-900: #051329;
   --color-navy-950: #020914;
+
+  /* Theme Color Variables */
+  --background: #051329;
+  --foreground: #F8FAFC;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+.light {
+  color-scheme: light;
+
+  --background: #FFFFFF;
+  --foreground: #0B2442;
+  --text-primary: #0B2442;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
 }
 
 /* Base Body & Reset Defaults */
@@ -25,8 +42,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #051329;
-  color: #F8FAFC;
+  background-color: var(--background);
+  color: var(--foreground);
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: 0.015em;
@@ -34,7 +51,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-p, li, td, th {
+p,
+li,
+td,
+th {
   font-weight: 400;
   letter-spacing: 0.015em;
   line-height: 1.7;
@@ -42,7 +62,8 @@ p, li, td, th {
 }
 
 /* Headings: Good Times / DM Sans ExtraBold (800) Hierarchy & Precision Tracking */
-h1, .h1 {
+h1,
+.h1 {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.035em;
@@ -50,7 +71,8 @@ h1, .h1 {
   text-wrap: balance;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.028em;
@@ -58,14 +80,16 @@ h2, .h2 {
   text-wrap: balance;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.012em;
@@ -106,12 +130,12 @@ h4, .h4 {
 .card-hover-lift:hover {
   transform: translateY(-5px);
   box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4), 0 0 24px -4px rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .light .card-hover-lift:hover {
   box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12), 0 0 16px -2px rgba(11, 36, 66, 0.06);
-  border-color: rgba(11, 36, 66, 0.25) !important;
+  border-color: rgba(11, 36, 66, 0.25);
 }
 
 /* Custom Scrollbar */
@@ -119,23 +143,29 @@ h4, .h4 {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #051329;
 }
+
 .light ::-webkit-scrollbar-track {
   background: #F1F5F9;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
+
 .light ::-webkit-scrollbar-thumb {
   background: rgba(15, 23, 42, 0.2);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
 }
+
 .light ::-webkit-scrollbar-thumb:hover {
   background: rgba(15, 23, 42, 0.4);
 }
@@ -284,23 +314,58 @@ textarea {
 }
 
 /* Light mode card text contrast */
-.light .glass-card h1, .light .glass-card h2, .light .glass-card h3, .light .glass-card h4,
-.light .service-card h1, .light .service-card h2, .light .service-card h3, .light .service-card h4,
-.light .testimonial-card h1, .light .testimonial-card h2, .light .testimonial-card h3, .light .testimonial-card h4,
-.light .team-card h1, .light .team-card h2, .light .team-card h3, .light .team-card h4,
-.light .portfolio-card h1, .light .portfolio-card h2, .light .portfolio-card h3, .light .portfolio-card h4,
-.light .solution-card h1, .light .solution-card h2, .light .solution-card h3, .light .solution-card h4,
-.light .contact-card h1, .light .contact-card h2, .light .contact-card h3, .light .contact-card h4 {
+.light .glass-card h1,
+.light .glass-card h2,
+.light .glass-card h3,
+.light .glass-card h4,
+.light .service-card h1,
+.light .service-card h2,
+.light .service-card h3,
+.light .service-card h4,
+.light .testimonial-card h1,
+.light .testimonial-card h2,
+.light .testimonial-card h3,
+.light .testimonial-card h4,
+.light .team-card h1,
+.light .team-card h2,
+.light .team-card h3,
+.light .team-card h4,
+.light .portfolio-card h1,
+.light .portfolio-card h2,
+.light .portfolio-card h3,
+.light .portfolio-card h4,
+.light .solution-card h1,
+.light .solution-card h2,
+.light .solution-card h3,
+.light .solution-card h4,
+.light .contact-card h1,
+.light .contact-card h2,
+.light .contact-card h3,
+.light .contact-card h4 {
   color: #0B2442;
 }
 
-.light .glass-card p, .light .glass-card li, .light .glass-card span,
-.light .service-card p, .light .service-card li, .light .service-card span,
-.light .testimonial-card p, .light .testimonial-card li, .light .testimonial-card span,
-.light .team-card p, .light .team-card li, .light .team-card span,
-.light .portfolio-card p, .light .portfolio-card li, .light .portfolio-card span,
-.light .solution-card p, .light .solution-card li, .light .solution-card span,
-.light .contact-card p, .light .contact-card li, .light .contact-card span {
+.light .glass-card p,
+.light .glass-card li,
+.light .glass-card span,
+.light .service-card p,
+.light .service-card li,
+.light .service-card span,
+.light .testimonial-card p,
+.light .testimonial-card li,
+.light .testimonial-card span,
+.light .team-card p,
+.light .team-card li,
+.light .team-card span,
+.light .portfolio-card p,
+.light .portfolio-card li,
+.light .portfolio-card span,
+.light .solution-card p,
+.light .solution-card li,
+.light .solution-card span,
+.light .contact-card p,
+.light .contact-card li,
+.light .contact-card span {
   color: #334155;
 }
 
@@ -326,23 +391,58 @@ textarea {
   box-shadow: 0 16px 40px rgba(10, 37, 70, 0.12), inset 0 1px 0 #FFFFFF !important;
 }
 
-.light .glass-card h1, .light .glass-card h2, .light .glass-card h3, .light .glass-card h4,
-.light .service-card h1, .light .service-card h2, .light .service-card h3, .light .service-card h4,
-.light .testimonial-card h1, .light .testimonial-card h2, .light .testimonial-card h3, .light .testimonial-card h4,
-.light .team-card h1, .light .team-card h2, .light .team-card h3, .light .team-card h4,
-.light .portfolio-card h1, .light .portfolio-card h2, .light .portfolio-card h3, .light .portfolio-card h4,
-.light .solution-card h1, .light .solution-card h2, .light .solution-card h3, .light .solution-card h4,
-.light .contact-card h1, .light .contact-card h2, .light .contact-card h3, .light .contact-card h4 {
+.light .glass-card h1,
+.light .glass-card h2,
+.light .glass-card h3,
+.light .glass-card h4,
+.light .service-card h1,
+.light .service-card h2,
+.light .service-card h3,
+.light .service-card h4,
+.light .testimonial-card h1,
+.light .testimonial-card h2,
+.light .testimonial-card h3,
+.light .testimonial-card h4,
+.light .team-card h1,
+.light .team-card h2,
+.light .team-card h3,
+.light .team-card h4,
+.light .portfolio-card h1,
+.light .portfolio-card h2,
+.light .portfolio-card h3,
+.light .portfolio-card h4,
+.light .solution-card h1,
+.light .solution-card h2,
+.light .solution-card h3,
+.light .solution-card h4,
+.light .contact-card h1,
+.light .contact-card h2,
+.light .contact-card h3,
+.light .contact-card h4 {
   color: #0B2442;
 }
 
-.light .glass-card p, .light .glass-card li, .light .glass-card span,
-.light .service-card p, .light .service-card li, .light .service-card span,
-.light .testimonial-card p, .light .testimonial-card li, .light .testimonial-card span,
-.light .team-card p, .light .team-card li, .light .team-card span,
-.light .portfolio-card p, .light .portfolio-card li, .light .portfolio-card span,
-.light .solution-card p, .light .solution-card li, .light .solution-card span,
-.light .contact-card p, .light .contact-card li, .light .contact-card span {
+.light .glass-card p,
+.light .glass-card li,
+.light .glass-card span,
+.light .service-card p,
+.light .service-card li,
+.light .service-card span,
+.light .testimonial-card p,
+.light .testimonial-card li,
+.light .testimonial-card span,
+.light .team-card p,
+.light .team-card li,
+.light .team-card span,
+.light .portfolio-card p,
+.light .portfolio-card li,
+.light .portfolio-card span,
+.light .solution-card p,
+.light .solution-card li,
+.light .solution-card span,
+.light .contact-card p,
+.light .contact-card li,
+.light .contact-card span {
   color: #334155;
 }
 
@@ -388,6 +488,7 @@ textarea {
 .light span.animate-pulse {
   background-color: #0A2546 !important;
 }
+
 .light h1:not(.hero-section h1),
 .light h2:not(.hero-section h2),
 .light h3:not(.hero-section h3),
@@ -407,7 +508,7 @@ textarea {
 .light a:focus-visible,
 .light input:focus-visible,
 .light textarea:focus-visible {
-  outline: 3px solid rgba(11,36,66,0.12);
+  outline: 3px solid rgba(11, 36, 66, 0.12);
   outline-offset: 2px;
 }
 
@@ -471,12 +572,15 @@ textarea {
   color: #0F172A !important;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
+
 .light .recharts-tooltip-item {
   color: #0F172A !important;
 }
+
 .light .recharts-cartesian-grid line {
   stroke: #E2E8F0 !important;
 }
+
 .light .recharts-text,
 .light .recharts-label,
 .light .recharts-legend-item-text {
@@ -490,14 +594,17 @@ textarea {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: translate(0px, 0px) rotate(0deg) scale(1);
   }
+
   33% {
     border-radius: 30% 60% 70% 30% / 50% 60% 30% 60%;
     transform: translate(25px, -30px) rotate(120deg) scale(1.08);
   }
+
   66% {
     border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
     transform: translate(-15px, 20px) rotate(240deg) scale(0.92);
   }
+
   100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: translate(0px, 0px) rotate(360deg) scale(1);
@@ -509,10 +616,12 @@ textarea {
     border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
     transform: translate(0px, 0px) rotate(0deg) scale(1);
   }
+
   50% {
     border-radius: 70% 30% 40% 60% / 30% 70% 40% 60%;
     transform: translate(-25px, 25px) rotate(-180deg) scale(1.12);
   }
+
   100% {
     border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
     transform: translate(0px, 0px) rotate(-360deg) scale(1);
@@ -531,8 +640,17 @@ textarea {
 
 /* Animations */
 @keyframes pulse-subtle {
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 .animate-pulse-subtle {
@@ -545,6 +663,7 @@ textarea {
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -555,6 +674,7 @@ textarea {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -565,6 +685,7 @@ textarea {
     opacity: 0;
     transform: scale(0.97) translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -584,14 +705,37 @@ textarea {
 }
 
 /* Stagger Utilities */
-.stagger-1 { animation-delay: 70ms; }
-.stagger-2 { animation-delay: 140ms; }
-.stagger-3 { animation-delay: 210ms; }
-.stagger-4 { animation-delay: 280ms; }
-.stagger-5 { animation-delay: 350ms; }
-.stagger-6 { animation-delay: 420ms; }
-.stagger-7 { animation-delay: 490ms; }
-.stagger-8 { animation-delay: 560ms; }
+.stagger-1 {
+  animation-delay: 70ms;
+}
+
+.stagger-2 {
+  animation-delay: 140ms;
+}
+
+.stagger-3 {
+  animation-delay: 210ms;
+}
+
+.stagger-4 {
+  animation-delay: 280ms;
+}
+
+.stagger-5 {
+  animation-delay: 350ms;
+}
+
+.stagger-6 {
+  animation-delay: 420ms;
+}
+
+.stagger-7 {
+  animation-delay: 490ms;
+}
+
+.stagger-8 {
+  animation-delay: 560ms;
+}
 
 /* CSS Clip-Path Image Reveal Transitions */
 .clip-reveal-container {
@@ -656,6 +800,7 @@ textarea {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -687,7 +832,10 @@ textarea {
 
 /* Motion reduction for users/devices with prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
