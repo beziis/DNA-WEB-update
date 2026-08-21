@@ -167,7 +167,7 @@ textarea {
 
 .light body,
 .light #root {
-  background-color: #F8FAFC;
+  background-color: #fff;
   color: #0F172A;
 }
 
@@ -205,7 +205,7 @@ textarea {
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(255, 255, 255, 0.85) !important;
-  box-shadow: 0 12px 32px rgba(10, 37, 70, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 .light .hero-section .hero-card h3,
@@ -224,7 +224,9 @@ textarea {
   border-color: rgba(11, 36, 66, 0.12) !important;
 }
 
-.light .hero-section .hero-card-subitem * {
+.light .hero-section .hero-card-subitem p,
+.light .hero-section .hero-card-subitem span,
+.light .hero-section .hero-card-subitem div {
   color: #0B2442 !important;
 }
 
